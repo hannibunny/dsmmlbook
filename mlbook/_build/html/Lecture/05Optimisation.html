@@ -1222,7 +1222,7 @@ windspeed 0.03096536694151787
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_31278</span><span class="o">/</span><span class="mf">4195266994.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_34650</span><span class="o">/</span><span class="mf">4195266994.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rfGS</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">rfGS</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -1312,74 +1312,110 @@ windspeed 0.03096536694151787
 <span class="g g-Whitespace">    </span><span class="mi">682</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
 
 <span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/ensemble/_forest.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">437</span>                 <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">MAX_INT</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span> 
-<span class="ne">--&gt; </span><span class="mi">439</span>             <span class="n">trees</span> <span class="o">=</span> <span class="p">[</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_make_estimator</span><span class="p">(</span><span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
-<span class="nn">    441                 for i</span> in <span class="ni">range</span><span class="nt">(n_more_estimators)</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>             <span class="c1"># parallel_backend contexts set at a higher level,</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span>             <span class="c1"># since correctness does not rely on using threads.</span>
+<span class="ne">--&gt; </span><span class="mi">450</span>             <span class="n">trees</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>                 <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>                 <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/ensemble/_forest.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span> 
-<span class="g g-Whitespace">    </span><span class="mi">439</span>             <span class="n">trees</span> <span class="o">=</span> <span class="p">[</span>
-<span class="ne">--&gt; </span><span class="mi">440</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_make_estimator</span><span class="p">(</span><span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
-<span class="nn">    441                 for i</span> in <span class="ni">range</span><span class="nt">(n_more_estimators)</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span>             <span class="p">]</span>
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span> 
+<span class="ne">-&gt; </span><span class="mi">1046</span>             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1047</span>                 <span class="k">pass</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span> 
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/ensemble/_base.py</span> in <span class="ni">_make_estimator</span><span class="nt">(self, append, random_state)</span>
-<span class="g g-Whitespace">    </span><span class="mi">157</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">158</span><span class="sd">         estimator = clone(self.base_estimator_)</span>
-<span class="ne">--&gt; </span><span class="mi">159</span><span class="sd">         estimator.set_params(**{p: getattr(self, p) for p in self.estimator_params})</span>
-<span class="g g-Whitespace">    </span><span class="mi">160</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span><span class="sd">         # TODO: Remove in v1.2</span>
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>                 <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>                 <span class="k">return</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span> 
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/base.py</span> in <span class="ni">set_params</span><span class="nt">(self, **params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span><span class="sd">             # Simple optimization to gain speed (inspect is slow)</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span><span class="sd">             return self</span>
-<span class="ne">--&gt; </span><span class="mi">239</span><span class="sd">         valid_params = self.get_params(deep=True)</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span><span class="sd">         nested_params = defaultdict(dict)  # grouped by prefix</span>
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/base.py</span> in <span class="ni">get_params</span><span class="nt">(self, deep)</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>         <span class="n">out</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param_names</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="k">if</span> <span class="n">deep</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;get_params&quot;</span><span class="p">):</span>
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/base.py</span> in <span class="ni">_get_param_names</span><span class="nt">(cls)</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span>         <span class="c1"># introspect the constructor arguments to find the model parameters</span>
-<span class="g g-Whitespace">    </span><span class="mi">173</span>         <span class="c1"># to represent</span>
-<span class="ne">--&gt; </span><span class="mi">174</span>         <span class="n">init_signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="c1"># Consider the constructor parameters excluding &#39;self&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">176</span>         <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span>
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> 
+<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/inspect.py</span> in <span class="ni">signature</span><span class="nt">(obj, follow_wrapped)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3103</span> <span class="k">def</span> <span class="nf">signature</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">follow_wrapped</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3104</span>     <span class="sd">&quot;&quot;&quot;Get a signature object for the passed callable.&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">3105</span>     <span class="k">return</span> <span class="n">Signature</span><span class="o">.</span><span class="n">from_callable</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">follow_wrapped</span><span class="o">=</span><span class="n">follow_wrapped</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3106</span> 
-<span class="g g-Whitespace">   </span><span class="mi">3107</span> 
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/inspect.py</span> in <span class="ni">from_callable</span><span class="nt">(cls, obj, follow_wrapped)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2852</span>     <span class="k">def</span> <span class="nf">from_callable</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">follow_wrapped</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2853</span>         <span class="sd">&quot;&quot;&quot;Constructs Signature for the given callable object.&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">2854</span>         <span class="k">return</span> <span class="n">_signature_from_callable</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">sigcls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2855</span>                                         <span class="n">follow_wrapper_chains</span><span class="o">=</span><span class="n">follow_wrapped</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2856</span> 
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/inspect.py</span> in <span class="ni">_signature_from_callable</span><span class="nt">(obj, follow_wrapper_chains, skip_bound_arg, sigcls)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2302</span>         <span class="c1"># If it&#39;s a pure Python function, or an object that is duck type</span>
-<span class="g g-Whitespace">   </span><span class="mi">2303</span>         <span class="c1"># of a Python function (Cython functions, for instance), then:</span>
-<span class="ne">-&gt; </span><span class="mi">2304</span>         <span class="k">return</span> <span class="n">_signature_from_function</span><span class="p">(</span><span class="n">sigcls</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2305</span>                                         <span class="n">skip_bound_arg</span><span class="o">=</span><span class="n">skip_bound_arg</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2306</span> 
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">216</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> 
+<span class="g g-Whitespace">    </span><span class="mi">218</span> 
 
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/inspect.py</span> in <span class="ni">_signature_from_function</span><span class="nt">(cls, func, skip_bound_arg)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2134</span>             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{!r}</span><span class="s1"> is not a Python function&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2135</span> 
-<span class="ne">-&gt; </span><span class="mi">2136</span>     <span class="n">s</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s2">&quot;__text_signature__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2137</span>     <span class="k">if</span> <span class="n">s</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2138</span>         <span class="k">return</span> <span class="n">_signature_fromstr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">skip_bound_arg</span><span class="p">)</span>
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/ensemble/_forest.py</span> in <span class="ni">_parallel_build_trees</span><span class="nt">(tree, forest, X, y, sample_weight, tree_idx, n_trees, verbose, class_weight, n_samples_bootstrap)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>             <span class="n">curr_sample_weight</span> <span class="o">*=</span> <span class="n">compute_sample_weight</span><span class="p">(</span><span class="s2">&quot;balanced&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span> 
+<span class="ne">--&gt; </span><span class="mi">185</span>         <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">curr_sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span>         <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/tree/_classes.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight, check_input, X_idx_sorted)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1313</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1314</span><span class="s2"> </span>
+<span class="ne">-&gt; </span><span class="mi">1315</span><span class="s2">         super().fit(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1316</span><span class="s2">             X,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1317</span><span class="s2">             y,</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/tree/_classes.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight, check_input, X_idx_sorted)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">     ):</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">154</span><span class="s2">         random_state = check_random_state(self.random_state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="s2">         if self.ccp_alpha &lt; 0.0:</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/utils/validation.py</span> in <span class="ni">check_random_state</span><span class="nt">(seed)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1055</span><span class="s2">         return np.random.mtrand._rand</span>
+<span class="g g-Whitespace">   </span><span class="mi">1056</span><span class="s2">     if isinstance(seed, numbers.Integral):</span>
+<span class="ne">-&gt; </span><span class="mi">1057</span><span class="s2">         return np.random.RandomState(seed)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="s2">     if isinstance(seed, np.random.RandomState):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1059</span><span class="s2">         return seed</span>
+
+<span class="nn">mtrand.pyx</span> in <span class="ni">numpy.random.mtrand.RandomState.__init__</span><span class="nt">()</span>
+
+<span class="nn">_mt19937.pyx</span> in <span class="ni">numpy.random._mt19937.MT19937.__init__</span><span class="nt">()</span>
+
+<span class="nn">bit_generator.pyx</span> in <span class="ni">numpy.random.bit_generator.BitGenerator.__init__</span><span class="nt">()</span>
+
+<span class="nn">bit_generator.pyx</span> in <span class="ni">numpy.random.bit_generator.SeedSequence.__init__</span><span class="nt">()</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/random.py</span> in <span class="ni">getrandbits</span><span class="nt">(self, k)</span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span><span class="s2">             raise ValueError(&#39;number of bits must be greater than zero&#39;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">         numbytes = (k + 7) // 8                       # bits / 8 and rounded up</span>
+<span class="ne">--&gt; </span><span class="mi">726</span><span class="s2">         x = int.from_bytes(_urandom(numbytes), &#39;big&#39;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span><span class="s2">         return x &gt;&gt; (numbytes * 8 - k)                # trim excess bits</span>
+<span class="g g-Whitespace">    </span><span class="mi">728</span><span class="s2"> </span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1395,8 +1431,8 @@ windspeed 0.03096536694151787
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bootstrap&#39;: True, &#39;max_depth&#39;: 11, &#39;n_estimators&#39;: 20}
--479.6631460890082
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bootstrap&#39;: True, &#39;max_depth&#39;: 11, &#39;n_estimators&#39;: 120}
+-481.00662021110395
 </pre></div>
 </div>
 </div>
@@ -1431,8 +1467,8 @@ windspeed 0.03096536694151787
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_estimators&#39;: 120, &#39;max_depth&#39;: 9, &#39;bootstrap&#39;: True}
--479.14815334699404
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_estimators&#39;: 80, &#39;max_depth&#39;: 9, &#39;bootstrap&#39;: True}
+-491.84235546842376
 </pre></div>
 </div>
 </div>
@@ -1463,7 +1499,7 @@ windspeed 0.03096536694151787
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForestRegressor(max_depth=11, n_estimators=20, oob_score=True)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForestRegressor(max_depth=11, n_estimators=120, oob_score=True)
 </pre></div>
 </div>
 </div>
@@ -1478,11 +1514,11 @@ windspeed 0.03096536694151787
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Random Forest from GridSearch
-Mean absolute error = 483.35
-Mean squared error = 435988.21
-Median absolute error = 355.11
+Mean absolute error = 493.52
+Mean squared error = 448355.22
+Median absolute error = 363.35
 R2 score = 0.89
-Explained variance score = 0.9
+Explained variance score = 0.89
 </pre></div>
 </div>
 </div>
@@ -1643,8 +1679,8 @@ Accuracy: -514.56 (+/- 63.21) 	 Random Forest+OneHot+MinmaxScaling
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_estimators&#39;: 120, &#39;max_depth&#39;: 9, &#39;bootstrap&#39;: True}
--479.14815334699404
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_estimators&#39;: 80, &#39;max_depth&#39;: 9, &#39;bootstrap&#39;: True}
+-491.84235546842376
 </pre></div>
 </div>
 </div>

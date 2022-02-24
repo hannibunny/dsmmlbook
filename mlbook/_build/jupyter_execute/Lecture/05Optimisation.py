@@ -346,7 +346,7 @@ rfGS.fit(X_train,y_train)
 
 # After the grid-search, the best configuration and the corresponding score can be accessed as follows:
 
-# In[60]:
+# In[24]:
 
 
 print(rfGS.best_params_)
@@ -356,7 +356,7 @@ print(rfGS.best_score_)
 # ### Heuristic Search
 # A faster alternative for `GridSearchCV` is [RandomizedSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html#sklearn.model_selection.RandomizedSearchCV). In contrast to `GridSearchCV`, not all parameter values are tried out, but rather a fixed number of parameter settings is sampled from the specified distributions. The number of parameter settings that are tried is given by *n_iter*.
 
-# In[61]:
+# In[25]:
 
 
 rf_regressor = RandomForestRegressor()
@@ -364,7 +364,7 @@ rfRandomSearch = RandomizedSearchCV(estimator=rf_regressor, param_distributions=
 rfRandomSearch.fit(X_train,y_train)
 
 
-# In[62]:
+# In[26]:
 
 
 print(rfRandomSearch.best_params_)
@@ -375,7 +375,7 @@ print(rfRandomSearch.best_score_)
 
 # ## Compare best configuration found in GridSearch with original configuration
 
-# In[63]:
+# In[27]:
 
 
 X_train=np.load("../Data/Bike_x_train.npy")
@@ -386,7 +386,7 @@ y_test=np.load("../Data/Bike_y_test.npy")
 
 # ### Test best configuration found in GridSearchCV
 
-# In[64]:
+# In[28]:
 
 
 rf_reg_best = rfGS.best_estimator_
@@ -394,7 +394,7 @@ rf_reg_best.oob_score=True
 rf_reg_best.fit(X_train, y_train)
 
 
-# In[65]:
+# In[29]:
 
 
 y_pred = rf_reg_best.predict(X_test)
@@ -404,14 +404,14 @@ utilsJM.determineRegressionMetrics(y_test,y_pred,title=title)
 
 # ### Test model with inital parameter configuration 
 
-# In[66]:
+# In[30]:
 
 
 with open('../Data/rf_regressor_bike.pkl', 'rb') as f:
     rf_regressor2 = pickle.load(f)
 
 
-# In[67]:
+# In[31]:
 
 
 #rf_reg_best = rfGS.best_estimator_
@@ -423,13 +423,13 @@ utilsJM.determineRegressionMetrics(y_test,y_pred,title=title)
 
 # ## Compare different preprocessing configurations
 
-# In[68]:
+# In[32]:
 
 
 from sklearn import compose
 
 
-# In[69]:
+# In[33]:
 
 
 catFeats=[0,2,4,6]
@@ -470,7 +470,7 @@ scores = [
     ]
 
 
-# In[70]:
+# In[34]:
 
 
 for score,label in zip(scores, 
@@ -487,7 +487,7 @@ for score,label in zip(scores,
 
 # ## ExtraTree Regression
 
-# In[71]:
+# In[35]:
 
 
 estimator_range=np.arange(30,330,50)
@@ -495,28 +495,28 @@ depth_range=np.arange(3,12)
 min_leaf_range=np.arange(1,4)
 
 
-# In[72]:
+# In[36]:
 
 
 extra_regressor = ExtraTreesRegressor()
 param_grid = [{'max_depth': depth_range, 'n_estimators': estimator_range, 'bootstrap': [True,False]}]
 
 
-# In[73]:
+# In[37]:
 
 
 extRandomSearch = RandomizedSearchCV(estimator=extra_regressor, param_distributions=param_grid[0],scoring='neg_mean_absolute_error',cv=10)
 extRandomSearch.fit(X_train,y_train)
 
 
-# In[74]:
+# In[38]:
 
 
 print(rfRandomSearch.best_params_)
 print(rfRandomSearch.best_score_)
 
 
-# In[75]:
+# In[39]:
 
 
 catFeats=[0,2,4,6]
@@ -557,7 +557,7 @@ scores = [
     ]
 
 
-# In[76]:
+# In[40]:
 
 
 for score,label in zip(scores, 

@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 730, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/util.py", line 96, in ensure_async
+    result = await obj
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/jupyter_client/channels.py", line 230, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
   File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
@@ -11,69 +22,16 @@ Traceback (most recent call last):
     return future.result()
   File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-from sklearn.metrics import roc_curve, auc
-from scipy import interp
-pipe = Pipeline([('scl', StandardScaler()),
-                 ('clf', LogisticRegression(penalty='l2',random_state=0,C=100.0))])
-
-splits=5
-cv = StratifiedKFold(n_splits=splits,random_state=1)
-fig = plt.figure(figsize=(10, 8))
-mean_tpr = 0.0
-mean_fpr = np.linspace(0, 1, 100)
-all_tpr = []
-for i, (train, test) in enumerate(cv.split(X_train,y_train)):
-    pipe.fit(X_train[train],y_train[train])
-    probas = pipe.predict_proba(X_train[test])    
-    fpr, tpr, thresholds = roc_curve(y_train[test],probas[:, 1],pos_label=1)
-    mean_tpr += interp(mean_fpr, fpr, tpr)
-    mean_tpr[0] = 0.0
-    roc_auc = auc(fpr, tpr)
-    plt.plot(fpr,tpr,lw=1,label='ROC fold %d (area = %0.2f)'% (i+1, roc_auc))
-plt.plot([0, 1],[0, 1],linestyle='--',color=(0.6, 0.6, 0.6),label='random guessing')
-mean_tpr /= splits#len(cv)
-mean_tpr[-1] = 1.0
-mean_auc = auc(mean_fpr, mean_tpr)
-plt.plot(mean_fpr, mean_tpr, 'k--',label='mean ROC (area = %0.2f)' % mean_auc, lw=2)
-plt.plot([0, 0, 1],[0, 1, 1],lw=2,linestyle=':',color='black',label='perfect performance')
-plt.xlim([-0.05, 1.05])
-plt.ylim([-0.05, 1.05])
-plt.xlabel('false positive rate')
-plt.ylabel('true positive rate')
-plt.title('Receiver Operator Characteristic')
-plt.legend(loc="lower right")
-plt.show()
-------------------
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-[0;32m/var/folders/68/9tltm6l520v0stj3qjlc5v9w0000gn/T/ipykernel_31179/450551658.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      5[0m [0;34m[0m[0m
-[1;32m      6[0m [0msplits[0m[0;34m=[0m[0;36m5[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 7[0;31m [0mcv[0m [0;34m=[0m [0mStratifiedKFold[0m[0;34m([0m[0mn_splits[0m[0;34m=[0m[0msplits[0m[0;34m,[0m[0mrandom_state[0m[0;34m=[0m[0;36m1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      8[0m [0mfig[0m [0;34m=[0m [0mplt[0m[0;34m.[0m[0mfigure[0m[0;34m([0m[0mfigsize[0m[0;34m=[0m[0;34m([0m[0;36m10[0m[0;34m,[0m [0;36m8[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      9[0m [0mmean_tpr[0m [0;34m=[0m [0;36m0.0[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_split.py[0m in [0;36m__init__[0;34m(self, n_splits, shuffle, random_state)[0m
-[1;32m    642[0m [0;34m[0m[0m
-[1;32m    643[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mn_splits[0m[0;34m=[0m[0;36m5[0m[0;34m,[0m [0;34m*[0m[0;34m,[0m [0mshuffle[0m[0;34m=[0m[0;32mFalse[0m[0;34m,[0m [0mrandom_state[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 644[0;31m         [0msuper[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mn_splits[0m[0;34m=[0m[0mn_splits[0m[0;34m,[0m [0mshuffle[0m[0;34m=[0m[0mshuffle[0m[0;34m,[0m [0mrandom_state[0m[0;34m=[0m[0mrandom_state[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    645[0m [0;34m[0m[0m
-[1;32m    646[0m     [0;32mdef[0m [0m_make_test_folds[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mX[0m[0;34m,[0m [0my[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_split.py[0m in [0;36m__init__[0;34m(self, n_splits, shuffle, random_state)[0m
-[1;32m    294[0m [0;34m[0m[0m
-[1;32m    295[0m         [0;32mif[0m [0;32mnot[0m [0mshuffle[0m [0;32mand[0m [0mrandom_state[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m  [0;31m# None is the default[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 296[0;31m             raise ValueError(
-[0m[1;32m    297[0m                 [0;34m"Setting a random_state has no effect since shuffle is "[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    298[0m                 [0;34m"False. You should leave "[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mValueError[0m: Setting a random_state has no effect since shuffle is False. You should leave random_state to its default (None), or set shuffle=True.
-ValueError: Setting a random_state has no effect since shuffle is False. You should leave random_state to its default (None), or set shuffle=True.
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 949, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 754, in _async_poll_for_reply
+    await self._async_handle_timeout(timeout, cell)
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 801, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+scores = [ cross_val_score(reg,X,y,scoring='accuracy') for reg in pipelist ]
+-------------------
 

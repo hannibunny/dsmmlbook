@@ -404,6 +404,127 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_34617</span><span class="o">/</span><span class="mf">762832329.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="kn">import</span> <span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span>
+
+<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">dsmmlbook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">_typing</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> 
+<span class="ne">---&gt; </span><span class="mi">37</span> <span class="kn">from</span> <span class="nn">tensorflow.python.tools</span> <span class="kn">import</span> <span class="n">module_util</span> <span class="k">as</span> <span class="n">_module_util</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="kn">from</span> <span class="nn">tensorflow.python.util.lazy_loader</span> <span class="kn">import</span> <span class="n">LazyLoader</span> <span class="k">as</span> <span class="n">_LazyLoader</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> 
+
+<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">dsmmlbook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> 
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="c1"># Bring in subpackages.</span>
+<span class="ne">---&gt; </span><span class="mi">42</span> <span class="kn">from</span> <span class="nn">tensorflow.python</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="kn">from</span> <span class="nn">tensorflow.python</span> <span class="kn">import</span> <span class="n">distribute</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="c1"># from tensorflow.python import keras</span>
+
+<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">dsmmlbook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> 
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1"># pylint: disable=unused-import</span>
+<span class="ne">---&gt; </span><span class="mi">21</span> <span class="kn">from</span> <span class="nn">tensorflow.python.data</span> <span class="kn">import</span> <span class="n">experimental</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="kn">from</span> <span class="nn">tensorflow.python.data.ops.dataset_ops</span> <span class="kn">import</span> <span class="n">AUTOTUNE</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="kn">from</span> <span class="nn">tensorflow.python.data.ops.dataset_ops</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">dsmmlbook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">experimental</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span> 
+<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="c1"># pylint: disable=unused-import</span>
+<span class="ne">---&gt; </span><span class="mi">95</span> <span class="kn">from</span> <span class="nn">tensorflow.python.data.experimental</span> <span class="kn">import</span> <span class="n">service</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="kn">from</span> <span class="nn">tensorflow.python.data.experimental.ops.batching</span> <span class="kn">import</span> <span class="n">dense_to_ragged_batch</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="kn">from</span> <span class="nn">tensorflow.python.data.experimental.ops.batching</span> <span class="kn">import</span> <span class="n">dense_to_sparse_batch</span>
+
+<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">dsmmlbook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">experimental</span><span class="o">/</span><span class="n">service</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span><span class="sd"> </span>
+<span class="ne">--&gt; </span><span class="mi">387</span><span class="sd"> from tensorflow.python.data.experimental.ops.data_service_ops import distribute</span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span><span class="sd"> from tensorflow.python.data.experimental.ops.data_service_ops import from_dataset_id</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span><span class="sd"> from tensorflow.python.data.experimental.ops.data_service_ops import register_dataset</span>
+
+<span class="sd">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/data/experimental/ops/data_service_ops.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span><span class="sd"> from tensorflow.python import tf2</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="sd"> from tensorflow.python.compat import compat</span>
+<span class="ne">---&gt; </span><span class="mi">23</span><span class="sd"> from tensorflow.python.data.experimental.ops import compression_ops</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="sd"> from tensorflow.python.data.experimental.service import _pywrap_server_lib</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="sd"> from tensorflow.python.data.experimental.service import _pywrap_utils</span>
+
+<span class="sd">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/data/experimental/ops/compression_ops.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span><span class="sd"> # ==============================================================================</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="sd"> &quot;&quot;&quot;</span><span class="n">Ops</span> <span class="k">for</span> <span class="n">compressing</span> <span class="ow">and</span> <span class="n">uncompressing</span> <span class="n">dataset</span> <span class="n">elements</span><span class="o">.</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">16</span><span class="s2"> from tensorflow.python.data.util import structure</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span><span class="s2"> from tensorflow.python.ops import gen_experimental_dataset_ops as ged_ops</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span><span class="s2"> </span>
+
+<span class="s2">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/data/util/structure.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span><span class="s2"> import wrapt</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span><span class="s2"> </span>
+<span class="ne">---&gt; </span><span class="mi">22</span><span class="s2"> from tensorflow.python.data.util import nest</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="s2"> from tensorflow.python.framework import composite_tensor</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="s2"> from tensorflow.python.framework import ops</span>
+
+<span class="s2">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/data/util/nest.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span><span class="s2"> import six as _six</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="s2"> </span>
+<span class="ne">---&gt; </span><span class="mi">36</span><span class="s2"> from tensorflow.python.framework import sparse_tensor as _sparse_tensor</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="s2"> from tensorflow.python.util import _pywrap_utils</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="s2"> from tensorflow.python.util import nest</span>
+
+<span class="s2">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/framework/sparse_tensor.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="s2"> from tensorflow.python import tf2</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="s2"> from tensorflow.python.framework import composite_tensor</span>
+<span class="ne">---&gt; </span><span class="mi">24</span><span class="s2"> from tensorflow.python.framework import constant_op</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="s2"> from tensorflow.python.framework import dtypes</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span><span class="s2"> from tensorflow.python.framework import ops</span>
+
+<span class="s2">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/framework/constant_op.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="s2"> from tensorflow.core.framework import types_pb2</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="s2"> from tensorflow.python.eager import context</span>
+<span class="ne">---&gt; </span><span class="mi">25</span><span class="s2"> from tensorflow.python.eager import execute</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span><span class="s2"> from tensorflow.python.framework import dtypes</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span><span class="s2"> from tensorflow.python.framework import op_callbacks</span>
+
+<span class="s2">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/eager/execute.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="s2"> from tensorflow.python.eager import core</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="s2"> from tensorflow.python.framework import dtypes</span>
+<span class="ne">---&gt; </span><span class="mi">24</span><span class="s2"> from tensorflow.python.framework import ops</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="s2"> from tensorflow.python.framework import tensor_shape</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span><span class="s2"> from tensorflow.python.util import compat</span>
+
+<span class="s2">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/tensorflow/python/framework/ops.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span><span class="s2"> import threading</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="s2"> import types</span>
+<span class="ne">---&gt; </span><span class="mi">23</span><span class="s2"> from absl import app</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="s2"> import numpy as np</span>
+
+<span class="s2">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/absl/app.py in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="s2"> import traceback</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="s2"> </span>
+<span class="ne">---&gt; </span><span class="mi">40</span><span class="s2"> from absl import command_name</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span><span class="s2"> from absl import flags</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span><span class="s2"> from absl import logging</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/importlib/_bootstrap.py</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/importlib/_bootstrap.py</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/importlib/_bootstrap.py</span> in <span class="ni">_load_unlocked</span><span class="nt">(spec)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/importlib/_bootstrap_external.py</span> in <span class="ni">exec_module</span><span class="nt">(self, module)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/importlib/_bootstrap_external.py</span> in <span class="ni">get_code</span><span class="nt">(self, fullname)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/importlib/_bootstrap_external.py</span> in <span class="ni">get_data</span><span class="nt">(self, path)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -415,7 +536,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-02-24 15:11:13.312837: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-02-24 16:49:13.343382: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -501,7 +622,7 @@ PIL image size (224, 224)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image batch size (1, 224, 224, 3)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f8b51964a30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f96a8424250&gt;
 </pre></div>
 </div>
 <img alt="../_images/04KerasPretrainedClassifiers_8_2.png" src="../_images/04KerasPretrainedClassifiers_8_2.png" />
@@ -664,16 +785,7 @@ PIL image size (224, 224)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_31249</span><span class="o">/</span><span class="mf">110761990.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">cv2</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">numpy_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">original</span><span class="p">))</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">numpy_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">numpy_image</span><span class="p">,(</span><span class="mi">900</span><span class="p">,</span><span class="mi">900</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">numpy_image</span><span class="p">,</span> <span class="s2">&quot;VGG16: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label_vgg</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">label_vgg</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="p">,</span> <span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;cv2&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>

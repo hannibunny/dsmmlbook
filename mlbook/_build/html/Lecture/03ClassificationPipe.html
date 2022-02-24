@@ -2010,7 +2010,7 @@ ROC curves typically feature true positive rate on the Y axis, and false positiv
                  <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="mf">100.0</span><span class="p">))])</span>
 
 <span class="n">splits</span><span class="o">=</span><span class="mi">5</span>
-<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">splits</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">splits</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">mean_tpr</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="n">mean_fpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -2040,32 +2040,7 @@ ROC curves typically feature true positive rate on the Y axis, and false positiv
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_31179</span><span class="o">/</span><span class="mf">450551658.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">splits</span><span class="o">=</span><span class="mi">5</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">splits</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">mean_tpr</span> <span class="o">=</span> <span class="mf">0.0</span>
-
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_split.py</span> in <span class="ni">__init__</span><span class="nt">(self, n_splits, shuffle, random_state)</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> 
-<span class="g g-Whitespace">    </span><span class="mi">643</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">644</span>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">645</span> 
-<span class="g g-Whitespace">    </span><span class="mi">646</span>     <span class="k">def</span> <span class="nf">_make_test_folds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_split.py</span> in <span class="ni">__init__</span><span class="nt">(self, n_splits, shuffle, random_state)</span>
-<span class="g g-Whitespace">    </span><span class="mi">294</span> 
-<span class="g g-Whitespace">    </span><span class="mi">295</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">shuffle</span> <span class="ow">and</span> <span class="n">random_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># None is the default</span>
-<span class="ne">--&gt; </span><span class="mi">296</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span>                 <span class="s2">&quot;Setting a random_state has no effect since shuffle is &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span>                 <span class="s2">&quot;False. You should leave &quot;</span>
-
-<span class="ne">ValueError</span>: Setting a random_state has no effect since shuffle is False. You should leave random_state to its default (None), or set shuffle=True.
-</pre></div>
-</div>
+<img alt="../_images/03ClassificationPipe_50_0.png" src="../_images/03ClassificationPipe_50_0.png" />
 </div>
 </div>
 </div>
@@ -2087,7 +2062,7 @@ ROC curves typically feature true positive rate on the Y axis, and false positiv
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kfold</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)):</span>
     <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train</span><span class="p">])</span>
@@ -2099,15 +2074,17 @@ ROC curves typically feature true positive rate on the Y axis, and false positiv
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold: 1, Class dist.: [144 123], Acc: 0.867
-Fold: 2, Class dist.: [144 123], Acc: 0.833
-Fold: 3, Class dist.: [144 123], Acc: 0.833
-Fold: 4, Class dist.: [144 123], Acc: 0.933
-Fold: 5, Class dist.: [144 123], Acc: 0.867
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold: 2, Class dist.: [144 123], Acc: 0.867
+Fold: 3, Class dist.: [144 123], Acc: 0.767
+Fold: 4, Class dist.: [144 123], Acc: 0.967
+Fold: 5, Class dist.: [144 123], Acc: 0.800
 Fold: 6, Class dist.: [144 123], Acc: 0.767
-Fold: 7, Class dist.: [144 123], Acc: 0.867
+Fold: 7, Class dist.: [144 123], Acc: 0.767
 Fold: 8, Class dist.: [144 124], Acc: 0.897
 Fold: 9, Class dist.: [144 124], Acc: 0.724
-Fold: 10, Class dist.: [144 124], Acc: 0.828
+Fold: 10, Class dist.: [144 124], Acc: 0.862
 </pre></div>
 </div>
 </div>
@@ -2123,9 +2100,9 @@ Fold: 10, Class dist.: [144 124], Acc: 0.828
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CV accuracy scores: [0.86666667 0.83333333 0.83333333 0.93333333 0.86666667 0.76666667
- 0.86666667 0.89655172 0.72413793 0.82758621]
-CV accuracy: 0.841 +/- 0.058
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CV accuracy scores: [0.86666667 0.86666667 0.76666667 0.96666667 0.8        0.76666667
+ 0.76666667 0.89655172 0.72413793 0.86206897]
+CV accuracy: 0.828 +/- 0.071
 </pre></div>
 </div>
 </div>
@@ -2325,7 +2302,7 @@ c(\mathbf{x})=c_0 + c_1 x_1 + c_2 x_2 + \ldots + c_d x_d,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([160.,  54.,  35.,  35.,  13.]), array([0, 1, 2, 3, 4, 5]), &lt;a list of 5 Patch objects&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([160.,  54.,  35.,  35.,  13.]), array([0, 1, 2, 3, 4, 5]), &lt;BarContainer object of 5 artists&gt;)
 </pre></div>
 </div>
 <img alt="../_images/03ClassificationPipe_77_1.png" src="../_images/03ClassificationPipe_77_1.png" />
@@ -2587,17 +2564,17 @@ Accuracy: 83.15% (+/- 4.91%), LogReg+OneHot+StdScaling with mean + LDA
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.70 (+/-  0.16) 	 for network (10,) 
-Accuracy:  0.80 (+/-  0.03) 	 for network (30,) 
-Accuracy:  0.81 (+/-  0.04) 	 for network (50,) 
-Accuracy:  0.76 (+/-  0.07) 	 for network (100,) 
-Accuracy:  0.82 (+/-  0.04) 	 for network (10, 10) 
-Accuracy:  0.77 (+/-  0.02) 	 for network (30, 30) 
-Accuracy:  0.77 (+/-  0.03) 	 for network (50, 50) 
-Accuracy:  0.80 (+/-  0.02) 	 for network (100, 50) 
-Accuracy:  0.74 (+/-  0.05) 	 for network (100, 100) 
-Accuracy:  0.75 (+/-  0.04) 	 for network (200, 100) 
-Accuracy:  0.75 (+/-  0.03) 	 for network (200, 200) 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.59 (+/-  0.16) 	 for network (10,) 
+Accuracy:  0.76 (+/-  0.12) 	 for network (30,) 
+Accuracy:  0.82 (+/-  0.02) 	 for network (50,) 
+Accuracy:  0.82 (+/-  0.04) 	 for network (100,) 
+Accuracy:  0.82 (+/-  0.03) 	 for network (10, 10) 
+Accuracy:  0.73 (+/-  0.04) 	 for network (30, 30) 
+Accuracy:  0.76 (+/-  0.05) 	 for network (50, 50) 
+Accuracy:  0.76 (+/-  0.08) 	 for network (100, 50) 
+Accuracy:  0.75 (+/-  0.03) 	 for network (100, 100) 
+Accuracy:  0.75 (+/-  0.06) 	 for network (200, 100) 
+Accuracy:  0.72 (+/-  0.07) 	 for network (200, 200) 
 </pre></div>
 </div>
 </div>
@@ -2632,17 +2609,17 @@ As can be seen, the accuracy-values are much better now:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.84 (+/-  0.04) 	 for network (10,) 
-Accuracy:  0.83 (+/-  0.04) 	 for network (30,) 
-Accuracy:  0.80 (+/-  0.04) 	 for network (50,) 
-Accuracy:  0.80 (+/-  0.03) 	 for network (100,) 
-Accuracy:  0.80 (+/-  0.03) 	 for network (10, 10) 
-Accuracy:  0.81 (+/-  0.05) 	 for network (30, 30) 
-Accuracy:  0.77 (+/-  0.05) 	 for network (50, 50) 
-Accuracy:  0.79 (+/-  0.02) 	 for network (100, 50) 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.85 (+/-  0.04) 	 for network (10,) 
+Accuracy:  0.82 (+/-  0.03) 	 for network (30,) 
+Accuracy:  0.79 (+/-  0.02) 	 for network (50,) 
+Accuracy:  0.80 (+/-  0.04) 	 for network (100,) 
+Accuracy:  0.79 (+/-  0.03) 	 for network (10, 10) 
+Accuracy:  0.78 (+/-  0.07) 	 for network (30, 30) 
+Accuracy:  0.78 (+/-  0.05) 	 for network (50, 50) 
+Accuracy:  0.80 (+/-  0.04) 	 for network (100, 50) 
 Accuracy:  0.79 (+/-  0.04) 	 for network (100, 100) 
-Accuracy:  0.80 (+/-  0.04) 	 for network (200, 100) 
-Accuracy:  0.77 (+/-  0.05) 	 for network (200, 200) 
+Accuracy:  0.80 (+/-  0.02) 	 for network (200, 100) 
+Accuracy:  0.79 (+/-  0.04) 	 for network (200, 200) 
 </pre></div>
 </div>
 </div>

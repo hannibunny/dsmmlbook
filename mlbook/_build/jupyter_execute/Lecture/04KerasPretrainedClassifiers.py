@@ -178,7 +178,7 @@ label_inception
 #!pip install opencv-python
 
 
-# In[14]:
+# In[15]:
 
 
 import cv2
@@ -193,7 +193,7 @@ numpy_image = cv2.resize(numpy_image, (700,700))
 cv2.imwrite("images/{}_output.jpg".format(filename.split('/')[-1].split('.')[0]),cv2.cvtColor(numpy_image, cv2.COLOR_RGB2BGR))
 
 
-# In[34]:
+# In[16]:
 
 
 plt.figure(figsize=[10,10])

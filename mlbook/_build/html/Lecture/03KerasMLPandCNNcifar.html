@@ -588,6 +588,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install --upgrade numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import tensorflow</span>
 <span class="c1">#from tensorflow import keras</span>
 </pre></div>
@@ -727,7 +734,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03KerasMLPandCNNcifar_18_0.png" src="../_images/03KerasMLPandCNNcifar_18_0.png" />
+<img alt="../_images/03KerasMLPandCNNcifar_19_0.png" src="../_images/03KerasMLPandCNNcifar_19_0.png" />
 </div>
 </div>
 </div>
@@ -820,7 +827,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:SavedModel saved prior to TF 2.5 detected when loading Keras model. Please ensure that you are saving the model with model.save() or tf.keras.models.save_model(), *NOT* tf.saved_model.save(). To confirm, there should be a file named &quot;keras_metadata.pb&quot; in the SavedModel directory.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-02-24 15:08:42.741566: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-02-24 16:58:30.199048: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1560,12 +1567,12 @@ Model: &quot;sequential_4&quot;
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_31193</span><span class="o">/</span><span class="mf">177057440.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_34551</span><span class="o">/</span><span class="mf">177057440.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">if</span> <span class="n">CROSS_VAL</span><span class="p">:</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">results</span><span class="o">=</span><span class="n">cross_validation</span><span class="p">(</span><span class="n">build_model_mlp</span><span class="p">,</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 
-<span class="nn">/var/folders/68/9tltm6l520v0stj3qjlc5v9w0000gn/T/ipykernel_31193/3047967679.py</span> in <span class="ni">cross_validation</span><span class="nt">(build_model, train_data, train_targets, folds, num_epochs)</span>
+<span class="nn">/var/folders/68/9tltm6l520v0stj3qjlc5v9w0000gn/T/ipykernel_34551/3047967679.py</span> in <span class="ni">cross_validation</span><span class="nt">(build_model, train_data, train_targets, folds, num_epochs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span> 
 <span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">model</span> <span class="o">=</span> <span class="n">build_model</span><span class="p">()</span>
 <span class="ne">---&gt; </span><span class="mi">19</span>         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">partial_train_data</span><span class="p">,</span> <span class="n">partial_train_targets</span><span class="p">,</span>                     

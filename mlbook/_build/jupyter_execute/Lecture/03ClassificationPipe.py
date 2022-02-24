@@ -410,7 +410,7 @@ pipe = Pipeline([('scl', StandardScaler()),
                  ('clf', LogisticRegression(penalty='l2',random_state=0,C=100.0))])
 
 splits=5
-cv = StratifiedKFold(n_splits=splits,random_state=1)
+cv = StratifiedKFold(n_splits=splits)
 fig = plt.figure(figsize=(10, 8))
 mean_tpr = 0.0
 mean_fpr = np.linspace(0, 1, 100)
@@ -441,16 +441,16 @@ plt.show()
 # ### Cross Validation
 # Cross-Validation has been described in [section Basic Concepts of Machine Learning](00BasicConcepts.ipynb). The code-cells below demonstrate how crossvalidation can be implemeted with Scikit-Learn. The first option, which applied the `StratifiedKFold()`-class provides more control within the individual iterations of CV. The second option, using `cross_val_score()` is the easier to implement, since only one line of code is required to implement it.
 
-# In[103]:
+# In[28]:
 
 
 X.shape[0]/10*9
 
 
-# In[104]:
+# In[29]:
 
 
-kfold = StratifiedKFold(n_splits=10,random_state=1)
+kfold = StratifiedKFold(n_splits=10)
 scores = []
 for k, (train, test) in enumerate(kfold.split(X,y)):
     pipe.fit(X[train], y[train])
@@ -463,7 +463,7 @@ for k, (train, test) in enumerate(kfold.split(X,y)):
 
 # The same result can be obtained by applying the `cross_val_score`-function:
 
-# In[29]:
+# In[30]:
 
 
 scores = cross_val_score(estimator=pipe,X=X, y=y,cv=10)
@@ -474,7 +474,7 @@ print('CV accuracy: %.3f +/- %.3f' % (np.mean(scores), np.std(scores)))
 # ## Performance without One-Hot-Encoding
 # Next, we like to find out, if the same linear classification algorithm - `LogisticRegression` - performs better, if One-Hot-Encoding is ignored. For this we remove the One-Hot-Encoder processing from the pipe:
 
-# In[30]:
+# In[31]:
 
 
 pipe2 = Pipeline([('stdSc', StandardScaler(with_mean=True)),
@@ -482,19 +482,19 @@ pipe2 = Pipeline([('stdSc', StandardScaler(with_mean=True)),
                 ])
 
 
-# In[31]:
+# In[32]:
 
 
 pipe2.fit(X_train,y_train)
 
 
-# In[32]:
+# In[33]:
 
 
 y_pred2=pipe2.predict(X_test)
 
 
-# In[33]:
+# In[34]:
 
 
 confusion_mat2 = confusion_matrix(y_test, y_pred2)
@@ -502,7 +502,7 @@ print(confusion_mat2)
 plot_confusion_matrix(confusion_mat2)
 
 
-# In[34]:
+# In[35]:
 
 
 print ("Accuracy:       ",accuracy_score(y_test, y_pred2))
@@ -511,7 +511,7 @@ print ("Recall:         ",recall_score(y_test, y_pred2,average=None))
 print ("F1-Score:       ",f1_score(y_test, y_pred2,average=None))
 
 
-# In[35]:
+# In[36]:
 
 
 print(classification_report(y_test,y_pred2))
@@ -519,7 +519,7 @@ print(classification_report(y_test,y_pred2))
 
 # Cross Validation
 
-# In[36]:
+# In[37]:
 
 
 scores = cross_val_score(estimator=pipe2,X=X, y=y,cv=10,n_jobs=1)
@@ -550,7 +550,7 @@ print('CV accuracy: %.3f +/- %.3f' % (np.mean(scores), np.std(scores)))
 
 # The learned classifier within the pipe can be accessed by `pipe2.steps[1][1]`. Since this model is an object of class [LogisticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html), it's learned coefficients $c_i$ can be accessed by the `coef_`-attribute:
 
-# In[161]:
+# In[38]:
 
 
 feature_importance= pipe2.steps[1][1].coef_
@@ -560,7 +560,7 @@ print(feature_importance.shape)
 
 # These coefficients are visualized in the cell below:
 
-# In[162]:
+# In[39]:
 
 
 n_feats=len(feature_importance[0])
@@ -583,7 +583,7 @@ plt.show()
 
 # The first 50 class labels:
 
-# In[116]:
+# In[40]:
 
 
 y=indf["num"].values
@@ -592,7 +592,7 @@ print(y[:50])
 
 # Distribution of class labels:
 
-# In[117]:
+# In[41]:
 
 
 labelhist=plt.hist(y,bins=[0,1,2,3,4,5])
@@ -603,13 +603,13 @@ print(labelhist)
 
 # The class-distribution, visualized above indicates a severe problem in Machine Learning: We have a relatively low number of labeled data and the number of samples per class strongly varies. This so called **inbalanced data problem** may yield a model, which is strongly *biased* towards the class(es), with much samples (class 0 in this case).
 
-# In[118]:
+# In[42]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
 
-# In[119]:
+# In[43]:
 
 
 pipe3 = Pipeline([('stdSc', StandardScaler(with_mean=True)),
@@ -620,7 +620,7 @@ pipe3.fit(X_train,y_train)
 y_pred3=pipe3.predict(X_test)
 
 
-# In[120]:
+# In[44]:
 
 
 confusion_mat3 = confusion_matrix(y_test, y_pred3)
@@ -628,7 +628,7 @@ print(confusion_mat3)
 plot_confusion_matrix(confusion_mat3)
 
 
-# In[121]:
+# In[45]:
 
 
 print("Accuracy:       ",accuracy_score(y_test, y_pred3))
@@ -637,7 +637,7 @@ print("Recall:         ",recall_score(y_test, y_pred3,average=None))
 print("F1-Score:       ",f1_score(y_test, y_pred3,average=None))
 
 
-# In[71]:
+# In[46]:
 
 
 scores = cross_val_score(estimator=pipe3,X=X, y=y,cv=10,n_jobs=1)
@@ -645,7 +645,7 @@ print('CV accuracy scores: %s' % scores)
 print('CV accuracy: %.3f +/- %.3f' % (np.mean(scores), np.std(scores)))
 
 
-# In[122]:
+# In[47]:
 
 
 print(classification_report(y_test,y_pred3))
@@ -665,7 +665,7 @@ print(classification_report(y_test,y_pred3))
 # * class-labels 1,2,3,4 are clipped to 1
 # 
 
-# In[37]:
+# In[48]:
 
 
 BINCLASS=True
@@ -678,7 +678,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 
 # First we define multiple pipelines:
 
-# In[38]:
+# In[49]:
 
 
 catFeats=[2,6,12]
@@ -735,7 +735,7 @@ pipe9 = Pipeline([('oneHot', compose.make_column_transformer((OneHotEncoder(cate
 
 # In the next cell we apply cross-validation for each of the pipelines defined above:
 
-# In[39]:
+# In[50]:
 
 
 scores = [
@@ -746,7 +746,7 @@ scores = [
 
 # The code cell below just cares for a more informative output of the accuracy-values of each pipe:
 
-# In[40]:
+# In[51]:
 
 
 for score,label in zip(scores, 
@@ -769,7 +769,7 @@ for score,label in zip(scores,
 # ### Parameterized Pipelines
 # As shown in the next cell, pipeline-objects can also be parameterized. Here, Multi-Layer-Perceptrons with different numbers of hidden layers and different numbers of neurons per hidden-layer are compared.
 
-# In[147]:
+# In[52]:
 
 
 pipelist=[]
@@ -781,13 +781,13 @@ for idx,hid in enumerate(hiddenConfs):
     pipelist.append(pipe)
 
 
-# In[148]:
+# In[53]:
 
 
 scores = [ cross_val_score(reg,X,y,scoring='accuracy') for reg in pipelist ]
 
 
-# In[149]:
+# In[54]:
 
 
 for score,label in zip(scores,hiddenConfs):
@@ -797,7 +797,7 @@ for score,label in zip(scores,hiddenConfs):
 # None of the pipelines above, integrates scaling. However, scaling of input-features is crucial for neural networks. The next pipeline-list contains the same pipelines as above, but now with *MinMax-Scaling*.
 # As can be seen, the accuracy-values are much better now:
 
-# In[150]:
+# In[55]:
 
 
 pipelist=[]
@@ -809,13 +809,13 @@ for idx,hid in enumerate(hiddenConfs):
     pipelist.append(pipe)
 
 
-# In[151]:
+# In[56]:
 
 
 scores = [ cross_val_score(reg,X,y,scoring='accuracy') for reg in pipelist ]
 
 
-# In[152]:
+# In[75]:
 
 
 for score,label in zip(scores,hiddenConfs):

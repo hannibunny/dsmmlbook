@@ -1,0 +1,49 @@
+Traceback (most recent call last):
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.layers import AveragePooling2D, Dropout, Flatten, Dense, Input
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.utils import to_categorical
+from sklearn.preprocessing import LabelBinarizer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from imutils import paths
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import cv2
+import os
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m/var/folders/68/9tltm6l520v0stj3qjlc5v9w0000gn/T/ipykernel_31271/4249234019.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      9[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmetrics[0m [0;32mimport[0m [0mclassification_report[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmetrics[0m [0;32mimport[0m [0mconfusion_matrix[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 11[0;31m [0;32mfrom[0m [0mimutils[0m [0;32mimport[0m [0mpaths[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     12[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m [0;32mimport[0m [0mseaborn[0m [0;32mas[0m [0msns[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'imutils'
+ModuleNotFoundError: No module named 'imutils'
+

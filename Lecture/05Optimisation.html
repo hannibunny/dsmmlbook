@@ -1,0 +1,1819 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyperparameter Optimisation with Scikit-Learn &#8212; Machine Learning (DSM)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Neural Networks Introduction" href="01NeuralNets.html" />
+    <link rel="prev" title="Ensemble Methods" href="05EnsembleMethods.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning (DSM)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Overview.html">
+   Machine Learning with Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning with Scikit-Learn
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RegressionPipe.html">
+   Learn and evaluate a Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ClassificationPipe.html">
+   Learn evaluate and compare Classification Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05EnsembleMethods.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Hyperparameter Optimisation with Scikit-Learn
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNetworkImplementation.html">
+   Multi Layer Perceptron for Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06KerasLSTMbikeRentalPrediction.html">
+   LSTM Time Series Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="12FeatureSelection.html">
+   Feature Selection and Extraction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Lecture/05Optimisation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Lecture/05Optimisation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-data">
+   Access data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-training-and-testdata">
+   Configure Training- and Testdata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-and-test-random-forest">
+   Train and test Random Forest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-importance">
+   Feature importance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-prediction-error">
+   Visualize prediction error
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperparameter-optimisation">
+   Hyperparameter Optimisation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#validation-curve">
+     Validation Curve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-search">
+     Grid Search
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heuristic-search">
+     Heuristic Search
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-best-configuration-found-in-gridsearch-with-original-configuration">
+   Compare best configuration found in GridSearch with original configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-best-configuration-found-in-gridsearchcv">
+     Test best configuration found in GridSearchCV
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-model-with-inital-parameter-configuration">
+     Test model with inital parameter configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-different-preprocessing-configurations">
+   Compare different preprocessing configurations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extratree-regression">
+   ExtraTree Regression
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Hyperparameter Optimisation with Scikit-Learn</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Inhalt </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-data">
+   Access data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-training-and-testdata">
+   Configure Training- and Testdata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-and-test-random-forest">
+   Train and test Random Forest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-importance">
+   Feature importance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-prediction-error">
+   Visualize prediction error
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperparameter-optimisation">
+   Hyperparameter Optimisation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#validation-curve">
+     Validation Curve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-search">
+     Grid Search
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heuristic-search">
+     Heuristic Search
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-best-configuration-found-in-gridsearch-with-original-configuration">
+   Compare best configuration found in GridSearch with original configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-best-configuration-found-in-gridsearchcv">
+     Test best configuration found in GridSearchCV
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-model-with-inital-parameter-configuration">
+     Test model with inital parameter configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-different-preprocessing-configurations">
+   Compare different preprocessing configurations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extratree-regression">
+   ExtraTree Regression
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="hyperparameter-optimisation-with-scikit-learn">
+<h1>Hyperparameter Optimisation with Scikit-Learn<a class="headerlink" href="#hyperparameter-optimisation-with-scikit-learn" title="Permalink to this headline">¶</a></h1>
+<p>In Machine Learning (ML) <strong>hyperparameters</strong> are parameters, which must be configured by the user - in contrast to <strong>parameters</strong>, which are learned in the training phase. This section demonstrates how ML hyperparameters can be optimized. First scikit-learn’s <code class="docutils literal notranslate"><span class="pre">validation_curve</span></code> is applied to visualize the optimisation of a single hyperparameter. Then the joint optimisation of multiple hyperparameters is addressed by applying <code class="docutils literal notranslate"><span class="pre">GridSearch</span></code> and <code class="docutils literal notranslate"><span class="pre">RandomSearch</span></code> from scikit-learn.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostRegressor</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">validation_curve</span><span class="p">,</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span><span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">utilsJM</span> <span class="c1"># requires: import sys; sys.path.append(&#39;/path/to/utilsJM&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="access-data">
+<h2>Access data<a class="headerlink" href="#access-data" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook <strong>regression models</strong> are trained and evaluated by the example application <strong>Estimation of rental bikes per day</strong>. The task is to predict the daily count of rental bikes from features describing the weather situation and the date and season. The applied dataset is available from <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset">UCI Bike Sharing Dataset</a>. After downloading and storing the corresponding .csv-file it can be accessed using <em>Pandas</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikefile</span><span class="o">=</span><span class="s2">&quot;../Data/bikeday.csv&quot;</span>
+<span class="n">bikedf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">bikefile</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bikedf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dteday</th>
+      <th>season</th>
+      <th>yr</th>
+      <th>mnth</th>
+      <th>holiday</th>
+      <th>weekday</th>
+      <th>workingday</th>
+      <th>weathersit</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>hum</th>
+      <th>windspeed</th>
+      <th>casual</th>
+      <th>registered</th>
+      <th>cnt</th>
+    </tr>
+    <tr>
+      <th>instant</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2011-01-01</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0.344167</td>
+      <td>0.363625</td>
+      <td>0.805833</td>
+      <td>0.160446</td>
+      <td>331</td>
+      <td>654</td>
+      <td>985</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-01-02</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0.363478</td>
+      <td>0.353739</td>
+      <td>0.696087</td>
+      <td>0.248539</td>
+      <td>131</td>
+      <td>670</td>
+      <td>801</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-01-03</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.196364</td>
+      <td>0.189405</td>
+      <td>0.437273</td>
+      <td>0.248309</td>
+      <td>120</td>
+      <td>1229</td>
+      <td>1349</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011-01-04</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.200000</td>
+      <td>0.212122</td>
+      <td>0.590435</td>
+      <td>0.160296</td>
+      <td>108</td>
+      <td>1454</td>
+      <td>1562</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2011-01-05</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.226957</td>
+      <td>0.229270</td>
+      <td>0.436957</td>
+      <td>0.186900</td>
+      <td>82</td>
+      <td>1518</td>
+      <td>1600</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Each of the 731 rows (2years) corresponds to one day.</p>
+<p><strong>Feature Description:</strong></p>
+<ul class="simple">
+<li><p>dteday : date</p></li>
+<li><p>season : season (1:spring, 2:summer, 3:fall, 4:winter)</p></li>
+<li><p>yr : year (0: 2011, 1:2012)</p></li>
+<li><p>mnth : month ( 1 to 12)</p></li>
+<li><p>hr : hour (0 to 23)</p></li>
+<li><p>holiday : weather day is holiday or not</p></li>
+<li><p>weekday : day of the week</p></li>
+<li><p>workingday : if day is neither weekend nor holiday is 1, otherwise is 0.</p></li>
+<li><p>weathersit :</p>
+<ul>
+<li><p>1: Clear, Few clouds, Partly cloudy, Partly cloudy</p></li>
+<li><p>2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist</p></li>
+<li><p>3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds</p></li>
+<li><p>4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog</p></li>
+</ul>
+</li>
+<li><p>temp : Normalized temperature in Celsius. The values are derived via (t-t_min)/(t_max-t_min), t_min=-8, t_max=+39 (only in hourly scale)</p></li>
+<li><p>atemp: Normalized feeling temperature in Celsius. The values are derived via (t-t_min)/(t_max-t_min), t_min=-16, t_max=+50 (only in hourly scale)</p></li>
+<li><p>hum: Normalized humidity. The values are divided to 100 (max)</p></li>
+<li><p>windspeed: Normalized wind speed. The values are divided to 67 (max)</p></li>
+</ul>
+<p><strong>Target:</strong></p>
+<ul class="simple">
+<li><p>casual: count of casual users</p></li>
+<li><p>registered: count of registered users</p></li>
+<li><p>cnt: count of total rental bikes including both casual and registered</p></li>
+</ul>
+<p>In our regression - experiments only <em>cnt</em> is applied as target value. The distinction into <em>casual</em> and <em>registered</em> can be ignored.</p>
+<p>Calculate descriptive statistics:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikedf</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season</th>
+      <th>yr</th>
+      <th>mnth</th>
+      <th>holiday</th>
+      <th>weekday</th>
+      <th>workingday</th>
+      <th>weathersit</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>hum</th>
+      <th>windspeed</th>
+      <th>casual</th>
+      <th>registered</th>
+      <th>cnt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.496580</td>
+      <td>0.500684</td>
+      <td>6.519836</td>
+      <td>0.028728</td>
+      <td>2.997264</td>
+      <td>0.683995</td>
+      <td>1.395349</td>
+      <td>0.495385</td>
+      <td>0.474354</td>
+      <td>0.627894</td>
+      <td>0.190486</td>
+      <td>848.176471</td>
+      <td>3656.172367</td>
+      <td>4504.348837</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.110807</td>
+      <td>0.500342</td>
+      <td>3.451913</td>
+      <td>0.167155</td>
+      <td>2.004787</td>
+      <td>0.465233</td>
+      <td>0.544894</td>
+      <td>0.183051</td>
+      <td>0.162961</td>
+      <td>0.142429</td>
+      <td>0.077498</td>
+      <td>686.622488</td>
+      <td>1560.256377</td>
+      <td>1937.211452</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.059130</td>
+      <td>0.079070</td>
+      <td>0.000000</td>
+      <td>0.022392</td>
+      <td>2.000000</td>
+      <td>20.000000</td>
+      <td>22.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.000000</td>
+      <td>0.000000</td>
+      <td>4.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.337083</td>
+      <td>0.337842</td>
+      <td>0.520000</td>
+      <td>0.134950</td>
+      <td>315.500000</td>
+      <td>2497.000000</td>
+      <td>3152.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>7.000000</td>
+      <td>0.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.498333</td>
+      <td>0.486733</td>
+      <td>0.626667</td>
+      <td>0.180975</td>
+      <td>713.000000</td>
+      <td>3662.000000</td>
+      <td>4548.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>10.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>0.655417</td>
+      <td>0.608602</td>
+      <td>0.730209</td>
+      <td>0.233214</td>
+      <td>1096.000000</td>
+      <td>4776.500000</td>
+      <td>5956.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>4.000000</td>
+      <td>1.000000</td>
+      <td>12.000000</td>
+      <td>1.000000</td>
+      <td>6.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>0.861667</td>
+      <td>0.840896</td>
+      <td>0.972500</td>
+      <td>0.507463</td>
+      <td>3410.000000</td>
+      <td>6946.000000</td>
+      <td>8714.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="configure-training-and-testdata">
+<h2>Configure Training- and Testdata<a class="headerlink" href="#configure-training-and-testdata" title="Permalink to this headline">¶</a></h2>
+<p>Columns 1 (season) to 11 (windspeed) are used as features. The target variable is the last column, i.e. the total count of rental bike per day.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">featureCols</span><span class="o">=</span><span class="n">bikedf</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">featureCols</span><span class="p">)</span>
+<span class="n">targetCol</span><span class="o">=</span><span class="n">bikedf</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">X</span><span class="o">=</span><span class="n">bikedf</span><span class="p">[</span><span class="n">featureCols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span><span class="o">=</span><span class="n">bikedf</span><span class="p">[</span><span class="n">targetCol</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;season&#39;, &#39;yr&#39;, &#39;mnth&#39;, &#39;holiday&#39;, &#39;weekday&#39;, &#39;workingday&#39;,
+       &#39;weathersit&#39;, &#39;temp&#39;, &#39;atemp&#39;, &#39;hum&#39;, &#39;windspeed&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The entire dataset, which comprises 731 days is split into training- and test-partitions. For later use the partioned datasets are saved persistently as Numpy arrays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_x_train&quot;</span><span class="p">,</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_x_test&quot;</span><span class="p">,</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_y_train&quot;</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_y_test&quot;</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-and-test-random-forest">
+<h2>Train and test Random Forest<a class="headerlink" href="#train-and-test-random-forest" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rf_regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rf_regressor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForestRegressor(max_depth=8, n_estimators=30, random_state=1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The trained model is persistently saved as a <a class="reference external" href="https://docs.python.org/2/library/pickle.html">pickle</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../Data/rf_regressor_bike.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate performance of Random Forest regressor</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">rf_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Random Forest Regression&quot;</span>
+<span class="n">utilsJM</span><span class="o">.</span><span class="n">determineRegressionMetrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random Forest Regression
+Mean absolute error = 518.71
+Mean squared error = 485439.08
+Median absolute error = 412.14
+R2 score = 0.88
+Explained variance score = 0.88
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-importance">
+<h2>Feature importance<a class="headerlink" href="#feature-importance" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">scikit-learn DecisionTreeClassifier</a> calculates the importance of a feature as the normalized Gini importance. <strong>Gini impurity</strong> of a node <span class="math notranslate nohighlight">\(V\)</span> in the decision tree is calculated as</p>
+<div class="math notranslate nohighlight">
+\[
+Gini(V) = \sum\limits_{i \in L_V} p_i(1-p_i),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(L_V\)</span> is the set of all labels that appear in the dataset <span class="math notranslate nohighlight">\(D(V)\)</span> associated to node <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(p_i\)</span> is the probability for label <span class="math notranslate nohighlight">\(i\)</span> in <span class="math notranslate nohighlight">\(D(V)\)</span>. Every time a split of a node is made on variable <span class="math notranslate nohighlight">\(m\)</span> the gini impurity criterion for the two descendent nodes is less than the parent node. The decrease of gini impurity from node <span class="math notranslate nohighlight">\(V\)</span> to its child nodes is the <strong>gini importance</strong> of variable <span class="math notranslate nohighlight">\(m\)</span>, which has been applied for the split.</p>
+<p>Another criterion to measure feature importance is the <strong>Information Gain</strong>, which measures the decrease of <strong>entropy</strong> from one node <span class="math notranslate nohighlight">\(V\)</span> to it’s child nodes. <strong>Entropy</strong> of a node <span class="math notranslate nohighlight">\(V\)</span> in the decision tree is calculated as</p>
+<div class="math notranslate nohighlight">
+\[
+Entropy(V) = \sum\limits_{i \in L_V} p_i \log_2(p_i),
+\]</div>
+<p>For Decision Trees and <strong>all ensemble algorithms based on decision trees (e.g. Random Forests)</strong> gini importance is used to measure feature importance.</p>
+<p>For the trained RandomForest-model, the importance of all features can be accessed and displayed as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">importances</span> <span class="o">=</span> <span class="n">rf_regressor</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="k">for</span> <span class="n">f</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">featureCols</span><span class="p">,</span><span class="n">importances</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>season 0.04701345873969123
+yr 0.28005609752956023
+mnth 0.037969159695260046
+holiday 0.0026660869191508976
+weekday 0.012238145106364933
+workingday 0.0023298065507938556
+weathersit 0.024892207416323302
+temp 0.39855221932074225
+atemp 0.10156425774479184
+hum 0.06175319403580362
+windspeed 0.03096536694151787
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is also possible to access the feature importance of each tree in the ensemble. This is implemented in the code below in order to visualize the standard deviation of feature importance over all trees.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">importances</span> <span class="o">=</span> <span class="n">rf_regressor</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">([</span><span class="n">tree</span><span class="o">.</span><span class="n">feature_importances_</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">rf_regressor</span><span class="o">.</span><span class="n">estimators_</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.03579741 0.02914722 0.01515451 0.00250772 0.0051406  0.00138624
+ 0.01697063 0.12878598 0.12677015 0.01700202 0.01441623]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For a better visualisation of the feature importances, the following function is applied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_feature_importances</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span><span class="n">std</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">):</span>
+    
+    <span class="c1"># Normalize the importance values </span>
+    <span class="n">feature_importances</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">feature_importances</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">std</span><span class="o">==</span><span class="s2">&quot;None&quot;</span><span class="p">:</span>
+        <span class="n">std</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">))</span>
+
+    <span class="c1"># Sort the values and flip them</span>
+    <span class="n">index_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">))</span>
+
+    <span class="c1"># Arrange the X ticks</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">index_sorted</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mf">0.5</span>
+
+    <span class="c1"># Plot the bar graph</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">feature_importances</span><span class="p">[</span><span class="n">index_sorted</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="mi">100</span><span class="o">*</span><span class="n">std</span><span class="p">[</span><span class="n">index_sorted</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">[</span><span class="n">index_sorted</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Importance&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot relative feature importances:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_feature_importances</span><span class="p">(</span><span class="n">rf_regressor</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="s1">&#39;Feature Importance Random Forest Regressor&#39;</span><span class="p">,</span> <span class="n">featureCols</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05Optimisation_28_0.png" src="../_images/05Optimisation_28_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="visualize-prediction-error">
+<h2>Visualize prediction error<a class="headerlink" href="#visualize-prediction-error" title="Permalink to this headline">¶</a></h2>
+<p>There are different methods to analyse the difference between the true output and the predicted output. Below, two visualisations of this difference are demonstrated. First, for a set of successive instances a line of the true outputs and a line of the predicted output is plotted into the same figure. Then a histogram is calculated for the deviations <span class="math notranslate nohighlight">\(y_{predicted}-y_{true}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MIN</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">MAX</span><span class="o">=</span><span class="mi">200</span>
+<span class="n">MAX</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">MAX</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)])</span>
+<span class="n">x_vals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">MIN</span><span class="p">,</span><span class="n">MAX</span><span class="p">)</span>
+<span class="n">y_pred_vals</span><span class="o">=</span><span class="n">y_pred</span><span class="p">[</span><span class="n">x_vals</span><span class="p">]</span>
+<span class="n">y_test_vals</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">x_vals</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="n">y_pred_vals</span><span class="p">,</span><span class="s1">&#39;ro--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;predicted&quot;</span><span class="p">)</span>
+<span class="c1">#plt.hold(True)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="n">y_test_vals</span><span class="p">,</span><span class="s1">&#39;bo--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05Optimisation_31_0.png" src="../_images/05Optimisation_31_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_pred</span><span class="o">-</span><span class="n">y_test</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of Error $y_</span><span class="si">{pred}</span><span class="s2">-y_</span><span class="si">{test}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05Optimisation_32_0.png" src="../_images/05Optimisation_32_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="hyperparameter-optimisation">
+<h2>Hyperparameter Optimisation<a class="headerlink" href="#hyperparameter-optimisation" title="Permalink to this headline">¶</a></h2>
+<p>In this subsection we address the task of finding the best hyperparameters for DecisionTree-Regressor. The set of all hyperparameters of this ML-algorithm is defined in the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html">scikit-learn docu of DecisionTreeRegressor</a>. Here, we are just interested in the hyperparameters</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>: the number of trees in the ensemble</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: the maximum depth of the tree</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>: the minimum number of instances, required to further split a node</p></li>
+</ul>
+<p>In the first subsection scikit-learn’s <code class="docutils literal notranslate"><span class="pre">validation_curve()</span></code> is applied for visualisation of a single hyperparameter. Then <code class="docutils literal notranslate"><span class="pre">GridSearch</span></code> and <code class="docutils literal notranslate"><span class="pre">RandomSearch</span></code> are applied in order to jointly optimize a set of hyperparameters:</p>
+<div class="section" id="validation-curve">
+<h3>Validation Curve<a class="headerlink" href="#validation-curve" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator_range</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">depth_range</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">min_leaf_range</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes it is helpful to plot the influence of a single hyperparameter on the training- and the validation-score to find out whether the estimator is overfitting or underfitting for some hyperparameter values. For this the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.validation_curve.html">scikit-learn function validation_curve</a> can be applied. As can be seen in the code cell below, the most important arguments of this functions are</p>
+<ul class="simple">
+<li><p>the ML-algorithm (of class <code class="docutils literal notranslate"><span class="pre">estimator</span></code>), which shall be analysed (RandomForestRegressor in this case)</p></li>
+<li><p>the name of the hyperparameter of the applied ML-algorithm (<code class="docutils literal notranslate"><span class="pre">param_name</span></code>)</p></li>
+<li><p>the value range for the specified hyperparameter (<code class="docutils literal notranslate"><span class="pre">param_range</span></code>)</p></li>
+<li><p>the scoring-function that shall be applied (<code class="docutils literal notranslate"><span class="pre">neg_mean_absolute_error</span></code> in the example)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span>
+                                                     <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+                                                     <span class="n">param_name</span><span class="o">=</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> 
+                                                     <span class="n">param_range</span><span class="o">=</span><span class="n">depth_range</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                                     <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_absolute_error&quot;</span><span class="p">)</span>
+<span class="n">utilsJM</span><span class="o">.</span><span class="n">plot_evaluation_curve</span><span class="p">(</span><span class="n">depth_range</span><span class="p">,</span><span class="n">train_scores</span><span class="p">,</span><span class="n">test_scores</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Max depth&quot;</span><span class="p">,</span>
+                              <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Neg MAE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Optimisation of Hyperparameter max_depth&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05Optimisation_36_0.png" src="../_images/05Optimisation_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span>
+                                             <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+                                             <span class="n">param_name</span><span class="o">=</span><span class="s2">&quot;min_samples_leaf&quot;</span><span class="p">,</span> 
+                                             <span class="n">param_range</span><span class="o">=</span><span class="n">min_leaf_range</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                             <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_absolute_error&quot;</span><span class="p">)</span>
+<span class="n">utilsJM</span><span class="o">.</span><span class="n">plot_evaluation_curve</span><span class="p">(</span><span class="n">min_leaf_range</span><span class="p">,</span><span class="n">train_scores</span><span class="p">,</span><span class="n">test_scores</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;min_samples_leaf&quot;</span><span class="p">,</span>
+                              <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Neg MAE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Optimisation of Hyperparameter min_samples_leaf&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05Optimisation_37_0.png" src="../_images/05Optimisation_37_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span>
+                                             <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+                                             <span class="n">param_name</span><span class="o">=</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">,</span> 
+                                             <span class="n">param_range</span><span class="o">=</span><span class="n">estimator_range</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                             <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_absolute_error&quot;</span><span class="p">)</span>
+<span class="n">utilsJM</span><span class="o">.</span><span class="n">plot_evaluation_curve</span><span class="p">(</span><span class="n">estimator_range</span><span class="p">,</span><span class="n">train_scores</span><span class="p">,</span><span class="n">test_scores</span><span class="p">,</span>
+                              <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">,</span><span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Neg MAE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Optimisation of Hyperparameter n_estimators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05Optimisation_38_0.png" src="../_images/05Optimisation_38_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="grid-search">
+<h3>Grid Search<a class="headerlink" href="#grid-search" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">Scikit-learn’s GridSearchCV</a> provides an exhaustive search over specified parameter values for an ML-algorithm (class <code class="docutils literal notranslate"><span class="pre">estimator</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, the best configuration of hyperparameters <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> and <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> of a RandomForestRegresser shall be determined. For this we define the following parameter-grid:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">depth_range</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">estimator_range</span><span class="p">,</span> <span class="s1">&#39;bootstrap&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">]}]</span>
+<span class="n">param_grid</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;max_depth&#39;: array([ 3,  4,  5,  6,  7,  8,  9, 10, 11]),
+  &#39;n_estimators&#39;: array([ 20,  40,  60,  80, 100, 120, 140]),
+  &#39;bootstrap&#39;: [True, False]}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen in the code-cell below, the defined parameter-grid is passed to the <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>-object, together with the ML-algorithm, the scoring function and the number of iterations of the cross-validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">rfGS</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">rfGS</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_34650</span><span class="o">/</span><span class="mf">4195266994.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rfGS</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">rfGS</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_search.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, groups, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">889</span>                 <span class="k">return</span> <span class="n">results</span>
+<span class="g g-Whitespace">    </span><span class="mi">890</span> 
+<span class="ne">--&gt; </span><span class="mi">891</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_run_search</span><span class="p">(</span><span class="n">evaluate_candidates</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">892</span> 
+<span class="g g-Whitespace">    </span><span class="mi">893</span>             <span class="c1"># multimetric is determined here because in the case of a callable</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_search.py</span> in <span class="ni">_run_search</span><span class="nt">(self, evaluate_candidates)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1390</span>     <span class="k">def</span> <span class="nf">_run_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluate_candidates</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1391</span>         <span class="sd">&quot;&quot;&quot;Search all candidates in param_grid&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1392</span>         <span class="n">evaluate_candidates</span><span class="p">(</span><span class="n">ParameterGrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_grid</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1393</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1394</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_search.py</span> in <span class="ni">evaluate_candidates</span><span class="nt">(candidate_params, cv, more_results)</span>
+<span class="g g-Whitespace">    </span><span class="mi">836</span>                     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">837</span> 
+<span class="ne">--&gt; </span><span class="mi">838</span>                 <span class="n">out</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">839</span>                     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">840</span>                         <span class="n">clone</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">),</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span> 
+<span class="ne">-&gt; </span><span class="mi">1046</span>             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1047</span>                 <span class="k">pass</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>                 <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>                 <span class="k">return</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> 
+<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">216</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> 
+<span class="g g-Whitespace">    </span><span class="mi">218</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">680</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span> 
+<span class="g g-Whitespace">    </span><span class="mi">682</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/ensemble/_forest.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>             <span class="c1"># parallel_backend contexts set at a higher level,</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span>             <span class="c1"># since correctness does not rely on using threads.</span>
+<span class="ne">--&gt; </span><span class="mi">450</span>             <span class="n">trees</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>                 <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>                 <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span> 
+<span class="ne">-&gt; </span><span class="mi">1046</span>             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1047</span>                 <span class="k">pass</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>                 <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>                 <span class="k">return</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> 
+<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">216</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> 
+<span class="g g-Whitespace">    </span><span class="mi">218</span> 
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/ensemble/_forest.py</span> in <span class="ni">_parallel_build_trees</span><span class="nt">(tree, forest, X, y, sample_weight, tree_idx, n_trees, verbose, class_weight, n_samples_bootstrap)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>             <span class="n">curr_sample_weight</span> <span class="o">*=</span> <span class="n">compute_sample_weight</span><span class="p">(</span><span class="s2">&quot;balanced&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span> 
+<span class="ne">--&gt; </span><span class="mi">185</span>         <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">curr_sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span>         <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/tree/_classes.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight, check_input, X_idx_sorted)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1313</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1314</span><span class="s2"> </span>
+<span class="ne">-&gt; </span><span class="mi">1315</span><span class="s2">         super().fit(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1316</span><span class="s2">             X,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1317</span><span class="s2">             y,</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/tree/_classes.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight, check_input, X_idx_sorted)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">     ):</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">154</span><span class="s2">         random_state = check_random_state(self.random_state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="s2">         if self.ccp_alpha &lt; 0.0:</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/utils/validation.py</span> in <span class="ni">check_random_state</span><span class="nt">(seed)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1055</span><span class="s2">         return np.random.mtrand._rand</span>
+<span class="g g-Whitespace">   </span><span class="mi">1056</span><span class="s2">     if isinstance(seed, numbers.Integral):</span>
+<span class="ne">-&gt; </span><span class="mi">1057</span><span class="s2">         return np.random.RandomState(seed)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="s2">     if isinstance(seed, np.random.RandomState):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1059</span><span class="s2">         return seed</span>
+
+<span class="nn">mtrand.pyx</span> in <span class="ni">numpy.random.mtrand.RandomState.__init__</span><span class="nt">()</span>
+
+<span class="nn">_mt19937.pyx</span> in <span class="ni">numpy.random._mt19937.MT19937.__init__</span><span class="nt">()</span>
+
+<span class="nn">bit_generator.pyx</span> in <span class="ni">numpy.random.bit_generator.BitGenerator.__init__</span><span class="nt">()</span>
+
+<span class="nn">bit_generator.pyx</span> in <span class="ni">numpy.random.bit_generator.SeedSequence.__init__</span><span class="nt">()</span>
+
+<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/random.py</span> in <span class="ni">getrandbits</span><span class="nt">(self, k)</span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span><span class="s2">             raise ValueError(&#39;number of bits must be greater than zero&#39;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">         numbytes = (k + 7) // 8                       # bits / 8 and rounded up</span>
+<span class="ne">--&gt; </span><span class="mi">726</span><span class="s2">         x = int.from_bytes(_urandom(numbytes), &#39;big&#39;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span><span class="s2">         return x &gt;&gt; (numbytes * 8 - k)                # trim excess bits</span>
+<span class="g g-Whitespace">    </span><span class="mi">728</span><span class="s2"> </span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>After the grid-search, the best configuration and the corresponding score can be accessed as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rfGS</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rfGS</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bootstrap&#39;: True, &#39;max_depth&#39;: 11, &#39;n_estimators&#39;: 120}
+-481.00662021110395
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="heuristic-search">
+<h3>Heuristic Search<a class="headerlink" href="#heuristic-search" title="Permalink to this headline">¶</a></h3>
+<p>A faster alternative for <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> is <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html#sklearn.model_selection.RandomizedSearchCV">RandomizedSearchCV</a>. In contrast to <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, not all parameter values are tried out, but rather a fixed number of parameter settings is sampled from the specified distributions. The number of parameter settings that are tried is given by <em>n_iter</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">rfRandomSearch</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">rfRandomSearch</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomizedSearchCV(cv=10, estimator=RandomForestRegressor(),
+                   param_distributions={&#39;bootstrap&#39;: [True, False],
+                                        &#39;max_depth&#39;: array([ 3,  4,  5,  6,  7,  8,  9, 10, 11]),
+                                        &#39;n_estimators&#39;: array([ 20,  40,  60,  80, 100, 120, 140])},
+                   scoring=&#39;neg_mean_absolute_error&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rfRandomSearch</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rfRandomSearch</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_estimators&#39;: 80, &#39;max_depth&#39;: 9, &#39;bootstrap&#39;: True}
+-491.84235546842376
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen in the output above, in this example the best found configuration is only slightly worse than the best model, found by exhaustive grid-search.</p>
+</div>
+</div>
+<div class="section" id="compare-best-configuration-found-in-gridsearch-with-original-configuration">
+<h2>Compare best configuration found in GridSearch with original configuration<a class="headerlink" href="#compare-best-configuration-found-in-gridsearch-with-original-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_x_train.npy&quot;</span><span class="p">)</span>
+<span class="n">X_test</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_x_test.npy&quot;</span><span class="p">)</span>
+<span class="n">y_train</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_y_train.npy&quot;</span><span class="p">)</span>
+<span class="n">y_test</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Data/Bike_y_test.npy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-best-configuration-found-in-gridsearchcv">
+<h3>Test best configuration found in GridSearchCV<a class="headerlink" href="#test-best-configuration-found-in-gridsearchcv" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_reg_best</span> <span class="o">=</span> <span class="n">rfGS</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">rf_reg_best</span><span class="o">.</span><span class="n">oob_score</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">rf_reg_best</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForestRegressor(max_depth=11, n_estimators=120, oob_score=True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">rf_reg_best</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Best Random Forest from GridSearch&quot;</span>
+<span class="n">utilsJM</span><span class="o">.</span><span class="n">determineRegressionMetrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Random Forest from GridSearch
+Mean absolute error = 493.52
+Mean squared error = 448355.22
+Median absolute error = 363.35
+R2 score = 0.89
+Explained variance score = 0.89
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="test-model-with-inital-parameter-configuration">
+<h3>Test model with inital parameter configuration<a class="headerlink" href="#test-model-with-inital-parameter-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../Data/rf_regressor_bike.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">rf_regressor2</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#rf_reg_best = rfGS.best_estimator_</span>
+<span class="n">rf_regressor2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">rf_regressor2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Random Forest as applied in Evaluation 1 in this notebook&quot;</span>
+<span class="n">utilsJM</span><span class="o">.</span><span class="n">determineRegressionMetrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random Forest as applied in Evaluation 1 in this notebook
+Mean absolute error = 518.71
+Mean squared error = 485439.08
+Median absolute error = 412.14
+R2 score = 0.88
+Explained variance score = 0.88
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compare-different-preprocessing-configurations">
+<h2>Compare different preprocessing configurations<a class="headerlink" href="#compare-different-preprocessing-configurations" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">compose</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catFeats</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">pipe1</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+
+<span class="n">pipe2</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+
+<span class="n">pipe3</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+<span class="n">pipe4</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+                 <span class="c1">#(&#39;pca&#39;, PCA(n_components=2)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+<span class="n">pipe5</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span>
+                 <span class="c1">#(&#39;pca&#39;, PCA(n_components=2)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+<span class="n">pipe6</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">()),</span>
+                 <span class="c1">#(&#39;pca&#39;, PCA(n_components=2)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="p">[</span><span class="n">pipe1</span><span class="p">,</span><span class="n">pipe2</span><span class="p">,</span><span class="n">pipe3</span><span class="p">,</span><span class="n">pipe4</span><span class="p">,</span><span class="n">pipe5</span><span class="p">,</span><span class="n">pipe6</span><span class="p">]</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">score</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> 
+                       <span class="p">[</span><span class="s1">&#39;only Random Forest&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;Random Forest+OneHotEncoding&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Random Forest+Scaling with mean&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;Random Forest+OneHot+StdScaling with mean&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Random Forest+OneHot+StdScaling without mean&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Random Forest+OneHot+MinmaxScaling&#39;</span><span class="p">,</span>
+                        <span class="p">]</span>
+                       <span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%5.2f</span><span class="s2"> (+/- </span><span class="si">%5.2f</span><span class="s2">) </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> &quot;</span><span class="o">%</span><span class="p">(</span><span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">score</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">label</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: -493.56 (+/- 59.58) 	 only Random Forest 
+Accuracy: -514.36 (+/- 63.08) 	 Random Forest+OneHotEncoding 
+Accuracy: -492.51 (+/- 59.73) 	 Random Forest+Scaling with mean 
+Accuracy: -514.26 (+/- 63.11) 	 Random Forest+OneHot+StdScaling with mean 
+Accuracy: -514.49 (+/- 63.28) 	 Random Forest+OneHot+StdScaling without mean 
+Accuracy: -514.56 (+/- 63.21) 	 Random Forest+OneHot+MinmaxScaling 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extratree-regression">
+<h2>ExtraTree Regression<a class="headerlink" href="#extratree-regression" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator_range</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">330</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">depth_range</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">min_leaf_range</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extra_regressor</span> <span class="o">=</span> <span class="n">ExtraTreesRegressor</span><span class="p">()</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">depth_range</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">estimator_range</span><span class="p">,</span> <span class="s1">&#39;bootstrap&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">]}]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extRandomSearch</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">extra_regressor</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">extRandomSearch</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomizedSearchCV(cv=10, estimator=ExtraTreesRegressor(),
+                   param_distributions={&#39;bootstrap&#39;: [True, False],
+                                        &#39;max_depth&#39;: array([ 3,  4,  5,  6,  7,  8,  9, 10, 11]),
+                                        &#39;n_estimators&#39;: array([ 30,  80, 130, 180, 230, 280])},
+                   scoring=&#39;neg_mean_absolute_error&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rfRandomSearch</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rfRandomSearch</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_estimators&#39;: 80, &#39;max_depth&#39;: 9, &#39;bootstrap&#39;: True}
+-491.84235546842376
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catFeats</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">pipe1</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+
+<span class="n">pipe2</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+
+<span class="n">pipe3</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+<span class="n">pipe4</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+                 <span class="c1">#(&#39;pca&#39;, PCA(n_components=2)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+<span class="n">pipe5</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span>
+                 <span class="c1">#(&#39;pca&#39;, PCA(n_components=2)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+                <span class="p">])</span>
+<span class="n">pipe6</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;oneHot&#39;</span><span class="p">,</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">catFeats</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)),</span>
+                 <span class="p">(</span><span class="s1">&#39;stdSc&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">()),</span>
+                 <span class="c1">#(&#39;pca&#39;, PCA(n_components=2)),</span>
+                 <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+                <span class="p">])</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="p">[</span><span class="n">pipe1</span><span class="p">,</span><span class="n">pipe2</span><span class="p">,</span><span class="n">pipe3</span><span class="p">,</span><span class="n">pipe4</span><span class="p">,</span><span class="n">pipe5</span><span class="p">,</span><span class="n">pipe6</span><span class="p">]</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">score</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> 
+                       <span class="p">[</span><span class="s1">&#39;only Extra Trees&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;Extra Trees+OneHotEncoding&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Extra Trees+Scaling with mean&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;Extra Trees+OneHot+StdScaling with mean&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Extra Trees+OneHot+StdScaling without mean&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Extra Trees+OneHot+MinmaxScaling&#39;</span><span class="p">,</span>
+                        <span class="p">]</span>
+                       <span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%5.2f</span><span class="s2"> (+/- </span><span class="si">%5.2f</span><span class="s2">) </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> &quot;</span><span class="o">%</span><span class="p">(</span><span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">score</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">label</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: -482.83 (+/- 52.73) 	 only Extra Trees 
+Accuracy: -513.89 (+/- 38.12) 	 Extra Trees+OneHotEncoding 
+Accuracy: -482.83 (+/- 52.73) 	 Extra Trees+Scaling with mean 
+Accuracy: -513.89 (+/- 38.12) 	 Extra Trees+OneHot+StdScaling with mean 
+Accuracy: -513.89 (+/- 38.12) 	 Extra Trees+OneHot+StdScaling without mean 
+Accuracy: -513.89 (+/- 38.12) 	 Extra Trees+OneHot+MinmaxScaling 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Lecture"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="05EnsembleMethods.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Ensemble Methods</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="01NeuralNets.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Neural Networks Introduction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Durch Prof. Dr. Johannes Maucher<br/>
+    
+        &copy; Urheberrechte © 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

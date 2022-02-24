@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Machine Learning with Python &#8212; Machine Learning (DSM)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/togglebutton.js"></script>
+    <script type="text/javascript" src="../_static/clipboard.min.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/sphinx-book-theme.js"></script>
+    <script type="text/javascript">var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" type="text/javascript" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script type="text/javascript">
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" type="text/javascript" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning (DSM)</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Overview.html">
+   Machine Learning with Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine Learning with Scikit-Learn
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RegressionPipe.html">
+   Learn and evaluate a Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ClassificationPipe.html">
+   Learn evaluate and compare Classification Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05EnsembleMethods.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05Optimisation.html">
+   Hyperparameter Optimisation with Scikit-Learn
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNetworkImplementation.html">
+   Multi Layer Perceptron for Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06KerasLSTMbikeRentalPrediction.html">
+   LSTM Time Series Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="12FeatureSelection.html">
+   Feature Selection and Extraction
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Lecture/Overview_Old.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Lecture/Overview_Old.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/Lecture/Overview_Old.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning">
+   Machine Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conventional-techniques-with-scikit-learn">
+     Conventional techniques with scikit-learn
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-networks-and-deep-neural-networks">
+     Neural Networks and Deep Neural Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-mlp-and-cnn-for-object-classification-in-keras">
+     Define MLP and CNN for Object Classification in Keras
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-pretrained-deep-neural-networks">
+     Apply pretrained Deep Neural Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#textprocessing-analysis-and-classification">
+     Textprocessing-, analysis and -classification
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mlfow">
+   Mlfow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#live-coding-tasks">
+   Live Coding Tasks
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="machine-learning-with-python">
+<h1>Machine Learning with Python<a class="headerlink" href="#machine-learning-with-python" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Prof. Dr. Johannes Maucher</p></li>
+<li><p>Email: maucher&#64;hdm-stuttgart.de</p></li>
+<li><p>Last Update: December, 1st 2020</p></li>
+</ul>
+<p><strong>Goals of this lecture are:</strong></p>
+<ul class="simple">
+<li><p>Understand all steps of the datamining process, from data access to visualisation and interpretation of the results.</p></li>
+<li><p>Learn how to implement all these process steps in Python, applying libraries like <a class="reference external" href="http://pandas.pydata.org/">Pandas</a>, <a class="reference external" href="http://www.numpy.org/">NumPy</a>, <a class="reference external" href="http://matplotlib.org/">Matplotlib</a>, <a class="reference external" href="http://scikit-learn.org/stable/index.html">Scikit-Learn</a> etc.</p></li>
+<li><p>Understand Machine Learning algorithms, in particular for supervised learning.</p></li>
+<li><p>Learn how to integrate these algorithms from scikit-learn into datamining projects.</p></li>
+<li><p>Understand Neural Networks, in particular Deep Neural Networks</p></li>
+<li><p>Learn how to implement neural network- and deep neural network applications with <a class="reference external" href="https://keras.io/">Keras</a>.</p></li>
+<li><p>Understand how to model words and documents for textmining</p></li>
+<li><p>Learn how to implement methods for topic extraction and text classification</p></li>
+</ul>
+<p><strong>Teaching form:</strong></p>
+<ul class="simple">
+<li><p>Contents of this course will be tought task-driven. This means that we start from the tasks of the <a class="reference external" href="#livecoding">Live coding exercise-notebooks</a>. In order to solve these tasks theory and programming skills are required from the notebooks in chapter <a class="reference external" href="#data_mining">Data Mining with Python</a>. We will consult these notebooks whenever we require the corresponding skills to solve the tasks of the exercise notebooks.</p></li>
+</ul>
+<p><strong>Organisation of Jupyter Notebooks for Lecture, Live-Coding and Assignments</strong></p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/MachineLearningLearningPath.png" />
+<p><a id='basic_modules'></a></p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>This course requires basic knowledge in Python and</p>
+<ul class="simple">
+<li><p><span class="xref myst">Basics in Numpy (.ipynb)</span></p></li>
+<li><p><span class="xref myst">Basics in Matplotlib (.ipynb)</span></p></li>
+<li><p><span class="xref myst">Basics in Pandas (.ipynb)</span></p></li>
+</ul>
+<p>Moreover, the Python Machine Learning framework <a class="reference external" href="http://scikit-learn.org/stable/index.html">Scikit-Learn</a> will be extensively applied in this course. The main concepts of this library are:</p>
+<ul class="simple">
+<li><p>it is primarily built on Numpy. In particular internal and external data structures are <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">Numpy Arrays</a>.</p></li>
+<li><p>All algorithms, which somehow transform data belong to the <strong>Transformer</strong>-class, e.g. <em>PCA, Normalizer, StandardScaler, OneHotEncoder</em>, etc. These transformers are trained by applying the <em>.fit(traindata)</em>-method. Once they are trained, there <em>.transform(data)</em>-method can be called in order to transform <em>data</em>. If the data used for training the transformer shall be transformed immediately after training, the <em>.fit_transform(data)</em>-method can be applied.</p></li>
+<li><p>All Machine Learning algorithms for supervised and unsupervised learning belong to the <strong>Estimator</strong> class, e.g. <em>LogisticRegression, SVM, MLP, Kmeans</em>, etc. These estimators are trained by applying the <em>.fit(trainfeatures)</em>- or <em>.fit(trainfeatures,trainlabels)</em>-method. The former configuration is applied for unsupervised-, the latter for supervised learning. Once an estimator is trained, it can be applied for clustering, classification or regression by envoking the <em>.predict(data)</em>-method.</p></li>
+<li><p>At their interfaces all <strong>Transformers</strong> and <strong>Estimators</strong> apply <em>Numpy Arrays</em>.</p></li>
+</ul>
+<p><a id='data_mining'></a></p>
+</div>
+<div class="section" id="machine-learning">
+<h2>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="conventional-techniques-with-scikit-learn">
+<h3>Conventional techniques with scikit-learn<a class="headerlink" href="#conventional-techniques-with-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><a class="reference internal" href="00BasicConcepts.html"><span class="doc std std-doc">Basic Concepts of Data Mining and Machine Learning</span></a></p>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Categories</p></li>
+<li><p>Validation</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="02RegressionPipe.html"><span class="doc std std-doc">Regression Model</span></a></p>
+<ul class="simple">
+<li><p>Example Data: Insurance Data</p></li>
+<li><p>Entire Data Mining process from data access to evaluation</p></li>
+<li><p>One-Hot-Encoding</p></li>
+<li><p>Scaling</p></li>
+<li><p>Learn and apply Regression Model</p></li>
+<li><p>Evaluation Metrics for Regression Models</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="03ClassificationPipe.html"><span class="doc std std-doc">Classification Model</span></a></p>
+<ul class="simple">
+<li><p>Example Data: Cleveland Heart Disease Dataset</p></li>
+<li><p>Cleaning, One-Hot-Encoding</p></li>
+<li><p>Building a pipeline of modules for scaling, transformation and classification</p></li>
+<li><p>Evaluation of a Classifier by accuracy, confusion matrix, precision, recall, f1-score</p></li>
+<li><p>Cross-Validation</p></li>
+<li><p>Determine feature importance</p></li>
+<li><p>Fast and efficient model comparison</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="05EnsembleMethods.html"><span class="doc std std-doc">Ensemble Methods: General Concept</span></a></p>
+<ul class="simple">
+<li><p>Categorisation of ensemble machine learning algorithms and the main concepts</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="05Optimisation.html"><span class="doc std std-doc">Hyperparameter Optimisation</span></a></p>
+<ul class="simple">
+<li><p>Example Data: Predict bike rental</p></li>
+<li><p>Train and evaluate Random Forest Regression model</p></li>
+<li><p>Error visualisation</p></li>
+<li><p>Determining feature importance</p></li>
+<li><p>Hyperparameter Tuning</p></li>
+<li><p>Fast and efficient model comparison</p></li>
+<li><p>Comparison with Extremly Randomized Trees</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="11ModellingWordsAndTexts.html"><span class="doc std std-doc">Modelling of Words and Texts</span></a></p>
+<ul class="simple">
+<li><p>One-Hot-Encoding of Words</p></li>
+<li><p>BoW model of texts</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Feature Selection and Extraction(.ipynb)</span></p>
+<ul class="simple">
+<li><p>Univariate Feature Selection Tests</p>
+<ul>
+<li><p>Entropy</p></li>
+<li><p>Mutual Information</p></li>
+<li><p><span class="math notranslate nohighlight">\(\chi^2\)</span>-Test</p></li>
+<li><p>F-Measure</p></li>
+</ul>
+</li>
+<li><p>Variance Threshold</p></li>
+<li><p>Feature Selectors in scikitlearn: SelectKBest and SelectPercentile</p></li>
+<li><p>Principal Component Analysis (PCA)</p></li>
+<li><p>Linear Discriminant Analysis (LDA)</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Clustering Energy Consumption (.ipynb)</span></p>
+<ul class="simple">
+<li><p>Boxplots</p></li>
+<li><p>Enhance data with geo-information</p></li>
+<li><p>Normalization</p></li>
+<li><p>Clusteralgorithms</p>
+<ul>
+<li><p>Hierarchical Clustering</p></li>
+<li><p>Kmeans</p></li>
+<li><p>DBSAN</p></li>
+<li><p>Affinity Propagation</p></li>
+</ul>
+</li>
+<li><p>Visualisation of clusters</p></li>
+<li><p>Dimensionality Reduction</p></li>
+<li><p>Visualisation in Google Maps</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="neural-networks-and-deep-neural-networks">
+<h3>Neural Networks and Deep Neural Networks<a class="headerlink" href="#neural-networks-and-deep-neural-networks" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><span class="xref myst">Neural Networks I: Single Layer Perceptron (SLP)(.ipynb)</span></p>
+<ul class="simple">
+<li><p>Natural Neuron</p></li>
+<li><p>General Notions for Artificial Neural Networks</p></li>
+<li><p>Single Layer Perceptron (SLP)</p>
+<ul>
+<li><p>Architectures for Regression and Classification</p></li>
+<li><p>Gradient Descent- and Stochastic Gradient Descent Learning</p></li>
+</ul>
+</li>
+<li><p>SLP implementation and demonstration in Python</p></li>
+<li><p>SLP in Scikit-Learn: Implementation, Evaluation, Optimisation</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Neural Networks II: Multi Layer Perceptron (MLP)(.ipynb)</span></p>
+<ul class="simple">
+<li><p>MLP Architectures for Regression and Classification</p></li>
+<li><p>Gradient Descent- and Stochastic Gradient Descent Learning</p></li>
+<li><p>MLP implementation and demonstration in Python</p></li>
+<li><p>MLP in Scikit-Learn: Implementation, Evaluation, Optimisation,</p></li>
+<li><p>Grid Search and Random Search for Hyperparameter-Tuning</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Deep Neural Networks: Convolutional Neural Networks(.ipynb)</span></p>
+<ul class="simple">
+<li><p>Overall Architecture of CNNs</p></li>
+<li><p>General concept of convolution filtering</p></li>
+<li><p>Layer-types:</p>
+<ul>
+<li><p>Convolution,</p></li>
+<li><p>Pooling,</p></li>
+<li><p>Fully-Connected</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><span class="xref myst">Recurrent Neural Networks (RNN)</span></p>
+<ul class="simple">
+<li><p>Simple Recurrent Neural Networks (RNNs)</p></li>
+<li><p>Long short-term Memory Networks (LSTMs)</p></li>
+<li><p>Gated Recurrent Units (GRUs)</p></li>
+<li><p>Application Categories of Recurrent Networks</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Time-Series Prediction with Recurrent Neural Networks (LSTM) - Prediction of Bike rentals</span></p>
+<ul class="simple">
+<li><p>Data Visualisation for Time-Series</p></li>
+<li><p>Building Recurrent Neural Networks with Keras</p></li>
+<li><p>RNN in many-to-one architecture</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Time-Series Prediction with Recurrent Neural Networks (LSTM) - Temperature Prediction</span></p>
+<ul class="simple">
+<li><p>Building Recurrent Neural Networks with Keras</p></li>
+<li><p>RNN in many-to-one architecture</p></li>
+<li><p>Weather-Forecasting with MLP, LSTM, GRU</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Time-Series Prediction with Recurrent Neural Networks (LSTM) - Stock-Price-Prediction</span></p>
+<ul class="simple">
+<li><p>Building Recurrent Neural Networks with Keras</p></li>
+<li><p>RNN in many-to-one architecture</p></li>
+<li><p>In notebook <span class="xref myst">LSTM Sequence Modelling on Stock-Price Data</span> a RNN is applied in many-to-many mode for the same task.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="define-mlp-and-cnn-for-object-classification-in-keras">
+<h3>Define MLP and CNN for Object Classification in Keras<a class="headerlink" href="#define-mlp-and-cnn-for-object-classification-in-keras" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><span class="xref myst">MLP and CNN for Object Classification</span></p></li>
+</ol>
+</div>
+<div class="section" id="apply-pretrained-deep-neural-networks">
+<h3>Apply pretrained Deep Neural Networks<a class="headerlink" href="#apply-pretrained-deep-neural-networks" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><span class="xref myst">Use of pretrained CNNs for object classification - original task</span></p></li>
+<li><p><span class="xref myst">Use of pretrained CNNs for object classification - new task: Malaria detection</span></p></li>
+</ol>
+</div>
+<div class="section" id="textprocessing-analysis-and-classification">
+<h3>Textprocessing-, analysis and -classification<a class="headerlink" href="#textprocessing-analysis-and-classification" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><span class="xref myst">Access RSS Feeds and create corpus</span></p>
+<ul class="simple">
+<li><p>Crawling of RSS feeds</p></li>
+<li><p>Generate a corresponding RSS feed news corpus</p></li>
+<li><p><em>Note:</em> This notebook just demonstrates how data, which will be applied in the document-classification notebooks, has been collected.</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Bag-of-Word Document Model, Similarity, Topic Extraction</span></p>
+<ul class="simple">
+<li><p>Access Data from the RSS news corpus (as generated in the previous notebook)</p></li>
+<li><p>Visualization of wordclouds</p></li>
+<li><p>Gensim</p></li>
+<li><p>Calculating document similarity</p></li>
+<li><p>LSI Topic Extraction</p></li>
+<li><p>LDA Topic Extraction</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Word Embeddings Theory:</span></p>
+<ul class="simple">
+<li><p>Concept of Word-Embeddings</p></li>
+<li><p>Skip-Gram and CBOW</p></li>
+<li><p>Working with pretrained word-embeddings</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Word Embeddings:</span></p>
+<ul class="simple">
+<li><p>Generate Word Embedding from German Wikipedia Dump</p></li>
+<li><p>Gensim Semantic Similarity analysis based on word-embeddings.</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Text Classification with CNNs and LSTMs</span></p>
+<ul class="simple">
+<li><p>Text preprocessing and representation with Keras</p></li>
+<li><p>Load and apply pretrained word-embedding</p></li>
+<li><p>News classification with CNN</p></li>
+<li><p>News classification with LSTM</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Classification of IMDB Movie Reviews with CNNs</span></p>
+<ul class="simple">
+<li><p>Sentiment analysis on IMDB reviews</p></li>
+<li><p>Load and apply different pretrained word-embeddings</p></li>
+<li><p>Implement and evaluate different CNN architectures</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="mlfow">
+<h2>Mlfow<a class="headerlink" href="#mlfow" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><span class="xref myst">Logging a scikit-learn model in mlflow</span></p></li>
+<li><p><span class="xref myst">Logging a keras model in mlflow</span></p></li>
+<li><p><span class="xref myst">Analyse mlflow models in jupyter notebook</span></p></li>
+</ol>
+<p>You may also analyse your mlflow models by typing <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">ui</span></code> into your console from the directory, which contains your mlflow-directory. Then a local server starts under <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:5000</span></code>.</p>
+<p><a id='livecoding'></a></p>
+</div>
+<div class="section" id="live-coding-tasks">
+<h2>Live Coding Tasks<a class="headerlink" href="#live-coding-tasks" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Exercise 1: <span class="xref myst">Access and Preprocess</span></p></li>
+<li><p>Exercise 2: <span class="xref myst">Define and Evaluate Processing Pipelines</span></p></li>
+<li><p>Exercise 3: <span class="xref myst">Hyperparameter Optimization</span></p></li>
+<li><p>Exercise 4: <span class="xref myst">Implementing Neural Networks with Keras</span></p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Lecture"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

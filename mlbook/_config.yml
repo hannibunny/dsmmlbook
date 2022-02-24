@@ -1,0 +1,17 @@
+# Book settings
+title: Machine Learning (DSM)
+author: Prof. Dr. Johannes Maucher
+logo: hdmlogomed.jpg
+
+exclude_patterns: [_build, Thumbs.db, .DS_Store, Assignments, LiveCoding, "**.ipynb_checkpoints", "01DataAccess.ipynb"]
+
+only_build_toc_files: true
+
+parse:
+  myst_extended_syntax: true
+
+latex:
+  latex_documents:
+    targetname: mlbook.tex
+
+

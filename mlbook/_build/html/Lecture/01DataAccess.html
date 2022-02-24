@@ -1,0 +1,1838 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Data Access and Understanding, Preprocessing &#8212; Machine Learning (DSM)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/togglebutton.js"></script>
+    <script type="text/javascript" src="../_static/clipboard.min.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/sphinx-book-theme.js"></script>
+    <script type="text/javascript">var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" type="text/javascript" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script type="text/javascript">
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" type="text/javascript" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning (DSM)</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Overview.html">
+   Machine Learning with Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine Learning with Scikit-Learn
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RegressionPipe.html">
+   Learn and evaluate a Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ClassificationPipe.html">
+   Learn evaluate and compare Classification Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05EnsembleMethods.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05Optimisation.html">
+   Hyperparameter Optimisation with Scikit-Learn
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNetworkImplementation.html">
+   Multi Layer Perceptron for Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06KerasLSTMbikeRentalPrediction.html">
+   LSTM Time Series Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="12FeatureSelection.html">
+   Feature Selection and Extraction
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Lecture/01DataAccess.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Lecture/01DataAccess.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/Lecture/01DataAccess.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Data-Access-and-Understanding,-Preprocessing" data-toc-modified-id="Data-Access-and-Understanding,-Preprocessing-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Data Access and Understanding, Preprocessing</a></span></li><li><span><a href="#Required-Modules" data-toc-modified-id="Required-Modules-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Required Modules</a></span></li><li><span><a href="#Access-Data" data-toc-modified-id="Access-Data-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Access Data</a></span></li><li><span><a href="#Understand-data" data-toc-modified-id="Understand-data-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Understand data</a></span><ul class="toc-item"><li><span><a href="#Dealing-with-NaNs" data-toc-modified-id="Dealing-with-NaNs-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Dealing with NaNs</a></span></li><li><span><a href="#Descriptive-Statistics" data-toc-modified-id="Descriptive-Statistics-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Descriptive Statistics</a></span></li><li><span><a href="#Visualize-Data" data-toc-modified-id="Visualize-Data-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Visualize Data</a></span><ul class="toc-item"><li><span><a href="#Univariate-Distribution" data-toc-modified-id="Univariate-Distribution-4.3.1"><span class="toc-item-num">4.3.1&nbsp;&nbsp;</span>Univariate Distribution</a></span></li><li><span><a href="#Correlation-between-features-and-target" data-toc-modified-id="Correlation-between-features-and-target-4.3.2"><span class="toc-item-num">4.3.2&nbsp;&nbsp;</span>Correlation between features and target</a></span></li><li><span><a href="#Pairwise-Correlations-between-features" data-toc-modified-id="Pairwise-Correlations-between-features-4.3.3"><span class="toc-item-num">4.3.3&nbsp;&nbsp;</span>Pairwise Correlations between features</a></span></li></ul></li><li><span><a href="#One-step-EDA-with-pandas_profiling" data-toc-modified-id="One-step-EDA-with-pandas_profiling-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>One-step EDA with pandas_profiling</a></span></li></ul></li><li><span><a href="#Transform-Data" data-toc-modified-id="Transform-Data-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Transform Data</a></span><ul class="toc-item"><li><span><a href="#Transform-categorical-data" data-toc-modified-id="Transform-categorical-data-5.1"><span class="toc-item-num">5.1&nbsp;&nbsp;</span>Transform categorical data</a></span><ul class="toc-item"><li><span><a href="#Mapping-of-ordinal-features-to-integers-according-to-their-ordering." data-toc-modified-id="Mapping-of-ordinal-features-to-integers-according-to-their-ordering.-5.1.1"><span class="toc-item-num">5.1.1&nbsp;&nbsp;</span>Mapping of ordinal features to integers according to their ordering.</a></span></li><li><span><a href="#Mapping-of-nominal-variables-to-integers" data-toc-modified-id="Mapping-of-nominal-variables-to-integers-5.1.2"><span class="toc-item-num">5.1.2&nbsp;&nbsp;</span>Mapping of nominal variables to integers</a></span></li><li><span><a href="#One-Hot-Encoding-of-nominal-features" data-toc-modified-id="One-Hot-Encoding-of-nominal-features-5.1.3"><span class="toc-item-num">5.1.3&nbsp;&nbsp;</span>One-Hot-Encoding of nominal features</a></span></li></ul></li><li><span><a href="#Scaling-of-data" data-toc-modified-id="Scaling-of-data-5.2"><span class="toc-item-num">5.2&nbsp;&nbsp;</span>Scaling of data</a></span></li></ul></li></ul></div><div class="section" id="data-access-and-understanding-preprocessing">
+<h1>Data Access and Understanding, Preprocessing<a class="headerlink" href="#data-access-and-understanding-preprocessing" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last Update: 06.07.2018</p></li>
+</ul>
+<p><a class="reference internal" href="Overview.html"><span class="doc std std-doc">Go to Workshop Overview (.ipynb)</span></a> / <span class="xref myst">[.html]</span></p>
+</div>
+<div class="section" id="required-modules">
+<h1>Required Modules<a class="headerlink" href="#required-modules" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">explained_variance_score</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="access-data">
+<h1>Access Data<a class="headerlink" href="#access-data" title="Permalink to this headline">¶</a></h1>
+<p>In this workshop <strong>regression models</strong> are trained and evaluated by the example application <strong>Estimation of rental bikes per day</strong>. The task is to predict the daily count of rental bikes from features describing the weather situation and the date and season. The applied dataset is available from <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset">UCI Bike Sharing Dataset</a>. After downloading and storing the corresponding .csv-file it can be accessed using <em>Pandas</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikefile</span><span class="o">=</span><span class="s2">&quot;./Data/bikeday.csv&quot;</span>
+<span class="n">bikedf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">bikefile</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;null&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bikedf</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">a5200db1118b</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">bikefile</span><span class="o">=</span><span class="s2">&quot;./Data/bikeday.csv&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">bikedf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">bikefile</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;null&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">display</span><span class="p">(</span><span class="n">bikedf</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="nn">~/opt/anaconda3/envs/tf2/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">parser_f</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision)</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> 
+<span class="ne">--&gt; </span><span class="mi">676</span>         <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span> 
+<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="n">parser_f</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="nn">~/opt/anaconda3/envs/tf2/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span> 
+<span class="g g-Whitespace">    </span><span class="mi">447</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">448</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">fp_or_buf</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span> 
+<span class="g g-Whitespace">    </span><span class="mi">450</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/envs/tf2/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span> 
+<span class="ne">--&gt; </span><span class="mi">880</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span> 
+<span class="g g-Whitespace">    </span><span class="mi">882</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/anaconda3/envs/tf2/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span>     <span class="k">def</span> <span class="nf">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1113</span>         <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1114</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="n">CParserWrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1115</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1116</span>             <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;python&quot;</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/envs/tf2/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span>         <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;usecols&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">usecols</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> 
+<span class="ne">-&gt; </span><span class="mi">1891</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span> <span class="o">=</span> <span class="n">parsers</span><span class="o">.</span><span class="n">TextReader</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1892</span>         <span class="bp">self</span><span class="o">.</span><span class="n">unnamed_cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span><span class="o">.</span><span class="n">unnamed_cols</span>
+<span class="g g-Whitespace">   </span><span class="mi">1893</span> 
+
+<span class="nn">pandas/_libs/parsers.pyx</span> in <span class="ni">pandas._libs.parsers.TextReader.__cinit__</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/parsers.pyx</span> in <span class="ni">pandas._libs.parsers.TextReader._setup_parser_source</span><span class="nt">()</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] File ./Data/bikeday.csv does not exist: &#39;./Data/bikeday.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each of the 731 rows (2years) corresponds to one day.</p>
+<p><strong>Feature Description:</strong></p>
+<ul class="simple">
+<li><p>dteday : date</p></li>
+<li><p>season : season (1:spring, 2:summer, 3:fall, 4:winter)</p></li>
+<li><p>yr : year (0: 2011, 1:2012)</p></li>
+<li><p>mnth : month ( 1 to 12)</p></li>
+<li><p>hr : hour (0 to 23)</p></li>
+<li><p>holiday : weather day is holiday or not</p></li>
+<li><p>weekday : day of the week</p></li>
+<li><p>workingday : if day is neither weekend nor holiday is 1, otherwise is 0.</p></li>
+<li><p>weathersit :</p>
+<ul>
+<li><p>1: Clear, Few clouds, Partly cloudy, Partly cloudy</p></li>
+<li><p>2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist</p></li>
+<li><p>3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds</p></li>
+<li><p>4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog</p></li>
+</ul>
+</li>
+<li><p>temp : Normalized temperature in Celsius. The values are derived via (t-t_min)/(t_max-t_min), t_min=-8, t_max=+39 (only in hourly scale)</p></li>
+<li><p>atemp: Normalized feeling temperature in Celsius. The values are derived via (t-t_min)/(t_max-t_min), t_min=-16, t_max=+50 (only in hourly scale)</p></li>
+<li><p>hum: Normalized humidity. The values are divided to 100 (max)</p></li>
+<li><p>windspeed: Normalized wind speed. The values are divided to 67 (max)</p></li>
+</ul>
+<p><strong>Target:</strong></p>
+<ul class="simple">
+<li><p>casual: count of casual users</p></li>
+<li><p>registered: count of registered users</p></li>
+<li><p>cnt: count of total rental bikes including both casual and registered</p></li>
+</ul>
+<p>In our regression - experiments only <em>cnt</em> is applied as target value. The distinction into <em>casual</em> and <em>registered</em> is neglected.</p>
+</div>
+<div class="section" id="understand-data">
+<h1>Understand data<a class="headerlink" href="#understand-data" title="Permalink to this headline">¶</a></h1>
+<p>At the very beginning of each datamining task one should try to understand the given data. This task comprises:</p>
+<ul class="simple">
+<li><p>determine how <em>clean</em> the data is: Are there missing values, type-errors, value-errors (outliers), etc.</p></li>
+<li><p>determine descriptive statistics</p></li>
+<li><p>investigate correlations</p></li>
+</ul>
+<p><em>Data visualistion</em> can help to clarify these questions.</p>
+<div class="section" id="dealing-with-nans">
+<h2>Dealing with NaNs<a class="headerlink" href="#dealing-with-nans" title="Permalink to this headline">¶</a></h2>
+<p>Pandas provides comfortable methods to determine and process missing data. In order to demonstrate this, we access a dummy .csv-file with missing values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">playdata1</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;nandata.csv&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">playdata1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.0</td>
+      <td>6.0</td>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9.0</td>
+      <td>NaN</td>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>15</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The number of missing data per column can be determined as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">playdata1</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A    1
+B    2
+C    0
+D    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is 1 missing value in column A, and there are 2 missing values in column B.</p>
+<p>Now let’s check if there are missing-values in the bike-share dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikedf</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dteday        0
+season        0
+yr            0
+mnth          0
+holiday       0
+weekday       0
+workingday    0
+weathersit    0
+temp          0
+atemp         0
+hum           0
+windspeed     0
+casual        0
+registered    0
+cnt           0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are different approaches to handle missing values. For example, one can just remove all rows with missing values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">playdata1</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     A    B  C  D
+0  1.0  2.0  3  4
+1  5.0  6.0  7  8
+</pre></div>
+</div>
+</div>
+</div>
+<p>A less convenient approach is to remove all columns with missing values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">playdata1</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    C   D
+0   3   4
+1   7   8
+2  11  12
+3  15  16
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can even remove only rows in which values of a defined subset of columns are missing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">playdata1</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     A    B   C   D
+0  1.0  2.0   3   4
+1  5.0  6.0   7   8
+2  9.0  NaN  11  12
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas’ <em>fillna()</em>-method can be applied for replacing NaNs by arbitrary values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">playdata1</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">99</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      A     B   C   D
+0   1.0   2.0   3   4
+1   5.0   6.0   7   8
+2   9.0 -99.0  11  12
+3 -99.0 -99.0  15  16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another approach is to apply scikit-learn’s <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Imputer.html">Imputer</a>-class. In the example below missing values are filled with the mean-value of the column. Moreover, instead of filling in the <em>mean</em> it is also possible to choose <em>median</em> or <em>most_frequent</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">Imputer</span>
+<span class="n">fillerMean</span> <span class="o">=</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="s2">&quot;NaN&quot;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fillerMean</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">playdata1</span><span class="p">)</span>
+<span class="n">dataImpMean</span> <span class="o">=</span> <span class="n">fillerMean</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">playdata1</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataImpMean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  2.  3.  4.]
+ [ 5.  6.  7.  8.]
+ [ 9.  4. 11. 12.]
+ [ 5.  4. 15. 16.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fillerMed</span> <span class="o">=</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="s1">&#39;NaN&#39;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fillerMed</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">playdata1</span><span class="p">)</span>
+<span class="n">dataImpMed</span> <span class="o">=</span> <span class="n">fillerMed</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">playdata1</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataImpMed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  2.  3.  4.]
+ [ 5.  6.  7.  8.]
+ [ 9.  4. 11. 12.]
+ [ 5.  4. 15. 16.]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="descriptive-statistics">
+<h2>Descriptive Statistics<a class="headerlink" href="#descriptive-statistics" title="Permalink to this headline">¶</a></h2>
+<p>The number of rows and columns of a Pandas dataframe can be determined by it’s <em>shape</em>-parameter. The column-names are stored in the <em>columns</em>-parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of rows:    &quot;</span><span class="p">,</span><span class="n">bikedf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of columns: &quot;</span><span class="p">,</span><span class="n">bikedf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bikedf</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of rows:     731
+Number of columns:  15
+Index([&#39;dteday&#39;, &#39;season&#39;, &#39;yr&#39;, &#39;mnth&#39;, &#39;holiday&#39;, &#39;weekday&#39;, &#39;workingday&#39;,
+       &#39;weathersit&#39;, &#39;temp&#39;, &#39;atemp&#39;, &#39;hum&#39;, &#39;windspeed&#39;, &#39;casual&#39;,
+       &#39;registered&#39;, &#39;cnt&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Basic descriptive statistics</strong> of the dataframe’s columns are calculated by the <em>describe()</em>-method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Descriptive statistics on columns:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bikedf</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Descriptive statistics on columns:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season</th>
+      <th>yr</th>
+      <th>mnth</th>
+      <th>holiday</th>
+      <th>weekday</th>
+      <th>workingday</th>
+      <th>weathersit</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>hum</th>
+      <th>windspeed</th>
+      <th>casual</th>
+      <th>registered</th>
+      <th>cnt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+      <td>731.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.496580</td>
+      <td>0.500684</td>
+      <td>6.519836</td>
+      <td>0.028728</td>
+      <td>2.997264</td>
+      <td>0.683995</td>
+      <td>1.395349</td>
+      <td>0.495385</td>
+      <td>0.474354</td>
+      <td>0.627894</td>
+      <td>0.190486</td>
+      <td>848.176471</td>
+      <td>3656.172367</td>
+      <td>4504.348837</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.110807</td>
+      <td>0.500342</td>
+      <td>3.451913</td>
+      <td>0.167155</td>
+      <td>2.004787</td>
+      <td>0.465233</td>
+      <td>0.544894</td>
+      <td>0.183051</td>
+      <td>0.162961</td>
+      <td>0.142429</td>
+      <td>0.077498</td>
+      <td>686.622488</td>
+      <td>1560.256377</td>
+      <td>1937.211452</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.059130</td>
+      <td>0.079070</td>
+      <td>0.000000</td>
+      <td>0.022392</td>
+      <td>2.000000</td>
+      <td>20.000000</td>
+      <td>22.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.000000</td>
+      <td>0.000000</td>
+      <td>4.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.337083</td>
+      <td>0.337842</td>
+      <td>0.520000</td>
+      <td>0.134950</td>
+      <td>315.500000</td>
+      <td>2497.000000</td>
+      <td>3152.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>7.000000</td>
+      <td>0.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.498333</td>
+      <td>0.486733</td>
+      <td>0.626667</td>
+      <td>0.180975</td>
+      <td>713.000000</td>
+      <td>3662.000000</td>
+      <td>4548.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>10.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>0.655417</td>
+      <td>0.608602</td>
+      <td>0.730209</td>
+      <td>0.233214</td>
+      <td>1096.000000</td>
+      <td>4776.500000</td>
+      <td>5956.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>4.000000</td>
+      <td>1.000000</td>
+      <td>12.000000</td>
+      <td>1.000000</td>
+      <td>6.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>0.861667</td>
+      <td>0.840896</td>
+      <td>0.972500</td>
+      <td>0.507463</td>
+      <td>3410.000000</td>
+      <td>6946.000000</td>
+      <td>8714.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="visualize-data">
+<h2>Visualize Data<a class="headerlink" href="#visualize-data" title="Permalink to this headline">¶</a></h2>
+<p>In order to understand data, a variety of different visualisation techniques can be applied, e.g. histograms, scatter-plots or box-plots.</p>
+<div class="section" id="univariate-distribution">
+<h3>Univariate Distribution<a class="headerlink" href="#univariate-distribution" title="Permalink to this headline">¶</a></h3>
+<p>Analysing the distribution of single attributes helps to understand data. For example it helps to detect outliers. Outliers should be removed from the data, since they may yield disturbed models. Moreover, knowing the univariate distribution may help us in determining necessary preprocessing steps, such as standardization. For classification tasks, the distribution of the class-labels within the training set is a critical point. In the case of extremely unbalanced label-distributions under- or oversampling can be applied for balancing.</p>
+<p>Univariate distributions can be visualized by e.g. histograms, boxplots or violinplots as demonstrated below in the code-cells below:</p>
+<p><strong>Violinplot of bike-rentals per day.</strong> The 3 violins refer to rentals from casual users, rentals from registered users and their sum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">bikedf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of bike rentals per day: casual users, registered users and their sum&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Rentals per day&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01DataAccess_34_0.png" src="../_images/01DataAccess_34_0.png" />
+</div>
+</div>
+<p><strong>Boxplot of numeric features:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">bikedf</span><span class="p">[[</span><span class="s2">&quot;atemp&quot;</span><span class="p">,</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span><span class="s2">&quot;hum&quot;</span><span class="p">,</span><span class="s2">&quot;windspeed&quot;</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of normalized temperature, humidity and windspeed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Normalized values&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01DataAccess_36_0.png" src="../_images/01DataAccess_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">bikedf</span><span class="p">[</span><span class="s2">&quot;temp&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of normalized temperature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Normalized temperature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01DataAccess_37_0.png" src="../_images/01DataAccess_37_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="correlation-between-features-and-target">
+<h3>Correlation between features and target<a class="headerlink" href="#correlation-between-features-and-target" title="Permalink to this headline">¶</a></h3>
+<p>In order to analyse pairwise corelations of variables correlation plots are suitable. Below it is shown how to generate a matrix of correlation-plots with <em>Matplotlib</em>. In this example the correlation of a single input feature vs. the target variable <em>daily count of bikes</em> is plotted.</p>
+<p><strong>Q: Which meaningful correlations are visible?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bikedf</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;dteday&#39;, &#39;season&#39;, &#39;yr&#39;, &#39;mnth&#39;, &#39;holiday&#39;, &#39;weekday&#39;, &#39;workingday&#39;,
+       &#39;weathersit&#39;, &#39;temp&#39;, &#39;atemp&#39;, &#39;hum&#39;, &#39;windspeed&#39;, &#39;casual&#39;,
+       &#39;registered&#39;, &#39;cnt&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">bikedf</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">bikedf</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">xmin</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">xmax</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">diff</span><span class="o">=</span><span class="p">(</span><span class="n">xmax</span><span class="o">-</span><span class="n">xmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bikedf</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">bikedf</span><span class="p">[</span><span class="s1">&#39;cnt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span><span class="o">-</span><span class="n">diff</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="n">diff</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;count vs. &#39;</span><span class="o">+</span><span class="n">feat</span><span class="p">)</span>
+    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01DataAccess_40_0.png" src="../_images/01DataAccess_40_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="pairwise-correlations-between-features">
+<h3>Pairwise Correlations between features<a class="headerlink" href="#pairwise-correlations-between-features" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrmat</span><span class="o">=</span><span class="n">bikedf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+
+<span class="n">sb</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span> <span class="c1">#set seaborn style</span>
+<span class="c1"># Generate a mask for the upper triangle</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">corrmat</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">diverging_palette</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corrmat</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="o">.</span><span class="mi">5</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01DataAccess_42_0.png" src="../_images/01DataAccess_42_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="one-step-eda-with-pandas-profiling">
+<h2>One-step EDA with pandas_profiling<a class="headerlink" href="#one-step-eda-with-pandas-profiling" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install pandas_profiling</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas_profiling</span>
+<span class="n">eda</span><span class="o">=</span><span class="n">pandas_profiling</span><span class="o">.</span><span class="n">ProfileReport</span><span class="p">(</span><span class="n">bikedf</span><span class="p">)</span>
+<span class="c1">#eda</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;bikeRentalDailyEDA.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f3c8b881f8a24a10aaad40aac731ad6d", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f20767a97bce436784b3a86bbb979d32", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a6bc6c625db54f87a936fc69023f05d3", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "8db30069bb2845ef917d1c56d632c05d", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "c1f5a276907e4c5387a7be4a436c56bb", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1c92b7eb4c46442998f35613b7e6a902", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d772ded8e33c4e93a3edf3586638584c", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "45bce42378a34c7c894a250caaa987fe", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="transform-data">
+<h1>Transform Data<a class="headerlink" href="#transform-data" title="Permalink to this headline">¶</a></h1>
+<p>Most machine learning algorithms require a vector of numeric values at their input. However, data is not always numerical. Therefore, corresponding transformation techniques to convert categorical data into suitable data-structures must be applied in the pre-processing phase.</p>
+<div class="section" id="transform-categorical-data">
+<h2>Transform categorical data<a class="headerlink" href="#transform-categorical-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;./Pics/dataTypes.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01DataAccess_47_0.png" src="../_images/01DataAccess_47_0.png" />
+</div>
+</div>
+<p>In the dataframe defined below, <em>color</em> and <em>type</em> are nominal features, <em>size</em> is an ordinal feature and <em>prize</em> is numerical.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;pullover&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="mf">39.90</span><span class="p">,</span> <span class="s1">&#39;sale&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="mf">19.95</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="mf">14.99</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="mf">11.99</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">]])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;prize&#39;</span><span class="p">,</span> <span class="s1">&#39;class label&#39;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>color</th>
+      <th>size</th>
+      <th>prize</th>
+      <th>class label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pullover</td>
+      <td>blue</td>
+      <td>S</td>
+      <td>39.90</td>
+      <td>sale</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>short</td>
+      <td>red</td>
+      <td>L</td>
+      <td>19.95</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>shirt</td>
+      <td>green</td>
+      <td>M</td>
+      <td>14.99</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>shirt</td>
+      <td>blue</td>
+      <td>S</td>
+      <td>11.99</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="mapping-of-ordinal-features-to-integers-according-to-their-ordering">
+<h3>Mapping of ordinal features to integers according to their ordering.<a class="headerlink" href="#mapping-of-ordinal-features-to-integers-according-to-their-ordering" title="Permalink to this headline">¶</a></h3>
+<p>Since the ordering must be defined by the user, there can not be an automatic process for this. Instead a corresponding mapping, e.g. in form of a python-dictionary, must be defined. In the following code-snippet such a mapping and the replacement of the string-values by the corresponding integers in the dataframe is implemented.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">size_mapping</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of columns: &quot;</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>color</th>
+      <th>size</th>
+      <th>prize</th>
+      <th>class label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pullover</td>
+      <td>blue</td>
+      <td>1</td>
+      <td>39.90</td>
+      <td>sale</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>short</td>
+      <td>red</td>
+      <td>3</td>
+      <td>19.95</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>shirt</td>
+      <td>green</td>
+      <td>2</td>
+      <td>14.99</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>shirt</td>
+      <td>blue</td>
+      <td>1</td>
+      <td>11.99</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of columns:  type            object
+color           object
+size             int64
+prize          float64
+class label     object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The inverse mapping can be realised in a similar way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inv_size_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">size_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inv_size_mapping</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">inv_size_mapping</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{3: &#39;L&#39;, 2: &#39;M&#39;, 1: &#39;S&#39;}
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>color</th>
+      <th>size</th>
+      <th>prize</th>
+      <th>class label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pullover</td>
+      <td>blue</td>
+      <td>S</td>
+      <td>39.90</td>
+      <td>sale</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>short</td>
+      <td>red</td>
+      <td>L</td>
+      <td>19.95</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>shirt</td>
+      <td>green</td>
+      <td>M</td>
+      <td>14.99</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>shirt</td>
+      <td>blue</td>
+      <td>S</td>
+      <td>11.99</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="mapping-of-nominal-variables-to-integers">
+<h3>Mapping of nominal variables to integers<a class="headerlink" href="#mapping-of-nominal-variables-to-integers" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html">LabelEncoder of scikit-learn</a> can be applied to transform non-numeric values of nominal variables to integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="c1">#import sklearn</span>
+<span class="n">X</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">size_mapping</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>color</th>
+      <th>size</th>
+      <th>prize</th>
+      <th>class label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pullover</td>
+      <td>blue</td>
+      <td>S</td>
+      <td>39.90</td>
+      <td>sale</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>short</td>
+      <td>red</td>
+      <td>L</td>
+      <td>19.95</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>shirt</td>
+      <td>green</td>
+      <td>M</td>
+      <td>14.99</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>shirt</td>
+      <td>blue</td>
+      <td>S</td>
+      <td>11.99</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enclabel_type</span><span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_type</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">enclabel_color</span><span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_color</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">enclabel_class</span><span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;class label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_class</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>color</th>
+      <th>size</th>
+      <th>prize</th>
+      <th>class label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>39.90</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>19.95</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>14.99</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>11.99</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">classes_</span></code>-attribute of the <em>LabelEncoder</em>, defines the mapping from original value to the assigned integer. The i.th element of the <code class="docutils literal notranslate"><span class="pre">classes_</span></code>-list is the name of the original feature value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Label Mapping of feature type:&quot;</span><span class="p">,</span><span class="n">enclabel_type</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Label Mapping of feature color:&quot;</span><span class="p">,</span><span class="n">enclabel_color</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Label Mapping of class:&quot;</span><span class="p">,</span><span class="n">enclabel_class</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Label Mapping of feature type: [&#39;pullover&#39; &#39;shirt&#39; &#39;short&#39;]
+Label Mapping of feature color: [&#39;blue&#39; &#39;green&#39; &#39;red&#39;]
+Label Mapping of class: [&#39;new&#39; &#39;sale&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The inverse mapping can be realized as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newDf</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">newX</span><span class="o">=</span><span class="n">newDf</span><span class="o">.</span><span class="n">values</span>
+<span class="n">newDf</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_type</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">newX</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">newDf</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_color</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">newX</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">newDf</span><span class="p">[</span><span class="s1">&#39;class label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_class</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">newX</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">newDf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>color</th>
+      <th>size</th>
+      <th>prize</th>
+      <th>class label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pullover</td>
+      <td>blue</td>
+      <td>1</td>
+      <td>39.90</td>
+      <td>sale</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>short</td>
+      <td>red</td>
+      <td>3</td>
+      <td>19.95</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>shirt</td>
+      <td>green</td>
+      <td>2</td>
+      <td>14.99</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>shirt</td>
+      <td>blue</td>
+      <td>1</td>
+      <td>11.99</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="one-hot-encoding-of-nominal-features">
+<h3>One-Hot-Encoding of nominal features<a class="headerlink" href="#one-hot-encoding-of-nominal-features" title="Permalink to this headline">¶</a></h3>
+<p>Now there are only numeric values, but is this a sufficient representation to train a machine learning algorithm?</p>
+<p>The answer is: <em>No</em>! Usually machine learning algorithms expect continous input. They interpret the values to be ordered. In the example above this would mean that e.g. <em>pullover</em> is smaller than <em>shirt</em> and <em>pullover</em> is closer to <em>short</em> than to <em>shirt</em>. In order to avoid such miss-interpretations, nominal features are <em>One-Hot-encoded</em>. The <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder">scikit-learn OneHotEncoder</a> transforms each categorical feature with <em>m</em> possible values into <em>m</em> binary features, with only one active. As the following code snippet demonstrates, one can specify which features shall be one-hot encoded, by assigning the corresponding column-list to the <em>categorical_features</em>-parameter. By setting the parameter <em>sparse=False</em>, the transformed data is represented as a 2-dimensional numpy-array. Otherwise a sparse-representation would be calculated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">compose</span><span class="p">,</span> <span class="n">preprocessing</span>
+<span class="n">X</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.    0.    1.   39.9   1.  ]
+ [ 2.    2.    3.   19.95  0.  ]
+ [ 1.    1.    2.   14.99  0.  ]
+ [ 1.    0.    1.   11.99  0.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columnsToEncode</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">oheTransformer</span> <span class="o">=</span> <span class="n">compose</span><span class="o">.</span><span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">),</span> <span class="n">columnsToEncode</span><span class="p">),</span> <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span>
+<span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">oheTransformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1">#print(&quot;Feature indices (i.th feature starts at the position specified in the i.th element of this vector) = &quot;,oheTransformer.feature_indices_)</span>
+<span class="c1">#print(&quot;Regular representation of One-Hot-Encoded Data:&quot;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.    1.    1.    0.    0.    1.    1.    0.    0.    1.    0.    0.
+   1.   39.9   1.  ]
+ [ 1.    0.    0.    1.    1.    0.    1.    0.    1.    0.    0.    1.
+   3.   19.95  0.  ]
+ [ 1.    0.    0.    1.    1.    0.    0.    1.    0.    0.    1.    0.
+   2.   14.99  0.  ]
+ [ 1.    0.    0.    1.    1.    0.    0.    1.    0.    1.    0.    0.
+   1.   11.99  0.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the example above the first categorical variable is feature 0. There are 3 different values for this feature. Hence, OneHot-Encoding represents this single feature by 3 columns. For a value of 0 there is a 1 in the first column, for a value of 1, there is a 1 in the second column and for a value of 2 there is a 1 in the third column. The same procedure is performed for the second categorial feature at column 1 in the original array. This categorical feature also has 3 different values. The first 6 columns in the new array correspond to the 2 categorical features, the following columns are the features, which are not OneHot-encoded.</p>
+<blockquote>
+<div><p><strong>Note:</strong> Above one-hot-encoding as provided by scikit-learn has been demonstrated. We will apply this function later on, when we build scikit-learn pipelines. The drawback of the scikit-learn function is that it doesn’t regard column-names. In order to map the new columns to meaningful names, we implemented our own function <code class="docutils literal notranslate"><span class="pre">convert2OneHotFeatureNames()</span></code>. A better alternative would be the pandas function <code class="docutils literal notranslate"><span class="pre">get_dummies()</span></code>. It provides one-hot-encoding and a corresponding extension of column-names. The use of <code class="docutils literal notranslate"><span class="pre">get_dummies()</span></code> is demonstrated in the code-cell below.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indfFOH</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;color&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">indfFOH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>size</th>
+      <th>prize</th>
+      <th>class label</th>
+      <th>type_0</th>
+      <th>type_1</th>
+      <th>type_2</th>
+      <th>color_0</th>
+      <th>color_1</th>
+      <th>color_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>39.90</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>19.95</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>14.99</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>11.99</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="scaling-of-data">
+<h2>Scaling of data<a class="headerlink" href="#scaling-of-data" title="Permalink to this headline">¶</a></h2>
+<p>Except decision trees and ensemble methods, which contain decision trees, nearly all machine learning algorithms require features of similar scale at the input. Since the value ranges of practical data can be very different a corresponding scaling must be performed in the preprocessing chain. The most common scaling approaches are <em>normalization (MinMax-scaling)</em> and <em>standardization</em>.</p>
+<p><strong>Normalization:</strong> In order to normalize feature <em>x</em> it’s minimum <span class="math notranslate nohighlight">\(x_{min}\)</span> and maximum <span class="math notranslate nohighlight">\(x_{max}\)</span> must be determined. Then the normalized values <span class="math notranslate nohighlight">\(x_n^{(i)}\)</span> are calculated from the original values <span class="math notranslate nohighlight">\(x^{(i)}\)</span> by<br />
+$<span class="math notranslate nohighlight">\(x_n^{(i)}=\frac{x^{(i)}-x_{min}}{x_{max}-x_{min}}.\)</span><span class="math notranslate nohighlight">\(
+The range of normalized values is \)</span>[0,1]$. A problem of this type of scaling is that in the case of outliers the value range of non-outliers may be very small.</p>
+<p><strong>Standardization:</strong> In order to standardize feature <em>x</em> it’s mean value <span class="math notranslate nohighlight">\(\mu_x\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma_x\)</span> must be determined. Then the standardized values <span class="math notranslate nohighlight">\(x_s^{(i)}\)</span> are calculated from the original values <span class="math notranslate nohighlight">\(x^{(i)}\)</span> by
+$<span class="math notranslate nohighlight">\(x_s^{(i)}=\frac{x^{(i)}-\mu_x}{\sigma_x}\)</span>$
+All standardized features have zero mean and a standard deviation of one.</p>
+<p>Create dataframe with 2 features:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="n">rawdat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">45</span><span class="p">,</span><span class="mi">67000</span><span class="p">],</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span><span class="mi">37500</span><span class="p">],</span> <span class="p">[</span><span class="mi">51</span><span class="p">,</span><span class="mi">82500</span><span class="p">],</span> <span class="p">[</span><span class="mi">47</span><span class="p">,</span><span class="mi">112000</span><span class="p">],</span> <span class="p">[</span><span class="mi">58</span><span class="p">,</span><span class="mi">1800000</span><span class="p">]])</span>
+<span class="n">rawdat</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;income p.a&#39;</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rawdat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income p.a</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>45</td>
+      <td>67000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>32</td>
+      <td>37500</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>51</td>
+      <td>82500</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>47</td>
+      <td>112000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>58</td>
+      <td>1800000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Normalize data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">dat_norm</span> <span class="o">=</span> <span class="n">normalizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">rawdat</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat_norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.5        0.01673759]
+ [0.         0.        ]
+ [0.73076923 0.02553191]
+ [0.57692308 0.0422695 ]
+ [1.         1.        ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Standardize data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">standardizer</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">dat_stand</span> <span class="o">=</span> <span class="n">standardizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">rawdat</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat_stand</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.18721455 -0.51091974]
+ [-1.70833278 -0.55364121]
+ [ 0.51484001 -0.48847287]
+ [ 0.04680364 -0.44575141]
+ [ 1.33390368  1.99878522]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Lecture"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

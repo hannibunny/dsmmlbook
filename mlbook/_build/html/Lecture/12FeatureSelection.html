@@ -1,0 +1,2819 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feature Selection and Extraction &#8212; Machine Learning (DSM)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Text classification with CNNs and LSTMs" href="08TextClassification.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning (DSM)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Overview.html">
+   Machine Learning with Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning with Scikit-Learn
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RegressionPipe.html">
+   Learn and evaluate a Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ClassificationPipe.html">
+   Learn evaluate and compare Classification Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05EnsembleMethods.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05Optimisation.html">
+   Hyperparameter Optimisation with Scikit-Learn
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNetworkImplementation.html">
+   Multi Layer Perceptron for Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06KerasLSTMbikeRentalPrediction.html">
+   LSTM Time Series Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Feature Selection and Extraction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Lecture/12FeatureSelection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Lecture/12FeatureSelection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#univariate-feature-selection-tests">
+   Univariate Feature Selection Tests
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#entropy">
+     Entropy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mutual-information-information-gain-kullback-leibler-divergence">
+     Mutual Information, Information Gain, Kullback-Leibler Divergence
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#relation-of-mutual-information-to-other-metrics">
+       Relation of Mutual Information to other Metrics
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-for-mutual-information">
+       Example for Mutual Information
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chi-2-test">
+     <span class="math notranslate nohighlight">
+      \(\chi^2\)
+     </span>
+     -Test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-for-chi-2-test">
+       Example for
+       <span class="math notranslate nohighlight">
+        \(\chi^2\)
+       </span>
+       -test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f-measure">
+     F-Measure
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-test-for-classification">
+       F-test for classification
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-test-for-regression">
+       F-test for regression
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-threshold">
+     Variance Threshold
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-selectors-in-sklearn">
+   Feature Selectors in sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principal-component-analysis-pca-and-linear-discriminant-analysis-lda">
+   Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca">
+     PCA
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-by-step-explanation-of-pca">
+       Step-by-Step Explanation of PCA
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lda">
+     LDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca-and-lda-in-scikit-learn">
+     PCA and LDA in scikit-learn
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Feature Selection and Extraction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Inhalt </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#univariate-feature-selection-tests">
+   Univariate Feature Selection Tests
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#entropy">
+     Entropy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mutual-information-information-gain-kullback-leibler-divergence">
+     Mutual Information, Information Gain, Kullback-Leibler Divergence
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#relation-of-mutual-information-to-other-metrics">
+       Relation of Mutual Information to other Metrics
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-for-mutual-information">
+       Example for Mutual Information
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chi-2-test">
+     <span class="math notranslate nohighlight">
+      \(\chi^2\)
+     </span>
+     -Test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-for-chi-2-test">
+       Example for
+       <span class="math notranslate nohighlight">
+        \(\chi^2\)
+       </span>
+       -test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f-measure">
+     F-Measure
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-test-for-classification">
+       F-test for classification
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-test-for-regression">
+       F-test for regression
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-threshold">
+     Variance Threshold
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-selectors-in-sklearn">
+   Feature Selectors in sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principal-component-analysis-pca-and-linear-discriminant-analysis-lda">
+   Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca">
+     PCA
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-by-step-explanation-of-pca">
+       Step-by-Step Explanation of PCA
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lda">
+     LDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca-and-lda-in-scikit-learn">
+     PCA and LDA in scikit-learn
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="feature-selection-and-extraction">
+<h1>Feature Selection and Extraction<a class="headerlink" href="#feature-selection-and-extraction" title="Permalink to this headline">¶</a></h1>
+<p>Algorithms for supervised Machine Learning require labeled training data. Usually the provision of labeled data is <em>expensive</em>. The question <em>How much data do we require to learn a robust model?</em> is of main interest. There is no unique answer to this question, but the <em>Curse of Dimensionality</em> states: <em>The number of required training data increases exponentially with the number of parameters, that must be learned</em>. The number of learnable parameters strongly depends on the number of features that are passed to the machine learning algorithm. Hence, one should avoid to pass features to the algorithm, which are not relevant. <strong>Feature Selection</strong> is the task of discriminating irrelevant from relevant features. This task can be realized e.g. by</p>
+<ul class="simple">
+<li><p>statistical-tests and correlation analysis</p></li>
+<li><p>data-visualization</p></li>
+<li><p>domain-knowledge</p></li>
+</ul>
+<p><strong>Feature Extraction</strong>, like Feature Selection, reduces the number of attributes, that are passed to the ML algorithm. However, feature extraction transforms the original space into a new, lower-dimensional space. The dimensions in the new space are usually not directly interpretable features, but e.g. linear combinations of the original features. Feature extraction methods such as the <em>Principal Component Analysis (PCA)</em> try to find a low-dimensional representation, in which a maximum ratio of the original information is retained, while redundancy is removed.</p>
+<div class="section" id="univariate-feature-selection-tests">
+<h2>Univariate Feature Selection Tests<a class="headerlink" href="#univariate-feature-selection-tests" title="Permalink to this headline">¶</a></h2>
+<p>Goal of univariate feature selection is to select a set of most informative features, based on univariate statistical tests. In scikit-learn the following tests are available:</p>
+<ul class="simple">
+<li><p><strong>Regression:</strong> <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html#sklearn.feature_selection.mutual_info_regression">Mutual Information for Regression</a>, <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html#sklearn.feature_selection.f_regression">f-measure for regression</a></p></li>
+<li><p><strong>Classification:</strong> <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html#sklearn.feature_selection.mutual_info_classif">Mutual Information for Classification</a>, <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html#sklearn.feature_selection.chi2"><span class="math notranslate nohighlight">\( \chi^2 \)</span>-test</a>, <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html#sklearn.feature_selection.f_classif">f-measure for classification</a>.</p></li>
+</ul>
+<p>For unsupervised learning for example the <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.VarianceThreshold.html#sklearn.feature_selection.VarianceThreshold">sklearn.feature_selection.VarianceThreshold class</a> can be applied. This method just analysis the variance of a single feature and does not require a class-label or regression target-value.</p>
+<div class="section" id="entropy">
+<h3>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h3>
+<p>The entropy of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> measures the uncertainty of this random variable. It is calculated by</p>
+<p>\begin{equation} H(X) = -\sum_{x \in X} p(x) \log_2(p(x)).
+\end{equation}</p>
+<p>The uncertainty is minimal (<span class="math notranslate nohighlight">\(H(X)=0\)</span>), if the variable has only one value. The uncertainty is maximal (<span class="math notranslate nohighlight">\(H(x)=\log_2(K)\)</span>) if each of the <span class="math notranslate nohighlight">\(K\)</span> possible values for <span class="math notranslate nohighlight">\(x\)</span> appears equaly likely.</p>
+</div>
+<div class="section" id="mutual-information-information-gain-kullback-leibler-divergence">
+<h3>Mutual Information, Information Gain, Kullback-Leibler Divergence<a class="headerlink" href="#mutual-information-information-gain-kullback-leibler-divergence" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>mutual information</strong>  between two random variables measures how much knowing one of these variables reduces uncertainty about the other. For discrete random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> the mutual information is calculated as follows:</p>
+<p>\begin{equation}
+I(X,Y) = \sum_{y \in Y} \sum_{x \in X} p(x,y) \log_2 \left( \frac{p(x,y)}{p(x)p(y)} \right),
+\end{equation}</p>
+<p>and for continuous variables:</p>
+<p>\begin{equation}
+I(X,Y) = \int_{y \in Y} \int_{x \in X} p(x,y) \log_2 \left( \frac{p(x,y)}{p(x)p(y)} \right) dx dy, \end{equation}</p>
+<p>If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent of each other, the mutual information is 0. A higher value indicates a stronger dependency between the pair of variables.
+Note that the estimated mutual information can also be negative. However, the <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html#sklearn.feature_selection.mutual_info_regression">scikit-learn mutual_information function</a> returns 0, if the estimate would be negative.</p>
+<p>As in the example below, the mutual information is calculated between a single feature and the target variable. In the example below the mutual information between the feature <code class="docutils literal notranslate"><span class="pre">atemp</span></code> and <code class="docutils literal notranslate"><span class="pre">bikerental-count</span></code> is maximal. Features with a low mutual information, e.g. <code class="docutils literal notranslate"><span class="pre">holiday</span></code>, could be ignored.</p>
+<div class="section" id="relation-of-mutual-information-to-other-metrics">
+<h4>Relation of Mutual Information to other Metrics<a class="headerlink" href="#relation-of-mutual-information-to-other-metrics" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Mutual Information is the same as <strong>Information Gain</strong>, which is an important measure for feature importance in the learning of decision trees and tree-based ensemble machine-learning algorithms.</p></li>
+<li><p>As already mentioned above: Mutual information defines the uncertainty of a random variable <span class="math notranslate nohighlight">\(X\)</span>, if the value of another random variable <span class="math notranslate nohighlight">\(Y\)</span> is known. The uncertainty-difference between the entropy <span class="math notranslate nohighlight">\(H(X)\)</span> and <span class="math notranslate nohighlight">\(I(X,Y)\)</span> is the conditional entropy <span class="math notranslate nohighlight">\(H(X|Y)\)</span>:</p></li>
+</ul>
+<p>\begin{equation}
+I(X,Y) = H(X)-H(X|Y) = H(X)-\sum_{y \in Y} H(X|Y=y)
+\end{equation}</p>
+<p>\begin{equation}
+I(Y) = H(Y)-H(Y|X) = H(Y)-\sum_{x \in X} H(Y|X=x)
+\end{equation}</p>
+<ul class="simple">
+<li><p>Mutual information is the expected value of the <strong>Pointwise Mutual Information (PMI):</strong></p></li>
+</ul>
+<p>\begin{equation}
+PMI(X,Y) = \log_2 \left( \frac{p(x,y)}{p(x)p(y)} \right),
+\end{equation}</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler divergence</a> <span class="math notranslate nohighlight">\(D_{KL}(p(x)||q(y))\)</span> is a measure of how one probability distribution <span class="math notranslate nohighlight">\(p(x)\)</span> diverges from a second, expected probability distribution <span class="math notranslate nohighlight">\(q(y)\)</span>. Mutual information is the expected Kullback-Leibler divergence between the joint distribution <span class="math notranslate nohighlight">\(p(x,y)\)</span> and the product of distributions <span class="math notranslate nohighlight">\(p(x)p(y)\)</span>.</p></li>
+</ul>
+<p>\begin{equation}
+I(X,Y)=D_{KL}(p(x,y))||p(x)p(y))
+\end{equation}</p>
+</div>
+<div class="section" id="example-for-mutual-information">
+<h4>Example for Mutual Information<a class="headerlink" href="#example-for-mutual-information" title="Permalink to this headline">¶</a></h4>
+<p>Import the userbehavior-data file into a pandas frame. The file contains artificial data of 15 persons, which tested a new application. The features are metrics, which have been tracked during the 3-week trial period. The class label <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Chosen</span></code> defines, whether and which service the person purchased after the trial-period. In this example the mutual information of the feature <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">FAQ</span></code> with respect to the class label <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Chosen</span></code> shall be calculated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">feature_selection</span> <span class="k">as</span> <span class="n">fs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">userData</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../Data/userbehavior.txt&#39;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">userData</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">userData</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Referrer</th>
+      <th>Location</th>
+      <th>Read FAQ</th>
+      <th>Pages Viewed</th>
+      <th>Service Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Slashdot</td>
+      <td>USA</td>
+      <td>Yes</td>
+      <td>18</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Google</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>23</td>
+      <td>Premium</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Digg</td>
+      <td>USA</td>
+      <td>Yes</td>
+      <td>24</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Kiwitobes</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>23</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Google</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>21</td>
+      <td>Premium</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>(direct)</td>
+      <td>NewZealand</td>
+      <td>No</td>
+      <td>12</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>(direct)</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>21</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Google</td>
+      <td>USA</td>
+      <td>No</td>
+      <td>24</td>
+      <td>Premium</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Slashdot</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>19</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Digg</td>
+      <td>USA</td>
+      <td>No</td>
+      <td>18</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Google</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>18</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Kiwitobes</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>19</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Digg</td>
+      <td>NewZealand</td>
+      <td>Yes</td>
+      <td>12</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Google</td>
+      <td>UK</td>
+      <td>Yes</td>
+      <td>18</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Kiwitobes</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>19</td>
+      <td>Basic</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>First the <code class="docutils literal notranslate"><span class="pre">crosstab</span></code>-method of pandas is applied to calculate the contingency table of the two variables. The entries of this table are the joint frequencies of the values of the considered variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freqtab</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">userData</span><span class="p">[</span><span class="s2">&quot;Read FAQ&quot;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">userData</span><span class="p">[</span><span class="s2">&quot;Service Chosen&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">freqtab</span><span class="p">)</span>
+<span class="n">freqtabMargins</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">userData</span><span class="p">[</span><span class="s2">&quot;Read FAQ&quot;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">userData</span><span class="p">[</span><span class="s2">&quot;Service Chosen&quot;</span><span class="p">],</span><span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">freqtabMargins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Service Chosen</th>
+      <th>Basic</th>
+      <th>None</th>
+      <th>Premium</th>
+    </tr>
+    <tr>
+      <th>Read FAQ</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>No</th>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>Yes</th>
+      <td>5</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Service Chosen</th>
+      <th>Basic</th>
+      <th>None</th>
+      <th>Premium</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>Read FAQ</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>No</th>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>Yes</th>
+      <td>5</td>
+      <td>2</td>
+      <td>1</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>6</td>
+      <td>6</td>
+      <td>3</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Variant 1:</strong> Manually calculate the mutual information according to the formula \begin{equation} I(X,Y) = \sum_{y \in Y} \sum_{x \in X} p(x,y) \log_2 \left( \frac{p(x,y)}{p(x)p(y)} \right), \end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mutualinf</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;No&quot;</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Basic&quot;</span><span class="p">,</span><span class="s2">&quot;None&quot;</span><span class="p">,</span><span class="s2">&quot;Premium&quot;</span><span class="p">]:</span>
+        <span class="n">pxy</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;All&quot;</span><span class="p">][</span><span class="s2">&quot;All&quot;</span><span class="p">]</span>
+        <span class="n">px</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;All&quot;</span><span class="p">][</span><span class="n">col</span><span class="p">])</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;All&quot;</span><span class="p">][</span><span class="s2">&quot;All&quot;</span><span class="p">]</span>
+        <span class="n">py</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="s2">&quot;All&quot;</span><span class="p">])</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;All&quot;</span><span class="p">][</span><span class="s2">&quot;All&quot;</span><span class="p">]</span>
+        <span class="n">mutualinf</span><span class="o">+=</span><span class="n">pxy</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">pxy</span><span class="o">/</span><span class="p">(</span><span class="n">px</span><span class="o">*</span><span class="n">py</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mutual Information of feature Read FAQ: &quot;</span><span class="p">,</span><span class="n">mutualinf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mutual Information of feature Read FAQ:  0.18580516288960103
+</pre></div>
+</div>
+</div>
+</div>
+<p>Knowing the value of <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">FAQ</span></code> reduces the uncertainty on the class label by an amount of <span class="math notranslate nohighlight">\(0.186\)</span>.</p>
+<p><strong>Variant 2:</strong> Next, we manually calculate the mutual information by applying the information-gain-formula
+\begin{equation} I(X,Y) = H(X)-H(X|Y) = H(X)-\sum_{y \in Y} H(X|Y=y) \end{equation}
+In this approach, we first calculate the uncertainty (entropie) of the class-label, then the uncertainties for given values of <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">FAQ</span></code> are calculated. This is the usual formula to calculate <em>information gain</em>, which is actually the same as mutual information.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EntropieAll</span><span class="o">=-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;All&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+                       <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;All&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span> 
+                       <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;All&quot;</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uncertainty of class label: &quot;</span><span class="p">,</span><span class="n">EntropieAll</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Uncertainty of class label:  1.5219280948873621
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EntropieNo</span><span class="o">=-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;No&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+                      <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;No&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span> 
+                      <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;No&quot;</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uncertainty of class label if READ FAQ = No: &quot;</span><span class="p">,</span><span class="n">EntropieNo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Uncertainty of class label if READ FAQ = No:  1.3787834934861753
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EntropieYes</span><span class="o">=-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Yes&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+                       <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Yes&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span> 
+                       <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">freqtabMargins</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Yes&quot;</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uncertainty of class label if READ FAQ = Yes: &quot;</span><span class="p">,</span><span class="n">EntropieYes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Uncertainty of class label if READ FAQ = Yes:  1.2987949406953985
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MutualInfReadFAQ</span><span class="o">=</span><span class="n">EntropieAll</span><span class="o">-</span><span class="p">(</span><span class="mf">7.0</span><span class="o">/</span><span class="mi">15</span><span class="o">*</span><span class="n">EntropieNo</span><span class="o">+</span><span class="mf">8.0</span><span class="o">/</span><span class="mi">15</span><span class="o">*</span><span class="n">EntropieYes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mutual Information of feature Read FAQ: &quot;</span><span class="p">,</span><span class="n">MutualInfReadFAQ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mutual Information of feature Read FAQ:  0.18580516288960114
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Variant 3:</strong> Apply <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html">scikit-learn function sklearn.feature_selection.mutual_info_classif</a> for calculation of mutual information. In order to apply this function, the non-numeric variables must first be transformed into a numeric format. For this the <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> is applied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="n">X</span><span class="o">=</span> <span class="n">userData</span><span class="o">.</span><span class="n">values</span>
+<span class="n">display</span><span class="p">(</span><span class="n">userData</span><span class="p">)</span>
+<span class="n">catCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Referrer&quot;</span><span class="p">,</span><span class="s2">&quot;Location&quot;</span><span class="p">,</span><span class="s2">&quot;Read FAQ&quot;</span><span class="p">,</span><span class="s2">&quot;Service Chosen&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">catCols</span><span class="p">:</span>
+    <span class="n">enclabel</span><span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">userData</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">userData</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">userData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Referrer</th>
+      <th>Location</th>
+      <th>Read FAQ</th>
+      <th>Pages Viewed</th>
+      <th>Service Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Slashdot</td>
+      <td>USA</td>
+      <td>Yes</td>
+      <td>18</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Google</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>23</td>
+      <td>Premium</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Digg</td>
+      <td>USA</td>
+      <td>Yes</td>
+      <td>24</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Kiwitobes</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>23</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Google</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>21</td>
+      <td>Premium</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>(direct)</td>
+      <td>NewZealand</td>
+      <td>No</td>
+      <td>12</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>(direct)</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>21</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Google</td>
+      <td>USA</td>
+      <td>No</td>
+      <td>24</td>
+      <td>Premium</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Slashdot</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>19</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Digg</td>
+      <td>USA</td>
+      <td>No</td>
+      <td>18</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Google</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>18</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Kiwitobes</td>
+      <td>UK</td>
+      <td>No</td>
+      <td>19</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Digg</td>
+      <td>NewZealand</td>
+      <td>Yes</td>
+      <td>12</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Google</td>
+      <td>UK</td>
+      <td>Yes</td>
+      <td>18</td>
+      <td>Basic</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Kiwitobes</td>
+      <td>France</td>
+      <td>Yes</td>
+      <td>19</td>
+      <td>Basic</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Referrer</th>
+      <th>Location</th>
+      <th>Read FAQ</th>
+      <th>Pages Viewed</th>
+      <th>Service Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>3</td>
+      <td>1</td>
+      <td>18</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>23</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>24</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>23</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>21</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>12</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>21</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>3</td>
+      <td>0</td>
+      <td>24</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>18</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>18</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2</td>
+      <td>2</td>
+      <td>1</td>
+      <td>18</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">featureCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Referrer&quot;</span><span class="p">,</span><span class="s2">&quot;Location&quot;</span><span class="p">,</span><span class="s2">&quot;Read FAQ&quot;</span><span class="p">,</span><span class="s2">&quot;Pages Viewed&quot;</span><span class="p">]</span>
+<span class="n">X</span><span class="o">=</span><span class="n">userData</span><span class="p">[</span><span class="n">featureCols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span><span class="o">=</span><span class="n">userData</span><span class="p">[</span><span class="s2">&quot;Service Chosen&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">mi_all</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">mutual_info_classif</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">discrete_features</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">featureCols</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mutual information of feature </span><span class="si">%s</span><span class="s2"> : </span><span class="si">%1.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">mi_all</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mutual information of feature Referrer : 0.391
+Mutual information of feature Location : 0.056
+Mutual information of feature Read FAQ : 0.129
+Mutual information of feature Pages Viewed : 0.408
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen the mutual information for <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">FAQ</span></code> is not equal to the values calculated manually in variant 1 and 2. This is because <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html">scikit-learn function sklearn.feature_selection.mutual_info_classif</a> applies an approximation for the mutual-information-calculation.</p>
+</div>
+</div>
+<div class="section" id="chi-2-test">
+<h3><span class="math notranslate nohighlight">\(\chi^2\)</span>-Test<a class="headerlink" href="#chi-2-test" title="Permalink to this headline">¶</a></h3>
+<p>If two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, then <span class="math notranslate nohighlight">\(P(X \cap Y)=P(X) \cdot P(Y)\)</span>. Hence, independence can be tested by determining the difference between the joint probability <span class="math notranslate nohighlight">\(P(X \cap Y)\)</span> and the product <span class="math notranslate nohighlight">\(P(X) \cdot P(Y)\)</span>. If this difference is small, then the 2 variables can be assumed to be independent.</p>
+<p>The chi-square test of independence is based on the idea, which has been described above. The test defines a metric for measuring the difference between <span class="math notranslate nohighlight">\(P(X \cap Y)\)</span> and the product <span class="math notranslate nohighlight">\(P(X) \cdot P(Y)\)</span>. This metric is</p>
+<div class="math notranslate nohighlight">
+\[
+\chi^2=\sum\limits_{i \in D_X} \sum\limits_{j \in D_Y} \frac{(f_{ij}-e_{ij})^2}{e_{ij}},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D_X\)</span> and <span class="math notranslate nohighlight">\(D_Y\)</span> are the value ranges of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, respectively. <span class="math notranslate nohighlight">\(f_{ij}\)</span> is the observed frequency count of events belonging to both <span class="math notranslate nohighlight">\(X=i\)</span> and <span class="math notranslate nohighlight">\(Y=j\)</span>. The values <span class="math notranslate nohighlight">\(e_{ij}\)</span> are the corresponding expected count if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent. It is assumed that the <span class="math notranslate nohighlight">\(\chi^2\)</span>-value is distributed according to a <a class="reference external" href="https://en.wikipedia.org/wiki/Chi-squared_distribution"><span class="math notranslate nohighlight">\(\chi^2\)</span>-distribution</a> with</p>
+<div class="math notranslate nohighlight">
+\[
+k=|D_X-1|\cdot |D_Y-1|
+\]</div>
+<p>degrees of freedom.</p>
+<p>The probability-density function of <span class="math notranslate nohighlight">\(\chi^2\)</span>-distributions for different degrees of freedom are plotted in the code cell below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfset</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;Set1&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span><span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">num</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dfset</span><span class="p">:</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">rv</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> 
+             <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;df=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">dfset</span><span class="p">[</span><span class="n">num</span><span class="p">]))</span>
+    <span class="n">num</span><span class="o">+=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$\chi^2$-distribution for different degrees of freedom&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\chi^2$-value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12FeatureSelection_21_0.png" src="../_images/12FeatureSelection_21_0.png" />
+</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(\chi^2\)</span>-test returns 2 values: the <span class="math notranslate nohighlight">\(\chi^2\)</span>-value and the corresponding <span class="math notranslate nohighlight">\(p-value\)</span>. As can be seen in the <span class="math notranslate nohighlight">\(\chi^2\)</span>-distribution plot above, higher values for <span class="math notranslate nohighlight">\(\chi^2\)</span> yield a smaller <span class="math notranslate nohighlight">\(p\)</span>. Usually for a p-value less than <span class="math notranslate nohighlight">\(0.05\)</span>, the null-hypotheses, which states that the two variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, is rejected. In this case the two variables are considered to be dependent.</p>
+<div class="section" id="example-for-chi-2-test">
+<h4>Example for <span class="math notranslate nohighlight">\(\chi^2\)</span>-test<a class="headerlink" href="#example-for-chi-2-test" title="Permalink to this headline">¶</a></h4>
+<p>Import the insurance-data file into a pandas frame. The file contains data for 1338 clients of an insurance company. In this example the <span class="math notranslate nohighlight">\(\chi^2\)</span>-test shall be applied to test whether the variables <code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">smoker</span></code> are independent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">insData</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../Data/insurance.csv&#39;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">insData</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">insData</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>bmi</th>
+      <th>children</th>
+      <th>smoker</th>
+      <th>region</th>
+      <th>charges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>19</td>
+      <td>female</td>
+      <td>27.900</td>
+      <td>0</td>
+      <td>yes</td>
+      <td>southwest</td>
+      <td>16884.92400</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>18</td>
+      <td>male</td>
+      <td>33.770</td>
+      <td>1</td>
+      <td>no</td>
+      <td>southeast</td>
+      <td>1725.55230</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>28</td>
+      <td>male</td>
+      <td>33.000</td>
+      <td>3</td>
+      <td>no</td>
+      <td>southeast</td>
+      <td>4449.46200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33</td>
+      <td>male</td>
+      <td>22.705</td>
+      <td>0</td>
+      <td>no</td>
+      <td>northwest</td>
+      <td>21984.47061</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>male</td>
+      <td>28.880</td>
+      <td>0</td>
+      <td>no</td>
+      <td>northwest</td>
+      <td>3866.85520</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>First the <code class="docutils literal notranslate"><span class="pre">crosstab</span></code>-method of pandas is applied to calculate the contingency table of the two variables. The entries of this table are the joint frequencies of the values of the considered variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freqtab</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">insData</span><span class="p">[</span><span class="s2">&quot;smoker&quot;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">insData</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">freqtab</span><span class="p">)</span>
+<span class="n">freqtabMargins</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">insData</span><span class="p">[</span><span class="s2">&quot;smoker&quot;</span><span class="p">],</span>
+                           <span class="n">columns</span><span class="o">=</span><span class="n">insData</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">],</span><span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">freqtabMargins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>sex</th>
+      <th>female</th>
+      <th>male</th>
+    </tr>
+    <tr>
+      <th>smoker</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>no</th>
+      <td>547</td>
+      <td>517</td>
+    </tr>
+    <tr>
+      <th>yes</th>
+      <td>115</td>
+      <td>159</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>sex</th>
+      <th>female</th>
+      <th>male</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>smoker</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>no</th>
+      <td>547</td>
+      <td>517</td>
+      <td>1064</td>
+    </tr>
+    <tr>
+      <th>yes</th>
+      <td>115</td>
+      <td>159</td>
+      <td>274</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>662</td>
+      <td>676</td>
+      <td>1338</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>From the contingency-table with margins, the <span class="math notranslate nohighlight">\(\chi^2\)</span>-value can easily be calculated as defined in the formula above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chi2val</span><span class="o">=</span><span class="p">(((</span><span class="mi">547</span><span class="o">-</span><span class="mi">1064</span><span class="o">*</span><span class="mi">662</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1064</span><span class="o">*</span><span class="mi">662</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">)</span> <span class="c1">#(f11-e11)^2/e11</span>
+ <span class="o">+</span><span class="p">((</span><span class="mi">517</span><span class="o">-</span><span class="mi">1064</span><span class="o">*</span><span class="mi">676</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1064</span><span class="o">*</span><span class="mi">676</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">)</span> <span class="c1">#(f12-e12)^2/e12</span>
+ <span class="o">+</span><span class="p">((</span><span class="mi">115</span><span class="o">-</span><span class="mi">274</span><span class="o">*</span><span class="mi">662</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">274</span><span class="o">*</span><span class="mi">662</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">)</span> <span class="c1">#(f21-e21)^2/e21</span>
+ <span class="o">+</span><span class="p">((</span><span class="mi">159</span><span class="o">-</span><span class="mi">274</span><span class="o">*</span><span class="mi">676</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">274</span><span class="o">*</span><span class="mi">676</span><span class="o">/</span><span class="mf">1338.0</span><span class="p">))</span> <span class="c1">#(f22-e22)^2/e22</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Manually calculated chi2-value: &quot;</span><span class="p">,</span><span class="n">chi2val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Manually calculated chi2-value:  7.765921028604452
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since both variables <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code>, have only two possible values, the corresponding degree of freedom of the <span class="math notranslate nohighlight">\(\chi^2\)</span>-distribution is 1. As can be seen in the <span class="math notranslate nohighlight">\(\chi^2\)</span>-plot above the curve for <span class="math notranslate nohighlight">\(df=1\)</span> has a value far below <span class="math notranslate nohighlight">\(0.05\)</span> at <span class="math notranslate nohighlight">\(\chi^2=7.766\)</span>. Hence, the null-hypotheses can be rejected, i.e. the two variables <strong><code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">smoker</span></code> are dependent</strong>.</p>
+<p>Applying <a class="reference external" href="https://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.stats.chi2_contingency.html">scipy.stats.chi2_contingency</a> the <span class="math notranslate nohighlight">\(\chi^2\)</span>-statistic can be calculated as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2_contingency</span>
+<span class="n">chi2v</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">corr</span><span class="o">=</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">freqtab</span><span class="p">,</span><span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;chi2 value: &quot;</span><span class="p">,</span><span class="n">chi2v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p-value: &quot;</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;degrees of freedom: &quot;</span><span class="p">,</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chi2 value:  7.765921028604452
+p-value:  0.005324114164320537
+degrees of freedom:  1
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> The <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html#sklearn.feature_selection.chi2">scikit-learn function sklearn.feature_selection.chi2</a> seems to apply an approximation for the <span class="math notranslate nohighlight">\(\chi^2\)</span>-value calculation. The result differs from the formula above and from the result calculated by the scipy-function.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="f-measure">
+<h3>F-Measure<a class="headerlink" href="#f-measure" title="Permalink to this headline">¶</a></h3>
+<p>In general a <a class="reference external" href="https://en.wikipedia.org/wiki/F-test">F-test</a> is a statistical test in which the test-statistic has an <a class="reference external" href="https://en.wikipedia.org/wiki/F-distribution">F-distribution</a> under the null hypothesis. It is most often used when comparing statistical models that have been fitted to a data set, in order to identify the model that best fits the population from which the data were sampled.</p>
+<blockquote>
+<div><p><strong>Note:</strong> The F-test assumes that data is approximately normal-distributed.</p>
+</div></blockquote>
+<p>In this notebook the F-test is applied for assessing feature importance. For this one must distinguish classification and regression.</p>
+<div class="section" id="f-test-for-classification">
+<h4>F-test for classification<a class="headerlink" href="#f-test-for-classification" title="Permalink to this headline">¶</a></h4>
+<p>The F-test in one-way analysis of variance (<strong>ANOVA</strong>) is used to assess whether the expected values of a quantitative variable within several pre-defined groups differ from each other. In the contest of feature-assessment for classification, the groups are the different classes and the F-measure is the quotient</p>
+<p>\begin{equation}
+F=\frac{\mbox{between-group variability}}{\mbox{within-group variability}}
+\end{equation}</p>
+<p>If the feature of interest varies significantly between the considered classes (high between-group variability) and varies only slightly within a single class, this feature provides much information for discriminating the classes. In this case the F-value is high.</p>
+<p>The <strong>between-group variability</strong> is calculated by</p>
+<p>\begin{equation}
+\frac{1}{K-1} \sum\limits_{i=1}^K n_i (\overline{m}_i -\overline{m})^2,
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> is the number of classes (groups), <span class="math notranslate nohighlight">\(\overline{m}_i\)</span> is the mean of the considered feature within group <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(n_i\)</span> is the number of samples in group <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(\overline{m}\)</span> is the overall mean of the feature.</p>
+<p>The <strong>within-group variability</strong> is calculated by</p>
+<p>\begin{equation}
+\frac{1}{N-K} \sum\limits_{i=1}^K \sum\limits_{j=1}^{n_i} (x_{i,j}-\overline{m}_i)^2,
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(x_{i,j}\)</span> is the j.th feature value in the i.th group and N is the overall sample size.</p>
+<p>This F-statistic follows the F-distribution with degrees of freedom <span class="math notranslate nohighlight">\(d_1 = K − 1\)</span> and <span class="math notranslate nohighlight">\(d_2 = N − K\)</span> under the null hypothesis. Here, the null-hypothesis states, that there is no significant difference in the variance within the groups and the variance of the entire sample.</p>
+<p><strong>Example F-measure for classification:</strong> A sample of <span class="math notranslate nohighlight">\(N=9\)</span> observations, each described by 3 featues is assigned to the numpy array <code class="docutils literal notranslate"><span class="pre">X</span></code>. The class-labels of the <span class="math notranslate nohighlight">\(9\)</span> observations are defined in the vector <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">13</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">14</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span>
+<span class="p">])</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">9</span>
+<span class="n">n0</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">n1</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">K</span><span class="o">=</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2  3  1]
+ [ 4  4  3]
+ [ 1  1 12]
+ [ 3  2  9]
+ [ 9  5  7]
+ [10  6  8]
+ [12  9 13]
+ [13  7 14]
+ [15  8 11]]
+[0 0 0 0 1 1 1 1 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, the set of 9 observations is partitioned into <span class="math notranslate nohighlight">\(K=2\)</span> groups, according to the class-label as defined in <code class="docutils literal notranslate"><span class="pre">y</span></code>. For each group and for the overall sample the corresponding mean is calculated:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group0</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">,:]</span> <span class="c1">#group 0 is defined by class-label y=0</span>
+<span class="n">group1</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">,:]</span> <span class="c1">#group 1 is defined by class-label y=1</span>
+<span class="n">m0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">group0</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#mean of first group</span>
+<span class="n">m1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">group1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#mean of second group</span>
+<span class="n">m</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#overall mean</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then the between-group variability for the 3 featues is calculated:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betweenGroupVar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n0</span><span class="o">*</span><span class="p">(</span><span class="n">m0</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">n1</span><span class="o">*</span><span class="p">(</span><span class="n">m1</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;between-group variability is: &quot;</span><span class="p">,</span><span class="n">betweenGroupVar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>between-group variability is:  [192.2   45.    42.05]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, the within-group variability is calculated for each of the 3 features:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b0</span><span class="o">=</span><span class="p">(</span><span class="n">group0</span><span class="o">-</span><span class="n">m0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">b1</span><span class="o">=</span><span class="p">(</span><span class="n">group1</span><span class="o">-</span><span class="n">m1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">s0</span><span class="o">=</span><span class="n">b0</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">b1</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">withinGroupVar</span><span class="o">=</span><span class="p">(</span><span class="n">s0</span><span class="o">+</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="n">K</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;within-group variability is: &quot;</span><span class="p">,</span><span class="n">withinGroupVar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>within-group variability is:  [ 3.97142857  2.14285714 16.56428571]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the two variability-values the F-measure can be calculated as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="n">betweenGroupVar</span><span class="o">/</span><span class="n">withinGroupVar</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F-measure of feature 1: &quot;</span><span class="p">,</span><span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F-measure of feature 2: &quot;</span><span class="p">,</span><span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F-measure of feature 3: &quot;</span><span class="p">,</span><span class="n">F</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F-measure of feature 1:  48.39568345323742
+F-measure of feature 2:  21.0
+F-measure of feature 3:  2.5385942216472617
+</pre></div>
+</div>
+</div>
+</div>
+<p>We apply the corresponding <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html#sklearn.feature_selection.f_classif">scikit-learn method f_classif</a> in order to verify the result. The sklearn-function not only provides the f-value, but also the corresponding p-value. For all p-values <span class="math notranslate nohighlight">\(&lt;0.05\)</span> the null-hypothesis is rejected. In this case the null-hypothesis for feature 3 is not rejected, which means that the variance in the two groups, defined by the class-label, do not differ significantly from the variance of the entire sample. This implies, that feature 3 provides only small information for discriminating the two classes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fskl</span><span class="p">,</span><span class="n">pskl</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">f_classif</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">for</span> <span class="n">fv</span><span class="p">,</span><span class="n">pv</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fskl</span><span class="p">,</span><span class="n">pskl</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feature </span><span class="si">%d</span><span class="s2">: F-measure=</span><span class="si">%4.2f</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> p-value=</span><span class="si">%1.5f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">fv</span><span class="p">,</span><span class="n">pv</span><span class="p">))</span>
+    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature 1: F-measure=48.40 	 p-value=0.00022
+Feature 2: F-measure=21.00 	 p-value=0.00254
+Feature 3: F-measure=2.54 	 p-value=0.15512
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to better understand between-group- and within-group-variability, we visualize each of the 3 features w.r.t. to their group-membership.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">feat</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">feat</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Value of feature </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">feat</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">group0</span><span class="p">[:,</span><span class="n">feat</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n0</span><span class="p">),</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;class 0&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">group1</span><span class="p">[:,</span><span class="n">feat</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n1</span><span class="p">),</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;class 1&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12FeatureSelection_47_0.png" src="../_images/12FeatureSelection_47_0.png" />
+</div>
+</div>
+<p>As can be seen in the graphic above:</p>
+<ul class="simple">
+<li><p>feature 1 has a high between-group-variability, i.e. there is a quite large distance between the centers of the groups</p></li>
+<li><p>feature 2 has a relatively small between-group-variability, but a low within-group-variability, resulting in a relatively high F-measure</p></li>
+<li><p>feature 3 has a relatively small between-group-variability, and a relatively high within-group-variability, resulting in a relatively low F-measure</p></li>
+</ul>
+</div>
+<div class="section" id="f-test-for-regression">
+<h4>F-test for regression<a class="headerlink" href="#f-test-for-regression" title="Permalink to this headline">¶</a></h4>
+<p>In general, an F-test in regression compares the fits of different linear models. In the case that the F-test is applied for assessing feature importance for regression, it compares a <strong>model with no predictors</strong> to the model that you specify (e.g. a linear-regression model). A regression model that contains no predictors is also known as an intercept-only model. I.e. it is just the average over all target-values</p>
+<div class="math notranslate nohighlight">
+\[
+\overline{y}=\sum_i y_i.
+\]</div>
+<p>The null-hypothesis states that the fit of the intercept-only model and the specified model are equal. If the null-hypothesis is rejected, the feature which is applied as input to the specified model, can be considered to be <em>informative</em>.</p>
+<p>The F-measure itself is calculated as follows:</p>
+<p>\begin{equation}
+F=\frac{\frac{RSS_1-RSS_2}{p_2-p_1}}{\frac{RSS_2}{n-p_2-1}},
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(RSS_i\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Residual_sum_of_squares">Residual Sum of Squares</a> of the i.th model, <span class="math notranslate nohighlight">\(p_2\)</span> is the number of parameters in the specified model, and <span class="math notranslate nohighlight">\(p_1\)</span> is the number of parameters of the simpler model. Note, that in our case, the simpler model is the intercept-only model with <span class="math notranslate nohighlight">\(p_1=0\)</span>. The number of observations in the sample is <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>The F-statistic follows an f-distribution with <span class="math notranslate nohighlight">\((p_2-p_1,n-p_2)\)</span> degrees of freedom.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+           <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mf">5.5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">8.5</span><span class="p">,</span><span class="mf">11.2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 4]
+ [2 2]
+ [3 3]
+ [4 7]
+ [5 3]]
+[ 3.   5.5  6.   8.5 11.2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freg</span><span class="p">,</span><span class="n">preg</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">f_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">for</span> <span class="n">fv</span><span class="p">,</span><span class="n">pv</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">freg</span><span class="p">,</span><span class="n">preg</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feature </span><span class="si">%d</span><span class="s2">: F-measure=</span><span class="si">%4.2f</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> p-value=</span><span class="si">%1.5f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">fv</span><span class="p">,</span><span class="n">pv</span><span class="p">))</span>
+    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature 1: F-measure=82.06 	 p-value=0.00284
+Feature 2: F-measure=0.09 	 p-value=0.78172
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this values we conclude, that for feature 1 the null-hypothesis can be rejected, i.e. the linear model, learned from feature 1 is significantly better than the intercept-only model. For feature 2 the null-hypothesis can not be rejected.</p>
+<p>In the code cells below, the concept of the F-test shall be visualized. For both features a linear model is calculated. The plots show, that for the model built from feature 1, the RSS-values (i.e. die distances between the model’s prediction and the true target) are much smaller than for the intercept-only model. For feature 2 this is not the case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interceptOnly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept-Only model with no parameters: &quot;</span><span class="p">,</span><span class="n">interceptOnly</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept-Only model with no parameters:  6.840000000000001
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">linmod</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">linmod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">linmod</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">linmod</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0199999999999987
+[1.94]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linmod2</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">linmod2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">linmod2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">linmod2</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.777027027027028
+[0.27972973]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="s2">&quot;bo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear Model from Feature 1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="n">interceptOnly</span><span class="p">,</span><span class="n">interceptOnly</span><span class="p">],</span><span class="s2">&quot;r-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Intercept Only&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="n">linmod</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span><span class="n">linmod</span><span class="o">.</span><span class="n">intercept_</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">linmod</span><span class="o">.</span><span class="n">coef_</span><span class="p">],</span><span class="s2">&quot;g-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Linear Model&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]],[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">linmod</span><span class="o">.</span><span class="n">intercept_</span><span class="o">+</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">linmod</span><span class="o">.</span><span class="n">coef_</span><span class="p">],</span><span class="s2">&quot;g--&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]],[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">interceptOnly</span><span class="p">],</span><span class="s2">&quot;r--.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="s2">&quot;bo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear Model from Feature 2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">],[</span><span class="n">interceptOnly</span><span class="p">,</span><span class="n">interceptOnly</span><span class="p">],</span><span class="s2">&quot;r-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Intercept Only&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">],[</span><span class="n">linmod2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span><span class="n">linmod2</span><span class="o">.</span><span class="n">intercept_</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">linmod2</span><span class="o">.</span><span class="n">coef_</span><span class="p">],</span><span class="s2">&quot;g-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Linear Model&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">linmod2</span><span class="o">.</span><span class="n">intercept_</span><span class="o">+</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">linmod2</span><span class="o">.</span><span class="n">coef_</span><span class="p">],</span><span class="s2">&quot;g--&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">interceptOnly</span><span class="p">],</span><span class="s2">&quot;r--.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/numpy/core/shape_base.py:65: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  ary = asanyarray(ary)
+/Users/johannes/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/numpy/core/shape_base.py:65: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  ary = asanyarray(ary)
+</pre></div>
+</div>
+<img alt="../_images/12FeatureSelection_57_1.png" src="../_images/12FeatureSelection_57_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="variance-threshold">
+<h3>Variance Threshold<a class="headerlink" href="#variance-threshold" title="Permalink to this headline">¶</a></h3>
+<p>This test does not require labeled data, i.e. it can be applied for feature selection in the context of unsupervised learning.
+Features, whose values do not vary significantly for the given datasamples usually provide only marginal information. Such features can then be excluded. The <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.VarianceThreshold.html#sklearn.feature_selection.VarianceThreshold">sklearn.feature_selection.VarianceThreshold class</a> calculates the variance of all features in a given dataset and removes the features with low variance.</p>
+<p>In the following example the variance of the feature in the last column is below the configured threshold of <span class="math notranslate nohighlight">\(0.3\)</span>. Hence, it is removed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">40</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">40</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">30</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">40</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  2  3 40]
+ [ 1  4  1 30]
+ [ 2  7  5 40]
+ [ 1  4  6 30]
+ [ 0  5  4 40]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">featureSelector</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">VarianceThreshold</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">reducedData</span><span class="o">=</span><span class="n">featureSelector</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reducedData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  2  3 40]
+ [ 1  4  1 30]
+ [ 2  7  5 40]
+ [ 1  4  6 30]
+ [ 0  5  4 40]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-selectors-in-sklearn">
+<h2>Feature Selectors in sklearn<a class="headerlink" href="#feature-selectors-in-sklearn" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapters feature selection tests have been described: Mutual Information, <span class="math notranslate nohighlight">\(\chi^2\)</span> and F-Measure. These statistical tests are applied by <em>Sklearn</em>-feature selectors such as <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html#sklearn.feature_selection.SelectKBest">SelectKBest</a> and <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html#sklearn.feature_selection.SelectPercentile">SelectPercentile</a>. Based on a univariate selection-text <em>SelectKBest</em> selects the <span class="math notranslate nohighlight">\(K\)</span> best features. <em>SelectPercentile</em> selects features according to a percentile of the highest score. Below, both selectors are demonstrated on the insurance-dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">insData</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../Data/insurance.csv&#39;</span><span class="p">)</span>
+<span class="n">insData</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>bmi</th>
+      <th>children</th>
+      <th>smoker</th>
+      <th>region</th>
+      <th>charges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>19</td>
+      <td>female</td>
+      <td>27.900</td>
+      <td>0</td>
+      <td>yes</td>
+      <td>southwest</td>
+      <td>16884.92400</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>18</td>
+      <td>male</td>
+      <td>33.770</td>
+      <td>1</td>
+      <td>no</td>
+      <td>southeast</td>
+      <td>1725.55230</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>28</td>
+      <td>male</td>
+      <td>33.000</td>
+      <td>3</td>
+      <td>no</td>
+      <td>southeast</td>
+      <td>4449.46200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33</td>
+      <td>male</td>
+      <td>22.705</td>
+      <td>0</td>
+      <td>no</td>
+      <td>northwest</td>
+      <td>21984.47061</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>male</td>
+      <td>28.880</td>
+      <td>0</td>
+      <td>no</td>
+      <td>northwest</td>
+      <td>3866.85520</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Non-numeric features must be transformed into a numeric format. E.g. by applying the <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="n">X</span><span class="o">=</span> <span class="n">insData</span><span class="o">.</span><span class="n">values</span>
+<span class="n">display</span><span class="p">(</span><span class="n">insData</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">enclabel_sex</span><span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">insData</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_sex</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">enclabel_smoker</span><span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">insData</span><span class="p">[</span><span class="s1">&#39;smoker&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_smoker</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">enclabel_region</span><span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">insData</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enclabel_region</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">insData</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>bmi</th>
+      <th>children</th>
+      <th>smoker</th>
+      <th>region</th>
+      <th>charges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>19</td>
+      <td>female</td>
+      <td>27.900</td>
+      <td>0</td>
+      <td>yes</td>
+      <td>southwest</td>
+      <td>16884.92400</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>18</td>
+      <td>male</td>
+      <td>33.770</td>
+      <td>1</td>
+      <td>no</td>
+      <td>southeast</td>
+      <td>1725.55230</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>28</td>
+      <td>male</td>
+      <td>33.000</td>
+      <td>3</td>
+      <td>no</td>
+      <td>southeast</td>
+      <td>4449.46200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33</td>
+      <td>male</td>
+      <td>22.705</td>
+      <td>0</td>
+      <td>no</td>
+      <td>northwest</td>
+      <td>21984.47061</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>male</td>
+      <td>28.880</td>
+      <td>0</td>
+      <td>no</td>
+      <td>northwest</td>
+      <td>3866.85520</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>bmi</th>
+      <th>children</th>
+      <th>smoker</th>
+      <th>region</th>
+      <th>charges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>19</td>
+      <td>0</td>
+      <td>27.900</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>16884.92400</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>18</td>
+      <td>1</td>
+      <td>33.770</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1725.55230</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>28</td>
+      <td>1</td>
+      <td>33.000</td>
+      <td>3</td>
+      <td>0</td>
+      <td>2</td>
+      <td>4449.46200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33</td>
+      <td>1</td>
+      <td>22.705</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>21984.47061</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>1</td>
+      <td>28.880</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3866.85520</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">enclabel_sex</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">enclabel_smoker</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">enclabel_region</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;female&#39; &#39;male&#39;]
+[&#39;no&#39; &#39;yes&#39;]
+[&#39;northeast&#39; &#39;northwest&#39; &#39;southeast&#39; &#39;southwest&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">=</span><span class="n">insData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span><span class="o">=</span><span class="n">insData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next a new data matrix, which contains only the <span class="math notranslate nohighlight">\(k=3\)</span> best features is determined:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selectK</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">SelectKBest</span><span class="p">(</span><span class="n">score_func</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">mutual_info_regression</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">reducedFeatureMatrix</span><span class="o">=</span><span class="n">selectK</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reducedFeatureMatrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[19.  0.  1.]
+ [18.  1.  0.]
+ [28.  1.  0.]
+ ...
+ [18.  0.  0.]
+ [21.  0.  0.]
+ [61.  0.  1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The names of the remaining k best features can be obtained as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">relFeats</span><span class="o">=</span><span class="n">selectK</span><span class="o">.</span><span class="n">get_support</span><span class="p">()</span>
+<span class="n">insData</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">relFeats</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;age&#39;, &#39;sex&#39;, &#39;smoker&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we verify, that the obtained best features are actually the ones with the highest mutual information. In addition also the F-measure for regression is calculated in the code cell below. However, the F-measure shall be applied only for normally-distributed features, which is certainly not the case for <em>sex, smoker</em> and <em>region</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_all</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">mutual_info_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">discrete_features</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
+<span class="n">f_all</span><span class="p">,</span><span class="n">p_all</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">f_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">midf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">insData</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Mutual Information&quot;</span><span class="p">,</span><span class="s2">&quot;F Regression&quot;</span><span class="p">,</span><span class="s2">&quot;p-value for F&quot;</span><span class="p">])</span>
+<span class="n">midf</span><span class="p">[</span><span class="s2">&quot;Mutual Information&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">mi_all</span>
+<span class="n">midf</span><span class="p">[</span><span class="s2">&quot;F Regression&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">f_all</span>
+<span class="n">midf</span><span class="p">[</span><span class="s2">&quot;p-value for F&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">p_all</span>
+<span class="n">midf</span><span class="o">=</span><span class="n">midf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Mutual Information&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">midf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mutual Information</th>
+      <th>F Regression</th>
+      <th>p-value for F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>age</th>
+      <td>1.503496</td>
+      <td>131.174013</td>
+      <td>4.886693e-29</td>
+    </tr>
+    <tr>
+      <th>smoker</th>
+      <td>0.369171</td>
+      <td>2177.614868</td>
+      <td>8.271436e-283</td>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <td>0.176660</td>
+      <td>4.399702</td>
+      <td>3.613272e-02</td>
+    </tr>
+    <tr>
+      <th>children</th>
+      <td>0.162154</td>
+      <td>6.206037</td>
+      <td>1.285213e-02</td>
+    </tr>
+    <tr>
+      <th>region</th>
+      <td>0.076324</td>
+      <td>0.051494</td>
+      <td>8.205178e-01</td>
+    </tr>
+    <tr>
+      <th>bmi</th>
+      <td>0.072712</td>
+      <td>54.709308</td>
+      <td>2.459086e-13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Application of <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html#sklearn.feature_selection.SelectPercentile">SelectPercentile</a> with a percentile of <span class="math notranslate nohighlight">\(10\%\)</span> returns only a single feature, which is <em>age</em>. This is plausible because <em>age</em> has a much higher mutual information than the next best feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selectPerc</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">SelectPercentile</span><span class="p">(</span><span class="n">score_func</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">mutual_info_regression</span><span class="p">,</span><span class="n">percentile</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">reducedFeatureMatrix2</span><span class="o">=</span><span class="n">selectPerc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reducedFeatureMatrix2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[19.]
+ [18.]
+ [28.]
+ ...
+ [18.]
+ [21.]
+ [61.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">relFeatsP</span><span class="o">=</span><span class="n">selectPerc</span><span class="o">.</span><span class="n">get_support</span><span class="p">()</span>
+<span class="n">insData</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">relFeatsP</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;age&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Remark:</strong> In the mutual-information calculation above, the region-feature has been declared to be discrete. That’s why no One-Hot Encoding is required here.</p>
+</div></blockquote>
+</div>
+<div class="section" id="principal-component-analysis-pca-and-linear-discriminant-analysis-lda">
+<h2>Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA)<a class="headerlink" href="#principal-component-analysis-pca-and-linear-discriminant-analysis-lda" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pca">
+<h3>PCA<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h3>
+<p>PCA is applied to transform the data, which is described by <span class="math notranslate nohighlight">\(N\)</span> features, from the <span class="math notranslate nohighlight">\(N\)</span>-dimensional into a <span class="math notranslate nohighlight">\(K&lt;N\)</span>-dimensional space. The axes in the new space are linear combinations of the axes in the original spaces (i.e. linear combinations of the original features). Data-transformations from a higher- into a lower dimensional space usually imply a loss of information. PCA guarantees that the loss of information is minimal, if <em>information</em> is measured by <em>variance</em> of the data. For given <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(K\)</span>, the amount of information-loss depends on the correlations between the features in the original space. If there are strong correlations, the information-loss is small. Without such correlations PCA shall not be applied.</p>
+<div class="section" id="step-by-step-explanation-of-pca">
+<h4>Step-by-Step Explanation of PCA<a class="headerlink" href="#step-by-step-explanation-of-pca" title="Permalink to this headline">¶</a></h4>
+<p>This subsection demonstrates how PCA transforms data into a lower-dimensional space. The steps of this demo are:</p>
+<ol class="simple">
+<li><p>Generate an artificial dataset of 2-dimensional points. I.e. the dimension of the <em>high</em>-dimensional original space is <span class="math notranslate nohighlight">\(N=2\)</span>.</p></li>
+<li><p>Data is normalized in the sense that the mean of both features is subtracted.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(NxN\)</span> covariance matrix of the given data is calculated.</p></li>
+<li><p>The <em>Eigenvectors</em> and <em>Eigenvalues</em> of the covariance matrix are calculated. The Eigenvector with the highest Eigenvalue is the axis along which the variance of the data is maximal. The Eigenvector with the 2nd highest Eigenvalue is the axis, which is orthogonal to the first Eigenvector and along which the variance of the data is 2nd.</p></li>
+<li><p>The Eigenvector with the highest Eigenvalue defines the new <span class="math notranslate nohighlight">\(K=1\)</span>-dimensional space.</p></li>
+<li><p>Data is projected in the new <span class="math notranslate nohighlight">\(K=1\)</span>-dimensional space.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span> <span class="c1">#set random seed in order to provide reproducability</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generate a set of random 2-D points according to a 2-D Gaussian Normal distribution. Mean vector and the covariance matrix of the distribution must be defined before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meanVec</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>
+<span class="n">covMat</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">]]</span>
+<span class="n">numPoints</span><span class="o">=</span><span class="mi">25</span>
+<span class="n">pointlist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">meanVec</span><span class="p">,</span><span class="n">cov</span><span class="o">=</span><span class="n">covMat</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">numPoints</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pointlist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2.025  2.86 ]
+ [ 2.681  2.683]
+ [-0.329  1.514]
+ [ 1.815  2.542]
+ [ 0.844  2.403]
+ [ 1.509  1.166]
+ [ 1.662  2.376]
+ [ 0.423  1.791]
+ [ 4.006  3.936]
+ [ 0.589  0.994]
+ [ 2.339  3.125]
+ [-0.688 -0.5  ]
+ [ 2.497  3.009]
+ [ 1.534  2.476]
+ [ 1.53   3.053]
+ [ 2.959  2.724]
+ [ 4.871  3.615]
+ [ 2.611  3.414]
+ [ 3.144  3.554]
+ [ 2.88   3.481]
+ [ 4.281  4.291]
+ [ 3.784  3.324]
+ [ 3.125  3.656]
+ [ 1.909  1.889]
+ [ 1.218  2.793]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the actual mean and the actual covariance of the generated set of random points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pointlist</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean of points :    &#39;</span><span class="p">,</span><span class="n">mPoint</span><span class="p">)</span>
+<span class="n">coPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">pointlist</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Covariance of points   </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">coPoint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of points :     [2.129 2.647]
+Covariance of points   
+ [[1.9   1.245]
+ [1.245 1.128]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Normalize the set of random points by subtracting the actual mean vector from all points in the pointset. The resulting normalized pointset has a mean of <span class="math notranslate nohighlight">\([0.0 , 0.0]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Normedpointlist</span> <span class="o">=</span> <span class="n">pointlist</span> <span class="o">-</span> <span class="n">mPoint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot original set of random points and the normalized representation of this point set:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pointlist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">pointlist</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;bs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Normedpointlist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Normedpointlist</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;bs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Normed Representation of Original Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12FeatureSelection_86_0.png" src="../_images/12FeatureSelection_86_0.png" />
+</div>
+</div>
+<p>Calculate Eigenvectors and Eigenvalues</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigVal</span><span class="p">,</span><span class="n">eigVec</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">coPoint</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvectors of covariance matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigVec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalues of covariance matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigVal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvectors of covariance matrix:
+[[ 0.805 -0.593]
+ [ 0.593  0.805]]
+Eigenvalues of covariance matrix:
+[2.818 0.211]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reorder Eigenvectors and Eigenvalues according to descending Eigenvalues</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ind</span> <span class="o">=</span> <span class="n">eigVal</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fliplr</span><span class="p">([</span><span class="n">ind</span><span class="p">])[</span><span class="mi">0</span><span class="p">,:]</span><span class="c1">#fliplr requires a 2-dim Matrix. </span>
+<span class="n">eigVal</span> <span class="o">=</span> <span class="n">eigVal</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">eigVec</span> <span class="o">=</span> <span class="n">eigVec</span><span class="o">.</span><span class="n">transpose</span><span class="p">()[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="c1">#matrix is first transposed in order to reorder columns not rows. After reordering it is again transposed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvectors of covariance matrix after reordering:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigVec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalues of covariance matrix: after reordering&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigVal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvectors of covariance matrix after reordering:
+[[ 0.805 -0.593]
+ [ 0.593  0.805]]
+Eigenvalues of covariance matrix: after reordering
+[2.818 0.211]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualize Eigenvectors and Eigenvalues in plot of normalized data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">O</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">P1</span><span class="o">=</span><span class="p">[</span><span class="n">eigVal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">eigVal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">P2</span><span class="o">=</span><span class="p">[</span><span class="n">eigVal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">eigVal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">y1</span><span class="o">=</span><span class="n">x</span><span class="o">*</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y2</span><span class="o">=</span><span class="n">x</span><span class="o">*</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">eigVec</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="c1"># Plot the normalized pointset</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Normedpointlist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Normedpointlist</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;bs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Normed Representation of Original Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the Eigenvectors</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Principal Component: Direction of 1st Eigenvector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;k:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Direction of 2nd Eigenvector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">P1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">P1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Length of 1st Eigenvalue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">P2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">P2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Length of 2nd Eigenvalue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.684 -2.947 -2.21  -1.474 -0.737  0.     0.737  1.474  2.21   2.947]
+</pre></div>
+</div>
+<img alt="../_images/12FeatureSelection_92_1.png" src="../_images/12FeatureSelection_92_1.png" />
+</div>
+</div>
+<p>The figure above demonstrates, that the direction of the principal component (i.e. the Eigenvector whose Eigenvalue is maximal) is the direction of maximum variance in the data. The second Eigenvector is orthogonal to the first Eigenvector.</p>
+<p>Transform the normalized data into</p>
+<ul class="simple">
+<li><p>2-dimensional Eigenspace (corresponding transformation matrix contains both Eigenvectors as columns)</p></li>
+<li><p>1-dimensional Eigenspace (corresponding transformation matrix contains only 1st Eigenvector as column)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">eigVec</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">Normedpointlist</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Transformed Data in 2-dimensional Eigenspace:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Principal Component&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Direction of 2nd Eigenvector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s1">&#39;sb&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Transformed data in w=d=2-dimensional Eigenspace: </span><span class="se">\n</span><span class="s1"> Normed data according to new coordinate system&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;y1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y2&#39;</span><span class="p">)</span>
+
+<span class="n">Y1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">eigVec</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">Normedpointlist</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Transformed Data in 1-dimensional Eigenspace:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Y1</span><span class="p">)</span>
+<span class="n">yvals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Y1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hauptachse&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Y1</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">yvals</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s1">&#39;sb&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Transformed data in w=d-1=1-dimensional Eigenspace: </span><span class="se">\n</span><span class="s1"> Normed data according to new coordinate system&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;y1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformed Data in 2-dimensional Eigenspace:
+[[ 0.043  0.466 -2.65  -0.315 -1.179 -1.377 -0.536 -1.881  2.275 -2.22
+   0.453 -4.134  0.512 -0.581 -0.241  0.714  2.782  0.843  1.356  1.1
+   2.708  1.734  1.4   -0.626 -0.646]
+ [ 0.233 -0.298  0.545  0.102  0.566 -0.824  0.059  0.323 -0.076 -0.417
+   0.26  -0.862  0.073  0.215  0.682 -0.43  -0.847  0.332  0.128  0.226
+   0.047 -0.437  0.221 -0.48   0.658]]
+Transformed Data in 1-dimensional Eigenspace:
+[ 0.043  0.466 -2.65  -0.315 -1.179 -1.377 -0.536 -1.881  2.275 -2.22
+  0.453 -4.134  0.512 -0.581 -0.241  0.714  2.782  0.843  1.356  1.1
+  2.708  1.734  1.4   -0.626 -0.646]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;y1&#39;)
+</pre></div>
+</div>
+<img alt="../_images/12FeatureSelection_95_2.png" src="../_images/12FeatureSelection_95_2.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="lda">
+<h3>LDA<a class="headerlink" href="#lda" title="Permalink to this headline">¶</a></h3>
+<p>LDA is similar to PCA in the sense that it transforms data into a lower-dimensional space, such that a maximum amount of <em>information</em> is retained. The main differences are:</p>
+<ul class="simple">
+<li><p>In contrast to PCA LDA requires <strong>labeled data</strong></p></li>
+<li><p>PCA finds a subspace, such that a maximum of the <strong>variance</strong> of the original data is retained. LDA finds a subspace, such that the class-separability is retained as much as possible.</p></li>
+</ul>
+</div>
+<div class="section" id="pca-and-lda-in-scikit-learn">
+<h3>PCA and LDA in scikit-learn<a class="headerlink" href="#pca-and-lda-in-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>The following code-cell demonstrates the application of the <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA">scikit-learn PCA module</a> and the <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html#sklearn.discriminant_analysis.LinearDiscriminantAnalysis">scikit-learn LDA module</a>. In this demonstration the 4-dimensional Iris-dataset is transformed into a 2-dimensional space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="n">target_names</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Size of feature matrix:&quot;</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 10 instances:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of feature matrix: (150, 4)
+First 10 instances:
+[[5.1 3.5 1.4 0.2]
+ [4.9 3.  1.4 0.2]
+ [4.7 3.2 1.3 0.2]
+ [4.6 3.1 1.5 0.2]
+ [5.  3.6 1.4 0.2]
+ [5.4 3.9 1.7 0.4]
+ [4.6 3.4 1.4 0.3]
+ [5.  3.4 1.5 0.2]
+ [4.4 2.9 1.4 0.2]
+ [4.9 3.1 1.5 0.1]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_r</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Size of matrix:&quot;</span><span class="p">,</span><span class="n">X_r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 10 instances:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_r</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of matrix: (150, 2)
+First 10 instances:
+[[-2.684  0.319]
+ [-2.714 -0.177]
+ [-2.889 -0.145]
+ [-2.745 -0.318]
+ [-2.729  0.327]
+ [-2.281  0.741]
+ [-2.821 -0.089]
+ [-2.626  0.163]
+ [-2.886 -0.578]
+ [-2.673 -0.114]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lda</span> <span class="o">=</span> <span class="n">LinearDiscriminantAnalysis</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_r2</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Percentage of variance explained for each components</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;explained variance ratio (first two components): </span><span class="si">%s</span><span class="s1">&#39;</span>
+      <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First principal component explains </span><span class="si">%2.3f</span><span class="s1"> of the original variance&#39;</span><span class="o">%</span><span class="k">pca</span>.explained_variance_ratio_[0])
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Second principal component explains </span><span class="si">%2.3f</span><span class="s1"> of the original variance&#39;</span><span class="o">%</span><span class="k">pca</span>.explained_variance_ratio_[1])
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="s1">&#39;turquoise&#39;</span><span class="p">,</span> <span class="s1">&#39;darkorange&#39;</span><span class="p">]</span>
+<span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>explained variance ratio (first two components): [0.925 0.053]
+First principal component explains 0.925 of the original variance
+Second principal component explains 0.053 of the original variance
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 864x576 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">target_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">target_names</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_r</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_r</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">target_name</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scatterpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PCA of IRIS dataset&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">target_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">target_names</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_r2</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_r2</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">target_name</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scatterpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;LDA of IRIS dataset&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12FeatureSelection_101_0.png" src="../_images/12FeatureSelection_101_0.png" />
+<img alt="../_images/12FeatureSelection_101_1.png" src="../_images/12FeatureSelection_101_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Lecture"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="08TextClassification.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Text classification with CNNs and LSTMs</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Durch Prof. Dr. Johannes Maucher<br/>
+    
+        &copy; Urheberrechte © 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

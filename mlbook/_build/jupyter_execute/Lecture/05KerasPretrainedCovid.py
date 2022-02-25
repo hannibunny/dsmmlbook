@@ -23,7 +23,7 @@ datapath = "/Users/johannes/OneDrive - bwstaff/Data/dataset"
 # In[2]:
 
 
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras.layers import AveragePooling2D, Dropout, Flatten, Dense, Input
 from tensorflow.keras.models import Model
@@ -34,11 +34,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from imutils import paths
+import warnings
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-import cv2
 import os
+plt.style.use("ggplot")
+warnings.filterwarnings("ignore")
 
 
 # ### Define training parameters
@@ -47,8 +49,8 @@ import os
 
 
 INIT_LR = 1e-3 #Initial Learning Rate
-EPOCHS = 25 #Number of epochs in training
-BS = 10 #Training Batch Size
+EPOCHS = 24 #Number of epochs in training
+BS = 8 #Training Batch Size
 
 
 # ## Import all images and visualize
@@ -90,9 +92,12 @@ for imagePath in imagePaths:
     if (label=="covid" or label=="normal"):
         # load the image, swap color channels, and resize it to be a fixed
         # 224x224 pixels while ignoring aspect ratio
-        image = cv2.imread(imagePath)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        image = cv2.resize(image, (224, 224))
+        #image = cv2.imread(imagePath)
+        image = load_img(imagePath, color_mode="rgb",target_size=(224,224))
+        image = img_to_array(image)
+        #image = np.array([image])
+        #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        #image = cv2.resize(image, (224, 224))
 
         # update the data and labels lists, respectively
         data.append(image)
@@ -107,30 +112,30 @@ len(labels),len(data)
 
 # Below a x-ray image of a healthy  and a x-ray image of a covid infected lung is shown:
 
-# In[9]:
-
-
-plt.figure(figsize=(12,8))
-plt.subplot(1,2,1)
-plt.imshow(data[0])
-plt.grid(False)
-plt.title(labels[0])
-plt.subplot(1,2,2)
-plt.imshow(data[-1])
-plt.title(labels[-1])
-plt.grid(False)
-plt.show()
-
-
 # ## Preprocessing
 # 
 # Convert the data and labels to NumPy arrays while scaling the pixel intensities to the range $[0,1]$
 
-# In[10]:
+# In[9]:
 
 
 data = np.array(data) / 255.0
 labels = np.array(labels)
+
+
+# In[10]:
+
+
+plt.figure(figsize=(12,8))
+plt.subplot(1,2,1)
+plt.imshow(data[0],cmap="gray")
+plt.grid(False)
+plt.title(labels[0])
+plt.subplot(1,2,2)
+plt.imshow(data[-1],cmap="gray")
+plt.title(labels[-1])
+plt.grid(False)
+plt.show()
 
 
 # In[11]:
@@ -176,7 +181,7 @@ print(testX.shape)
 # The [ImageDataGenerator](https://keras.io/api/preprocessing/image/) is an easy way to load and augment images in batches for image classification tasks. Together with the method `fit_generator()` (see below), it provides the possibility, that not all of the training data must be kept in the memory. Instead only the current batch is loaded. Moreover, the `ImageDataGenerator`-class provides methods to modify images, e.g. by shift, rotation, flipping, color-transform etc. 
 # In the code cell below an object of this class is instantiated, which will randomly rotate images within an angle of 15°.
 
-# In[17]:
+# In[16]:
 
 
 trainAug = ImageDataGenerator(rotation_range=15, fill_mode="nearest")
@@ -184,7 +189,7 @@ trainAug = ImageDataGenerator(rotation_range=15, fill_mode="nearest")
 
 # ## Load Feature Extractor Part of pretrained VGG16 Net
 
-# In[18]:
+# In[17]:
 
 
 baseModel = VGG16(weights="imagenet", include_top=False,input_tensor=Input(shape=(224, 224, 3)))
@@ -192,7 +197,7 @@ baseModel = VGG16(weights="imagenet", include_top=False,input_tensor=Input(shape
 
 # ## Construct the new Classifier that will be placed on top of the Feature Extractor
 
-# In[34]:
+# In[18]:
 
 
 headModel = baseModel.output
@@ -207,14 +212,14 @@ model = Model(inputs=baseModel.input, outputs=headModel)
 
 # Loop over all layers in the base model and freeze them so that they will **not** be updated during the training process
 
-# In[40]:
+# In[19]:
 
 
 for layer in baseModel.layers:
     layer.trainable = False
 
 
-# In[41]:
+# In[20]:
 
 
 model.summary()
@@ -222,7 +227,7 @@ model.summary()
 
 # ## Compile and train Network
 
-# In[37]:
+# In[21]:
 
 
 print("[INFO] compiling model...")
@@ -230,25 +235,24 @@ opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
 model.compile(loss="binary_crossentropy", optimizer=opt,metrics=["accuracy"])
 
 
-# In[38]:
+# In[22]:
 
 
 print("[INFO] training classifier part of the network...")
-H = model.fit_generator(
-    trainAug.flow(trainX, trainY, batch_size=BS),
-    steps_per_epoch=len(trainX) // BS,
-    validation_data=(testX, testY),
-    validation_steps=len(testX) // BS,
-    verbose=False,
+H = model.fit(
+    trainAug.flow(trainX,trainY,batch_size=BS),
+    steps_per_epoch=int(len(trainX)/BS),
+    validation_data=(testX,testY),
+    validation_steps=int(len(testX)/BS),
+    verbose=1,
     epochs=EPOCHS)
 
 
-# In[39]:
+# In[26]:
 
 
 # plot the training loss and accuracy
 N = EPOCHS
-plt.style.use("ggplot")
 plt.figure(figsize=(12,8))
 plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
 plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
@@ -263,7 +267,7 @@ plt.savefig("plot")
 
 # ## Evaluation
 
-# In[30]:
+# In[28]:
 
 
 print("[INFO] Apply model on test data...")
@@ -276,7 +280,7 @@ predIdxs = np.argmax(predIdxs, axis=1)
 
 # ### Classification Report
 
-# In[31]:
+# In[29]:
 
 
 print(classification_report(testY.argmax(axis=1), predIdxs, target_names=lb.classes_))
@@ -284,7 +288,7 @@ print(classification_report(testY.argmax(axis=1), predIdxs, target_names=lb.clas
 
 # ### Confusion Matrix
 
-# In[32]:
+# In[30]:
 
 
 def plot_cm(y_true, y_pred, class_names):
@@ -309,7 +313,7 @@ def plot_cm(y_true, y_pred, class_names):
   plt.show() 
 
 
-# In[33]:
+# In[31]:
 
 
 plot_cm(testY.argmax(axis=1), predIdxs, lb.classes_)

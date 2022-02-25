@@ -50,13 +50,13 @@ from tensorflow.keras.backend import set_image_data_format
 import os
 
 
-# In[44]:
+# In[5]:
 
 
 set_image_data_format("channels_last")
 
 
-# In[45]:
+# In[6]:
 
 
 import warnings
@@ -65,7 +65,7 @@ warnings.filterwarnings("ignore")
 
 # The following code-cell is just relevant if notebook is executed on a computer with multiple GPUs. It allows to select the GPU. 
 
-# In[46]:
+# In[7]:
 
 
 #from os import environ
@@ -76,7 +76,7 @@ warnings.filterwarnings("ignore")
 # In this notebook the neural network shall not learn models, which already exists. This is implemented as follows. The three models (MLP and two different CNNs) are saved to the files, whose name is assigned to the variables `mlpmodelname`, `cnnsimplemodelname` and `cnnadvancedmodelname`, respectively. 
 # If these files exist (checked by `os.path.isfile(filename)`) a corresponding AVAILABLE-Flag is set. If this flag is `False`, the corresponding model will be learned and saved, otherwise the existing model will be loaded from disc.
 
-# In[47]:
+# In[8]:
 
 
 modeldirectory="models/"
@@ -85,7 +85,7 @@ cnnsimplemodelname=modeldirectory+"2conv32-dense512"
 cnnadvancedmodelname=modeldirectory+"2conv32-4conv64-dense512"
 
 
-# In[48]:
+# In[9]:
 
 
 import os.path
@@ -106,7 +106,7 @@ else:
     CNN2_AVAILABLE=False
 
 
-# In[49]:
+# In[10]:
 
 
 CNN1_AVAILABLE
@@ -116,13 +116,13 @@ CNN1_AVAILABLE
 # 
 # Load the Cifar10 image dataset from `keras.datasets`. Determine the shape of the training- and the test-partition.
 
-# In[50]:
+# In[11]:
 
 
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 
 
-# In[51]:
+# In[12]:
 
 
 print(np.shape(X_train))
@@ -133,7 +133,7 @@ print(np.shape(X_test))
 # 
 # Viusalize the first 9 images of the training-partition, using function `imshow()` from `matplotlib.pyplot`.
 
-# In[52]:
+# In[13]:
 
 
 # create a grid of 3x3 images
@@ -151,7 +151,7 @@ plt.show()
 # ## Preprocessing 
 # Scale all images such that all their values are in the range $[0,1]$.
 
-# In[53]:
+# In[14]:
 
 
 X_train = X_train.astype('float32')
@@ -162,7 +162,7 @@ X_test = X_test / 255.0
 
 # Labels of the first 9 training images:
 
-# In[54]:
+# In[15]:
 
 
 print(y_train[:9])
@@ -170,7 +170,7 @@ print(y_train[:9])
 
 # **Label-Encoding:** Transform the labels of the train- and test-partition into a one-hot-encoded representation. 
 
-# In[55]:
+# In[16]:
 
 
 y_train=to_categorical(y_train)
@@ -190,7 +190,7 @@ print(y_train[:9,:])
 
 # #### Network definition option1: Using the sequential model
 
-# In[56]:
+# In[17]:
 
 
 if MLP_AVAILABLE:
@@ -206,7 +206,7 @@ model.summary()
 
 # #### Network definition option 2: Using the functional API
 
-# In[57]:
+# In[18]:
 
 
 # This returns a tensor
@@ -221,7 +221,7 @@ model2.summary()
 # ### Define Training Parameters 
 # Apply Stochastic Gradient Descent (SGD) learning, for minimizing the `categorical_crossentropy`. The performance metric shall be `accuracy`. Train the network.
 
-# In[58]:
+# In[19]:
 
 
 if not MLP_AVAILABLE:
@@ -235,7 +235,7 @@ if not MLP_AVAILABLE:
 
 # ### Perform Training
 
-# In[59]:
+# In[20]:
 
 
 if not MLP_AVAILABLE:
@@ -249,7 +249,7 @@ else:
 # ### Evaluation 
 # Visualize the learning-curve on training- and test-data. 
 
-# In[60]:
+# In[21]:
 
 
 import matplotlib.pyplot as plt
@@ -259,7 +259,7 @@ sb.set_style("whitegrid")
 sb.set_context("notebook")
 
 
-# In[61]:
+# In[22]:
 
 
 try:
@@ -280,14 +280,14 @@ except:
     print("LEARNING CURVE ONLY AVAILABLE IF TRAINING HAS BEEN PERFORMED IN THIS RUN")
 
 
-# In[62]:
+# In[23]:
 
 
 loss,acc = model.evaluate(X_train,y_train, verbose=0)
 print("Accuracy on Training Data : %.2f%%" % (acc*100))
 
 
-# In[63]:
+# In[24]:
 
 
 loss,acc = model.evaluate(X_test,y_test, verbose=0)
@@ -297,7 +297,7 @@ print("Accuracy on Test Data: %.2f%%" % (acc*100))
 # ## CNN 
 # ### Define Architecture
 
-# In[64]:
+# In[25]:
 
 
 if CNN1_AVAILABLE:
@@ -318,7 +318,7 @@ model.summary()
 
 # ### Define Training Parameters
 
-# In[65]:
+# In[26]:
 
 
 if not CNN1_AVAILABLE:
@@ -332,7 +332,7 @@ if not CNN1_AVAILABLE:
 
 # ### Perform Training
 
-# In[66]:
+# In[27]:
 
 
 if not CNN1_AVAILABLE:
@@ -345,7 +345,7 @@ else:
 
 # ### Evaluation
 
-# In[67]:
+# In[28]:
 
 
 try:
@@ -366,14 +366,14 @@ except:
     print("LEARNING CURVE ONLY AVAILABLE IF TRAINING HAS BEEN PERFORMED IN THIS RUN")
 
 
-# In[68]:
+# In[29]:
 
 
 loss,acc = model.evaluate(X_train,y_train, verbose=0)
 print("Accuracy on Training Data : %.2f%%" % (acc*100))
 
 
-# In[69]:
+# In[30]:
 
 
 loss,acc = model.evaluate(X_test, y_test, verbose=0)
@@ -384,7 +384,7 @@ print("Accuracy on Test Data: %.2f%%" % (acc*100))
 # 
 # ### Architecture
 
-# In[70]:
+# In[31]:
 
 
 def createModel():
@@ -413,7 +413,7 @@ def createModel():
     return model
 
 
-# In[71]:
+# In[32]:
 
 
 if CNN2_AVAILABLE:
@@ -426,7 +426,7 @@ model.summary()
 
 # ### Define Training Parameters
 
-# In[72]:
+# In[33]:
 
 
 if not CNN2_AVAILABLE:
@@ -437,7 +437,7 @@ if not CNN2_AVAILABLE:
 
 # ### Perform Training
 
-# In[73]:
+# In[34]:
 
 
 if not CNN2_AVAILABLE:
@@ -450,7 +450,7 @@ else:
 
 # ### Evaluate
 
-# In[74]:
+# In[35]:
 
 
 try:
@@ -466,14 +466,14 @@ except:
     print("LEARNING CURVE ONLY AVAILABLE IF TRAINING HAS BEEN PERFORMED IN THIS RUN")
 
 
-# In[75]:
+# In[36]:
 
 
 loss,acc = model.evaluate(X_train,y_train, verbose=0)
 print("Accuracy on Training Data : %.2f%%" % (acc*100))
 
 
-# In[76]:
+# In[37]:
 
 
 loss,acc = model.evaluate(X_test,y_test, verbose=0)
@@ -484,13 +484,13 @@ print("Accuracy on Test Data : %.2f%%" % (acc*100))
 # 
 # Here: Cross-Validation of MLP
 
-# In[77]:
+# In[38]:
 
 
 CROSS_VAL=True
 
 
-# In[78]:
+# In[39]:
 
 
 def build_model_mlp():
@@ -504,7 +504,7 @@ def build_model_mlp():
     return model
 
 
-# In[79]:
+# In[40]:
 
 
 def cross_validation(build_model,train_data,train_targets,folds=3,num_epochs=10):
@@ -533,7 +533,7 @@ def cross_validation(build_model,train_data,train_targets,folds=3,num_epochs=10)
     return all_scores
 
 
-# In[80]:
+# In[41]:
 
 
 if CROSS_VAL:

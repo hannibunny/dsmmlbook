@@ -1222,7 +1222,7 @@ windspeed 0.03096536694151787
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_34650</span><span class="o">/</span><span class="mf">4195266994.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_1427</span><span class="o">/</span><span class="mf">4195266994.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rfGS</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">rfGS</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -1401,21 +1401,6 @@ windspeed 0.03096536694151787
 <span class="ne">-&gt; </span><span class="mi">1057</span><span class="s2">         return np.random.RandomState(seed)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="s2">     if isinstance(seed, np.random.RandomState):</span>
 <span class="g g-Whitespace">   </span><span class="mi">1059</span><span class="s2">         return seed</span>
-
-<span class="nn">mtrand.pyx</span> in <span class="ni">numpy.random.mtrand.RandomState.__init__</span><span class="nt">()</span>
-
-<span class="nn">_mt19937.pyx</span> in <span class="ni">numpy.random._mt19937.MT19937.__init__</span><span class="nt">()</span>
-
-<span class="nn">bit_generator.pyx</span> in <span class="ni">numpy.random.bit_generator.BitGenerator.__init__</span><span class="nt">()</span>
-
-<span class="nn">bit_generator.pyx</span> in <span class="ni">numpy.random.bit_generator.SeedSequence.__init__</span><span class="nt">()</span>
-
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/random.py</span> in <span class="ni">getrandbits</span><span class="nt">(self, k)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span><span class="s2">             raise ValueError(&#39;number of bits must be greater than zero&#39;)</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">         numbytes = (k + 7) // 8                       # bits / 8 and rounded up</span>
-<span class="ne">--&gt; </span><span class="mi">726</span><span class="s2">         x = int.from_bytes(_urandom(numbytes), &#39;big&#39;)</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span><span class="s2">         return x &gt;&gt; (numbytes * 8 - k)                # trim excess bits</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span><span class="s2"> </span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

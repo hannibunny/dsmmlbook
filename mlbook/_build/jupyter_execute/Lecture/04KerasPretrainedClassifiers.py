@@ -17,7 +17,7 @@ import numpy as np
 from tensorflow.keras.applications import vgg16, inception_v3, resnet50, mobilenet
 
 
-# In[2]:
+# In[18]:
 
 
 vgg_model = vgg16.VGG16(weights='imagenet')
@@ -26,7 +26,7 @@ resnet_model = resnet50.ResNet50(weights='imagenet')
 mobilenet_model = mobilenet.MobileNet(weights='imagenet')
 
 
-# In[3]:
+# In[19]:
 
 
 from tensorflow.keras.preprocessing.image import load_img
@@ -42,13 +42,13 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # 2. Convert the image from PIL format to Numpy format ( $height \times width \times channels$ ) using **image_to_array** function.
 # 3. Form a batch of image( s ) to feed the network. This is done using the **expand_dims** function in Numpy
 
-# In[4]:
+# In[20]:
 
 
 filename = '../Data/cat.jpg'
 
 
-# In[5]:
+# In[21]:
 
 
 # load an image in PIL format
@@ -59,7 +59,7 @@ plt.imshow(original)
 plt.show()
 
 
-# In[6]:
+# In[22]:
 
 
 # convert the PIL image to a numpy array
@@ -71,7 +71,7 @@ plt.show()
 print('numpy array size',numpy_image.shape)
 
 
-# In[7]:
+# In[23]:
 
 
 # Convert the image / images into batch format
@@ -91,7 +91,7 @@ plt.imshow(np.uint8(image_batch[0]))
 
 # ### VGG16 Network
 
-# In[8]:
+# In[24]:
 
 
 # prepare the image for the VGG model
@@ -102,7 +102,7 @@ predictions = vgg_model.predict(processed_image)
 #print(predictions)
 
 
-# In[9]:
+# In[25]:
 
 
 # convert the probabilities to class labels
@@ -113,7 +113,7 @@ label_vgg
 
 # ### ResNet50 Network
 
-# In[10]:
+# In[26]:
 
 
 # prepare the image for the ResNet50 model
@@ -130,7 +130,7 @@ label_resnet
 
 # ### MobileNet Network
 
-# In[11]:
+# In[27]:
 
 
 # prepare the image for the MobileNet model
@@ -149,7 +149,7 @@ label_mobilenet
 # + The input size for inception network is different from the other networks. It accepts inputs of size (299, 299).
 # + Thus we load the image with target size according to that.
 
-# In[12]:
+# In[28]:
 
 
 # load an image in PIL format
@@ -172,13 +172,13 @@ label_inception = decode_predictions(predictions)
 label_inception
 
 
-# In[13]:
+# In[29]:
 
 
 #!pip install opencv-python
 
 
-# In[15]:
+# In[30]:
 
 
 import cv2
@@ -193,7 +193,7 @@ numpy_image = cv2.resize(numpy_image, (700,700))
 cv2.imwrite("images/{}_output.jpg".format(filename.split('/')[-1].split('.')[0]),cv2.cvtColor(numpy_image, cv2.COLOR_RGB2BGR))
 
 
-# In[16]:
+# In[31]:
 
 
 plt.figure(figsize=[10,10])

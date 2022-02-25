@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-if CROSS_VAL:
-    results=cross_validation(build_model_mlp,X_train,y_train)
-    print(results)
+['%matplotlib inline', '#from keras.datasets import cifar10', 'from matplotlib import pyplot as plt', 'import numpy as np', 'from tensorflow.keras.datasets import cifar10']
+...
+['from tensorflow.keras.layers import Dense,Input,Dropout,Flatten,Conv2D,MaxPool2D', 'from tensorflow.keras.optimizers import SGD', 'from tensorflow.keras.utils import to_categorical', 'from tensorflow.keras.backend import set_image_data_format', 'import os']
 -------------------
 

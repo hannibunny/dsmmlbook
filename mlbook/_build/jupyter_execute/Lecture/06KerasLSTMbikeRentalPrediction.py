@@ -238,8 +238,8 @@ model.compile(loss='mae', optimizer='adam')
 
 history = model.fit(
     X_train, y_train, 
-    epochs=30, 
-    batch_size=32,
+    epochs=24, 
+    batch_size=16,
     validation_data = (X_test,y_test),
     verbose=False,
     shuffle=False

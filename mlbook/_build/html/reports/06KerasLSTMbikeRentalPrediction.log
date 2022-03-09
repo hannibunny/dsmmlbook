@@ -32,13 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-history = model.fit(
-    X_train, y_train, 
-    epochs=30, 
-    batch_size=32,
-    validation_data = (X_test,y_test),
-    verbose=False,
-    shuffle=False
-)
+['import numpy as np', 'import tensorflow as tf', 'from tensorflow import keras', 'import pandas as pd', 'import seaborn as sns']
+...
+['', 'RANDOM_SEED = 42', '', 'np.random.seed(RANDOM_SEED)', 'tf.random.set_seed(RANDOM_SEED)']
 -------------------
 

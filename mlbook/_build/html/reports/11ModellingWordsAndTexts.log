@@ -39,7 +39,7 @@ print("Dimension of a word vector: {}".format(
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/68/9tltm6l520v0stj3qjlc5v9w0000gn/T/ipykernel_1476/2893372628.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/68/9tltm6l520v0stj3qjlc5v9w0000gn/T/ipykernel_24040/2893372628.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0;32mfrom[0m [0mgensim[0m[0;34m.[0m[0mmodels[0m [0;32mimport[0m [0mKeyedVectors[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      2[0m [0;34m[0m[0m
 [1;32m      3[0m [0;31m# Creating the model[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m

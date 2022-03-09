@@ -49,7 +49,7 @@ warnings.filterwarnings("ignore")
 
 
 INIT_LR = 1e-3 #Initial Learning Rate
-EPOCHS = 24 #Number of epochs in training
+EPOCHS = 6 #Number of epochs in training
 BS = 8 #Training Batch Size
 
 
@@ -239,16 +239,17 @@ model.compile(loss="binary_crossentropy", optimizer=opt,metrics=["accuracy"])
 
 
 print("[INFO] training classifier part of the network...")
-H = model.fit(
-    trainAug.flow(trainX,trainY,batch_size=BS),
-    steps_per_epoch=int(len(trainX)/BS),
-    validation_data=(testX,testY),
-    validation_steps=int(len(testX)/BS),
-    verbose=1,
-    epochs=EPOCHS)
+#H = model.fit(
+#    trainAug.flow(trainX,trainY,batch_size=BS),
+#    steps_per_epoch=int(len(trainX)/BS),
+#    validation_data=(testX,testY),
+#    validation_steps=int(len(testX)/BS),
+#    verbose=True,
+#    epochs=EPOCHS)
+H=model.fit(trainX, trainY, validation_data=(testX, testY), epochs=EPOCHS, batch_size=BS,verbose=True)
 
 
-# In[26]:
+# In[23]:
 
 
 # plot the training loss and accuracy
@@ -267,7 +268,7 @@ plt.savefig("plot")
 
 # ## Evaluation
 
-# In[28]:
+# In[24]:
 
 
 print("[INFO] Apply model on test data...")
@@ -280,7 +281,7 @@ predIdxs = np.argmax(predIdxs, axis=1)
 
 # ### Classification Report
 
-# In[29]:
+# In[25]:
 
 
 print(classification_report(testY.argmax(axis=1), predIdxs, target_names=lb.classes_))
@@ -288,7 +289,7 @@ print(classification_report(testY.argmax(axis=1), predIdxs, target_names=lb.clas
 
 # ### Confusion Matrix
 
-# In[30]:
+# In[26]:
 
 
 def plot_cm(y_true, y_pred, class_names):
@@ -313,7 +314,7 @@ def plot_cm(y_true, y_pred, class_names):
   plt.show() 
 
 
-# In[31]:
+# In[27]:
 
 
 plot_cm(testY.argmax(axis=1), predIdxs, lb.classes_)

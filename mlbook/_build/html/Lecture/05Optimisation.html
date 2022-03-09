@@ -1222,7 +1222,7 @@ windspeed 0.03096536694151787
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_1427</span><span class="o">/</span><span class="mf">4195266994.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_23911</span><span class="o">/</span><span class="mf">4195266994.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">rf_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rfGS</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">rfGS</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -1389,18 +1389,11 @@ windspeed 0.03096536694151787
 <span class="g g-Whitespace">   </span><span class="mi">1317</span><span class="s2">             y,</span>
 
 <span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/tree/_classes.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight, check_input, X_idx_sorted)</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">     ):</span>
-<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">154</span><span class="s2">         random_state = check_random_state(self.random_state)</span>
-<span class="g g-Whitespace">    </span><span class="mi">155</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="s2">         if self.ccp_alpha &lt; 0.0:</span>
-
-<span class="nn">~/opt/anaconda3/envs/dsmmlbook/lib/python3.8/site-packages/sklearn/utils/validation.py</span> in <span class="ni">check_random_state</span><span class="nt">(seed)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1055</span><span class="s2">         return np.random.mtrand._rand</span>
-<span class="g g-Whitespace">   </span><span class="mi">1056</span><span class="s2">     if isinstance(seed, numbers.Integral):</span>
-<span class="ne">-&gt; </span><span class="mi">1057</span><span class="s2">         return np.random.RandomState(seed)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="s2">     if isinstance(seed, np.random.RandomState):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1059</span><span class="s2">         return seed</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span><span class="s2">             )</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">420</span><span class="s2">         builder.build(self.tree_, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">422</span><span class="s2">         if self.n_outputs_ == 1 and is_classifier(self):</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

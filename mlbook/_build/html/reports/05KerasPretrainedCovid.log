@@ -33,12 +33,13 @@ The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
 print("[INFO] training classifier part of the network...")
-H = model.fit(
-    trainAug.flow(trainX,trainY,batch_size=BS),
-    steps_per_epoch=int(len(trainX)/BS),
-    validation_data=(testX,testY),
-    validation_steps=int(len(testX)/BS),
-    verbose=1,
-    epochs=EPOCHS)
+#H = model.fit(
+#    trainAug.flow(trainX,trainY,batch_size=BS),
+#    steps_per_epoch=int(len(trainX)/BS),
+#    validation_data=(testX,testY),
+#    validation_steps=int(len(testX)/BS),
+#    verbose=True,
+#    epochs=EPOCHS)
+H=model.fit(trainX, trainY, validation_data=(testX, testY), epochs=EPOCHS, batch_size=BS,verbose=True)
 -------------------
 
